@@ -1,0 +1,8 @@
+node_modules/*
+*.ts
+!*.d.ts
+!*.metadata.json
+.idea
+Thumbs.db
+Desktop.ini
+.DS_Store
