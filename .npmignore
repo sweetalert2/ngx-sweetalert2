@@ -3,6 +3,11 @@ node_modules/*
 !*.d.ts
 !*.metadata.json
 .idea
+.travis.yml
+npm-debug.log
+tsconfig.json
+tslint.json
+webpack.config.js
 Thumbs.db
 Desktop.ini
 .DS_Store
