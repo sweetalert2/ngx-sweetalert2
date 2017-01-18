@@ -1,5 +1,5 @@
 {
-  "name": "@toverux/ng-sweetalert2",
+  "name": "@toverux/ngsweetalert2",
   "version": "0.0.0",
   "description": "SweetAlert2 directive and service for Angular 2+",
   "repository": "git@github.com:toverux/ng-sweetalert2.git",
