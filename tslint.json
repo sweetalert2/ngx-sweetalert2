@@ -4,9 +4,10 @@
   "rules": {
     "quotemark": ["single"],
     "trailing-comma": false,
+    "object-literal-sort-keys": false,
 
-    "directive-selector": [true, "attribute", "swal", "camelCase"],
-    "component-selector": [true, "element", "swal", "kebab-case"],
+    "directive-selector": [false, "attribute", "swal", "camelCase"],
+    "component-selector": [false, "element", "swal", "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
