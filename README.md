@@ -30,6 +30,15 @@ Adding the `[swal]` attribute to an element will attach the directive to it.
 
 The directive will listen for `click` events and display a SweetAlert modal, configured using the options you pass to the attribute. The options are of type [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/limonte/sweetalert2/blob/master/sweetalert2.d.ts#L204), or a simple array of strings, of format `[title: string, text: string (, type: string)]`.
 
+```typescript
+class __API__ {
+    @Input() public set swal(options: SweetAlertOptions|SimpleSweetAlertOptions);
+
+    @Output() public confirm: EventEmitter<any>;
+    @Output() public cancel: EventEmitter<any>;
+}
+```
+
 Simple confirmation dialog:
 
 ```html
@@ -61,9 +70,56 @@ export class MyComponent {
 }
 ```
 
+### SwalComponent
+
+The library also provides a component, that can be useful for displaying other dialogs than confirmation ones. Others can prefer to use that to avoid having dialog-related logic in their codebehind.
+
+```typescript
+class __API__ {
+    @Input() public type: SweetAlertType;
+    @Input() public title: string;
+    @Input() public text: string;
+    @Input() public html: string;
+    @Input() public options: SweetAlertOptions;
+    
+    @Output() public confirm: EventEmitter<any>;
+    @Output() public cancel: EventEmitter<any>;
+    
+    public show(): Promise<any>;
+}
+```
+
+Simple example:
+
+```html
+<swal #dialog title="..." type="info"></swal>
+<button (click)="dialog.show().then(goToProfile)">Go to my profile</button>
+
+Or:
+<swal #dialog title="..." type="info" (confirm)="goToProfile()" (cancel)="doSomethingElse()"></swal>
+<button (click)="dialog.show()>Go to my profile</button>
+```
+
+If you decide to use the `show().then(...)` form, remember that you'll have to handle the promise rejection if the modal is dismissable, or you'll get an "uncaught promise rejection" in your console.
+
+If you use the `(confirm)="handler()"` form, `(cancel)` is optional.
+
+You can also access the dialog from your codebehind:
+
+```typescript
+class MyComponent {
+    @ViewChild('dialog') private swalDialog: SwalComponent;
+}
+```
+
+You can pass more SweetAlert2-native options via the `options` input:
+
+```html
+<swal #dialog [options]="{ confirmButtonText: 'I understand' }"></swal>
+```
+
 ### More to come...
 
  - Real tests, not just a .travis.yml file ;
  - I plan to add more features, like supporting SweetAlert queues ;
- - Add a component? Like `<swal #myAlert title="Hey you"></swal>` ? Useful ?
  - **Don't hesitate to open an issue to propose/ask for a feature.**
