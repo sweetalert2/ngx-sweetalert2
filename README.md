@@ -17,7 +17,15 @@ import { SweetAlert2Module } from '@toverux/ngsweetalert2';
 
 @NgModule({
     imports: [SweetAlert2Module],
-    // ...
+    
+    // OR provide default options, for example make Swal more Bootstrap-friendly:
+    imports: [
+        SweetAlert2Module.forRoot({
+            buttonsStyling: false,
+            confirmButtonClass: 'btn btn-lg btn-primary',
+            cancelButtonClass: 'btn btn-lg'
+        })
+    ]
 })
 export class AppModule {}
 ```
