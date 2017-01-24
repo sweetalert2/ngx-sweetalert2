@@ -1,5 +1,6 @@
-import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Directive, EventEmitter, HostListener, Inject, Input, Output } from '@angular/core';
 import swal, { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
+import { SWAL_DEFAULTS } from './di';
 
 export type SimpleSweetAlertOptions = Array<string|SweetAlertType>;
 
@@ -23,11 +24,15 @@ export class SwalDirective {
 
     private modalOptions: SweetAlertOptions = {};
 
+    public constructor(@Inject(SWAL_DEFAULTS) private defaultSwalOptions: SweetAlertOptions) {}
+
     @HostListener('click', ['$event']) public onHostClicked(event: MouseEvent): void {
         event.preventDefault();
         event.stopImmediatePropagation();
 
-        swal(this.modalOptions).then(
+        const options = Object.assign(this.defaultSwalOptions, this.modalOptions);
+
+        swal(options).then(
             (success) => this.confirm.emit(success),
             (dismiss) => this.cancel.emit(dismiss)
         );

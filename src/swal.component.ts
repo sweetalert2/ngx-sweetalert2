@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import swal, { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
+import { SWAL_DEFAULTS } from './di';
 
 @Component({
     selector: 'swal',
@@ -15,13 +16,15 @@ export class SwalComponent {
     @Output() public confirm: EventEmitter<any> = new EventEmitter();
     @Output() public cancel: EventEmitter<any> = new EventEmitter();
 
+    public constructor(@Inject(SWAL_DEFAULTS) private defaultSwalOptions: SweetAlertOptions) {}
+
     public show(): Promise<any> {
         const options = Object.assign({
             type: this.type,
             title: this.title,
             text: this.text,
             html: this.html,
-        }, this.options);
+        }, this.defaultSwalOptions, this.options);
 
         const promise = swal(options);
 
