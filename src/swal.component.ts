@@ -16,7 +16,9 @@ export class SwalComponent {
     @Output() public confirm: EventEmitter<any> = new EventEmitter();
     @Output() public cancel: EventEmitter<any> = new EventEmitter();
 
-    public constructor(@Inject(SWAL_DEFAULTS) private defaultSwalOptions: SweetAlertOptions) {}
+    public constructor(@Inject(SWAL_DEFAULTS) private defaultSwalOptions: SweetAlertOptions) {
+        this.show = this.show.bind(this);
+    }
 
     public show(): Promise<any> {
         const options = Object.assign({
