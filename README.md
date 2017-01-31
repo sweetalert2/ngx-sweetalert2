@@ -1,16 +1,18 @@
-# NgSweetAlert2 [![npm version](https://img.shields.io/npm/v/@toverux/ngsweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngsweetalert2.svg?style=flat-square)
+# Ng[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngsweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngsweetalert2.svg?style=flat-square)
 
 [SweetAlert2](https://github.com/limonte/sweetalert2) integration for Angular. This is not a wrapper for SweetAlert (which works well alone), it intends to provide Angular-esque utilities on top of it.
 
 ## Installation & Usage
 
-Install via the npm registry:
+1) Install via the npm registry:
 
 ```bash
 yarn add @toverux/ngsweetalert2
 ```
 
-Then, import the module:
+2) Then, import SweetAlert's CSS file, exactly like you're doing usually with vendor styles. Could be a TypeScript `import` with Webpack, a SASS `@import`, or even a `<link>` tag: that depends of you build system.
+
+3) Finally, import the module:
 
 ```typescript
 import { SweetAlert2Module } from '@toverux/ngsweetalert2';
