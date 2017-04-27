@@ -2,6 +2,8 @@
 
 [SweetAlert2](https://github.com/limonte/sweetalert2) integration for Angular. This is not a wrapper for SweetAlert (which works well alone), it intends to provide Angular-esque utilities on top of it.
 
+**Before posting an issue**, please check that the problem isn't on SweetAlert's side. *NgSweetAlert2* is a wrapper for a library that displays modals, not a library that displays modals. For now, 4 of 8 issues were directly related to SweetAlert2.
+
 ## Installation & Usage
 
 1) Install via the npm registry:
