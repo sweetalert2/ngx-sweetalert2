@@ -1,10 +1,10 @@
 # Ng[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngsweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngsweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
 
-[SweetAlert2](https://github.com/limonte/sweetalert2) integration for Angular. This is not a wrapper for SweetAlert (which works well alone), it intends to provide Angular-esque utilities on top of it.
+[SweetAlert2](https://github.com/limonte/sweetalert2) integration for Angular. This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
-**Before posting an issue**, please check that the problem isn't on SweetAlert's side. *NgSweetAlert2* is a wrapper for a library that displays modals, not a library that displays modals. For now, 4 of 8 issues were directly related to SweetAlert2.
+**Before posting an issue**, please check that the problem isn't on SweetAlert's side. This is just a directive/component wrapper around Swal2.
 
-## Installation & Usage
+## :package: Installation & Usage
 
 1) Install via the npm registry:
 
@@ -22,10 +22,11 @@ import { SweetAlert2Module } from '@toverux/ngsweetalert2';
 @NgModule({
     imports: [SweetAlert2Module],
     
-    // OR provide default options, for example make Swal more Bootstrap-friendly:
+    // OR provide default options, for example make Swal more Bootstrap-looking:
     imports: [
         SweetAlert2Module.forRoot({
             buttonsStyling: false,
+            customClass: 'modal-content',
             confirmButtonClass: 'btn btn-lg btn-primary',
             cancelButtonClass: 'btn btn-lg'
         })
@@ -34,9 +35,9 @@ import { SweetAlert2Module } from '@toverux/ngsweetalert2';
 export class AppModule {}
 ```
 
-## API
+## :link: API
 
-### SwalDirective
+### `SwalDirective`
 
 Adding the `[swal]` attribute to an element will attach the directive to it.
 
@@ -82,7 +83,7 @@ export class MyComponent {
 }
 ```
 
-### SwalComponent
+### `SwalComponent`
 
 The library also provides a component, that can be useful for displaying other dialogs than confirmation ones. Others can prefer to use that to avoid having dialog-related logic in their codebehind.
 
@@ -129,9 +130,3 @@ You can pass more SweetAlert2-native options via the `options` input:
 ```html
 <swal #dialog [options]="{ confirmButtonText: 'I understand' }"></swal>
 ```
-
-### More to come...
-
- - Real tests, not just a .travis.yml file ;
- - I plan to add more features, like supporting SweetAlert queues ;
- - **Don't hesitate to open an issue to propose/ask for a feature.**
