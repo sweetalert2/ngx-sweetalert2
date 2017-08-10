@@ -30,7 +30,7 @@ export class SwalDirective {
         event.preventDefault();
         event.stopImmediatePropagation();
 
-        const options = Object.assign({}, this.defaultSwalOptions, this.modalOptions);
+        const options = { ...this.defaultSwalOptions, ...this.modalOptions };
 
         swal(options).then(
             (success) => this.confirm.emit(success),

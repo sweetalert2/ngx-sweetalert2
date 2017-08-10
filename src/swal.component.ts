@@ -21,12 +21,14 @@ export class SwalComponent {
     }
 
     public show(): Promise<any> {
-        const options = Object.assign({
+        const options = {
             type: this.type,
             title: this.title,
             text: this.text,
             html: this.html,
-        }, this.defaultSwalOptions, this.options);
+            ...this.defaultSwalOptions,
+            ...this.options
+        };
 
         const promise = swal(options);
 

@@ -6,11 +6,15 @@
     "trailing-comma": false,
     "object-literal-sort-keys": false,
 
+    "angular-whitespace": [true, "check-interpolation", "check-pipe", "check-semicolon"],
+    "banana-in-box": true,
+    "templates-no-negated-async": true,
     "directive-selector": [false, "attribute", "swal", "camelCase"],
     "component-selector": [false, "element", "swal", "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
+    "use-view-encapsulation": true,
     "no-attribute-parameter-decorator": true,
     "no-input-rename": true,
     "no-output-rename": true,
@@ -23,6 +27,7 @@
     "import-destructuring-spacing": true,
     "templates-use-public": true,
     "no-access-missing-member": true,
-    "invoke-injectable": true
+    "invoke-injectable": true,
+    "template-to-ng-template": true
   }
 }
