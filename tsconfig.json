@@ -6,10 +6,11 @@
     "experimentalDecorators": true,
     "declaration": true,
     "moduleResolution": "node",
+    "strict": true,
     "noUnusedLocals": true,
-    "noImplicitAny": true,
     "lib": ["es2015", "dom"],
-    "outDir": "dist/types+es2015-modules"
+    "outDir": "dist/types+es2015-modules",
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "dist"],
   "angularCompilerOptions": {
