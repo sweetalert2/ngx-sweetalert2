@@ -1,11 +1,11 @@
-import { OpaqueToken, Provider } from '@angular/core';
+import { InjectionToken, Provider } from '@angular/core';
 import { SweetAlertOptions } from 'sweetalert2';
 
-export const SWAL_DEFAULTS = new OpaqueToken('SWAL_DEFAULTS');
+export const SwalDefaults = new InjectionToken<SweetAlertOptions>('SwalDefaults');
 
 export function swalDefaultsProvider(options: SweetAlertOptions = {}): Provider {
     return {
-        provide: SWAL_DEFAULTS,
+        provide: SwalDefaults,
         useValue: options
     };
 }

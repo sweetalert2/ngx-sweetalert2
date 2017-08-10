@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import swal, { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
-import { SWAL_DEFAULTS } from './di';
+import { SwalDefaults } from './di';
 
 @Component({
     selector: 'swal',
@@ -16,7 +16,7 @@ export class SwalComponent {
     @Output() public confirm: EventEmitter<any> = new EventEmitter();
     @Output() public cancel: EventEmitter<any> = new EventEmitter();
 
-    public constructor(@Inject(SWAL_DEFAULTS) private defaultSwalOptions: SweetAlertOptions) {
+    public constructor(@Inject(SwalDefaults) private defaultSwalOptions: SweetAlertOptions) {
         this.show = this.show.bind(this);
     }
 
