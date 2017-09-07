@@ -7,14 +7,26 @@ import { SwalDefaults } from './di';
     template: ''
 })
 export class SwalComponent {
-    @Input() public type: SweetAlertType;
-    @Input() public title: string;
-    @Input() public text: string;
-    @Input() public html: string;
-    @Input() public options: SweetAlertOptions;
+    @Input()
+    public type: SweetAlertType;
 
-    @Output() public confirm: EventEmitter<any> = new EventEmitter();
-    @Output() public cancel: EventEmitter<any> = new EventEmitter();
+    @Input()
+    public title: string;
+
+    @Input()
+    public text: string;
+
+    @Input()
+    public html: string;
+
+    @Input()
+    public options: SweetAlertOptions;
+
+    @Output()
+    public confirm: EventEmitter<any> = new EventEmitter();
+
+    @Output()
+    public cancel: EventEmitter<any> = new EventEmitter();
 
     public constructor(@Inject(SwalDefaults) private defaultSwalOptions: SweetAlertOptions) {
         this.show = this.show.bind(this);

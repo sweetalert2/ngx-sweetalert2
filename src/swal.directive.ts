@@ -2,11 +2,12 @@ import { Directive, EventEmitter, HostListener, Inject, Input, Output } from '@a
 import swal, { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
 import { SwalDefaults } from './di';
 
-export type SimpleSweetAlertOptions = Array<string|SweetAlertType>;
+export type SimpleSweetAlertOptions = Array<string | SweetAlertType>;
 
 @Directive({ selector: '[swal]' })
 export class SwalDirective {
-    @Input() public set swal(options: SweetAlertOptions|SimpleSweetAlertOptions) {
+    @Input()
+    public set swal(options: SweetAlertOptions | SimpleSweetAlertOptions) {
         if (Array.isArray(options)) {
             [this.modalOptions.title, this.modalOptions.text] = options;
 
@@ -18,15 +19,18 @@ export class SwalDirective {
         }
     }
 
-    @Output() public confirm: EventEmitter<any> = new EventEmitter();
+    @Output()
+    public confirm: EventEmitter<any> = new EventEmitter();
 
-    @Output() public cancel: EventEmitter<any> = new EventEmitter();
+    @Output()
+    public cancel: EventEmitter<any> = new EventEmitter();
 
     private modalOptions: SweetAlertOptions = {};
 
     public constructor(@Inject(SwalDefaults) private defaultSwalOptions: SweetAlertOptions) {}
 
-    @HostListener('click', ['$event']) public onHostClicked(event: MouseEvent): void {
+    @HostListener('click', ['$event'])
+    public onHostClicked(event: MouseEvent): void {
         event.preventDefault();
         event.stopImmediatePropagation();
 
