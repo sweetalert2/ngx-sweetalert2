@@ -9,7 +9,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "lib": ["es2015", "dom"],
-    "outDir": "dist/types+es2015-modules",
+    "outDir": "dist/esm+types",
     "skipLibCheck": true
   },
   "exclude": ["node_modules", "dist"],

@@ -20,9 +20,9 @@ module.exports = {
     output: {
         path: root('dist'),
         publicPath: '/',
-        filename: 'ng-sweetalert2.umd.js',
+        filename: 'ngsweetalert2.umd.js',
         libraryTarget: 'umd',
-        library: 'ng-sweetalert2'
+        library: 'ngsweetalert2'
     },
 
     externals: [/^\@angular\//, /^rxjs\//],
