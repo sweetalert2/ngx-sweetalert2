@@ -9,6 +9,9 @@
 1) Install via the npm registry:
 
 ```bash
+npm install --save @toverux/ngsweetalert2
+
+# or, using yarn instead of npm (yarnpkg.com):
 yarn add @toverux/ngsweetalert2
 ```
 
