@@ -113,7 +113,7 @@ Simple example:
 
 Or:
 <swal #dialog title="..." type="info" (confirm)="goToProfile()" (cancel)="doSomethingElse()"></swal>
-<button (click)="dialog.show()>Go to my profile</button>
+<button (click)="dialog.show()">Go to my profile</button>
 ```
 
 If you decide to use the `show().then(...)` form, remember that you'll have to handle the promise rejection if the modal is dismissable, or you'll get an "uncaught promise rejection" in your console.
