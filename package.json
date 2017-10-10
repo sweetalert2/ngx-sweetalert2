@@ -28,7 +28,7 @@
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "codelyzer": "^3.1.2",
     "rxjs": "^5.0.3",
-    "semantic-release": "^7.0.2",
+    "semantic-release": "^8.0.3",
     "tslint": "^5.6.0",
     "tslint-loader": "^3.3.0",
     "typescript": "^2.1.5",
