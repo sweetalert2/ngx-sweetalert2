@@ -6,17 +6,16 @@
 
 ## :package: Installation & Usage
 
-1) Install via the npm registry:
+1) Install NgSweetAlert2 and SweetAlert2 via the npm registry:
 
 ```bash
-npm install --save @toverux/ngsweetalert2
-
-# or, using yarn instead of npm (yarnpkg.com):
-yarn add @toverux/ngsweetalert2
+npm install --save sweetalert2 @toverux/ngsweetalert2
 ```
 
-2) Then, import SweetAlert's CSS file, exactly like you're doing usually with vendor styles. Could be a TypeScript `import` with Webpack, a SASS `@import`, or even a `<link>` tag: that depends of you build system.
+2) Then, import SweetAlert's CSS (or SCSS) file, exactly like you're doing usually with vendor styles. Could be a TypeScript `import` with Webpack, a SASS `@import`, or even a `<link>` tag: that depends of you build system.
 
+   Its path is `node_modules/sweetalert2/dist/sweetalert2.css`.
+  
 3) Finally, import the module:
 
 ```typescript

@@ -3192,7 +3192,7 @@ supports-color@^4.0.0, supports-color@^4.2.1:
   dependencies:
     has-flag "^2.0.0"
 
-sweetalert2@^6.6.0:
+sweetalert2@^6.10.2:
   version "6.10.2"
   resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-6.10.2.tgz#2fdd0d70027d142a08b6b96d4525c71fddfcfe85"
 
