@@ -23,9 +23,11 @@ yarn add @toverux/ngsweetalert2
 import { SweetAlert2Module } from '@toverux/ngsweetalert2';
 
 @NgModule({
-    imports: [SweetAlert2Module],
+    //=> Basic usage
+    imports: [SweetAlert2Module.forRoot()],
     
-    // OR provide default options, for example make Swal more Bootstrap-looking:
+    //=> Or provide default SweetAlert2-native options
+    //   (here we make Swal more Bootstrap-friendly)
     imports: [
         SweetAlert2Module.forRoot({
             buttonsStyling: false,
@@ -33,9 +35,13 @@ import { SweetAlert2Module } from '@toverux/ngsweetalert2';
             confirmButtonClass: 'btn btn-lg btn-primary',
             cancelButtonClass: 'btn btn-lg'
         })
-    ]
+    ],
+    
+    //=> In submodules only:
+    imports: [SweetAlert2Module]
 })
-export class AppModule {}
+export class AppModule {
+}
 ```
 
 ## :link: API
