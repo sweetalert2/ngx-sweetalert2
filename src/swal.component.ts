@@ -23,12 +23,14 @@ export class SwalComponent {
     public options: SweetAlertOptions;
 
     @Output()
-    public confirm: EventEmitter<any> = new EventEmitter();
+    public confirm = new EventEmitter<any>();
 
     @Output()
-    public cancel: EventEmitter<any> = new EventEmitter();
+    public cancel = new EventEmitter<any>();
 
-    public constructor(@Inject(SwalDefaults) private defaultSwalOptions: SweetAlertOptions) {
+    public constructor(
+        @Inject(SwalDefaults) private readonly defaultSwalOptions: SweetAlertOptions) {
+
         this.show = this.show.bind(this);
     }
 
