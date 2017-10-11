@@ -33,6 +33,7 @@ export class SwalDirective {
     public onHostClicked(event: MouseEvent): void {
         event.preventDefault();
         event.stopImmediatePropagation();
+        event.stopPropagation();
 
         const options = { ...this.defaultSwalOptions, ...this.modalOptions };
 
