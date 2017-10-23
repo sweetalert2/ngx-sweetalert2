@@ -27,7 +27,8 @@ export class SwalDirective {
 
     private modalOptions: SweetAlertOptions = {};
 
-    public constructor(@Inject(SwalDefaults) private defaultSwalOptions: SweetAlertOptions) {}
+    public constructor(@Inject(SwalDefaults) private defaultSwalOptions: SweetAlertOptions) {
+    }
 
     @HostListener('click', ['$event'])
     public onHostClicked(event: MouseEvent): void {

@@ -5,6 +5,16 @@
     "quotemark": ["single"],
     "trailing-comma": false,
     "object-literal-sort-keys": false,
+    "arrow-parens": false,
+    "no-submodule-imports": [
+      true,
+      "core-js",
+      "rxjs",
+      "zone.js",
+      "@angular/platform-browser",
+      "@angular/platform-browser-dynamic",
+      "@angular/core/testing"
+    ],
 
     "angular-whitespace": [true, "check-interpolation", "check-pipe", "check-semicolon"],
     "banana-in-box": true,

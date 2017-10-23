@@ -28,9 +28,7 @@ export class SwalComponent {
     @Output()
     public cancel = new EventEmitter<any>();
 
-    public constructor(
-        @Inject(SwalDefaults) private readonly defaultSwalOptions: SweetAlertOptions) {
-
+    public constructor(@Inject(SwalDefaults) private readonly defaultSwalOptions: SweetAlertOptions) {
         this.show = this.show.bind(this);
     }
 
