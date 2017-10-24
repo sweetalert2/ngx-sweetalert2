@@ -1,3 +1,3 @@
-export * from './src/ngsweetalert2/swal.component';
-export * from './src/ngsweetalert2/swal.directive';
-export * from './src/ngsweetalert2/sweetalert2.module';
+export * from './src/swal.component';
+export * from './src/swal.directive';
+export * from './src/sweetalert2.module';

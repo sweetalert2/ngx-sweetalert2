@@ -1,5 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
-import { SweetAlert2Module } from '../ngsweetalert2/sweetalert2.module';
+import { SweetAlert2Module } from '../../src/sweetalert2.module';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
