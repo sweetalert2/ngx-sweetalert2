@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+    ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges
+} from '@angular/core';
 import swal, { SweetAlertOptions } from 'sweetalert2';
 import { SwalDefaults } from './di';
 import * as events from './modal_events';
@@ -20,7 +22,8 @@ import * as events from './modal_events';
  */
 @Component({
     selector: 'swal',
-    template: ''
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SwalComponent implements OnChanges {
     // If Swal gets more than a hundred props, I'll write a code generator, I promise.
