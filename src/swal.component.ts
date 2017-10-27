@@ -81,17 +81,17 @@ export class SwalComponent implements OnChanges {
      * Emits an OnBeforeOpenEvent when the modal DOM element has been created.
      * Useful to perform DOM mutations before the modal is shown.
      */
-    @Output() public onBeforeOpen = new EventEmitter<events.OnBeforeOpenEvent>();
+    @Output() public readonly onBeforeOpen = new EventEmitter<events.OnBeforeOpenEvent>();
 
     /**
      * Emits an OnOpenEvent when the modal is shown.
      */
-    @Output() public onOpen = new EventEmitter<events.OnOpenEvent>();
+    @Output() public readonly onOpen = new EventEmitter<events.OnOpenEvent>();
 
     /**
      * Emits an OnCloseEvent when modal get closed.
      */
-    @Output() public onClose = new EventEmitter<events.OnCloseEvent>();
+    @Output() public readonly onClose = new EventEmitter<events.OnCloseEvent>();
 
     /**
      * Emits when the user clicks "Confirm".
@@ -102,7 +102,7 @@ export class SwalComponent implements OnChanges {
      *         // ... save user email
      *     }
      */
-    @Output() public confirm = new EventEmitter<any>();
+    @Output() public readonly confirm = new EventEmitter<any>();
 
     /**
      * Emits when the user clicks "Cancel" (or dismisses the modal by any other way).
@@ -115,7 +115,7 @@ export class SwalComponent implements OnChanges {
      *         // ... do something
      *     }
      */
-    @Output() public cancel = new EventEmitter<any>();
+    @Output() public readonly cancel = new EventEmitter<any>();
 
     /**
      * An object of SweetAlert2 native options, useful if:
@@ -142,9 +142,9 @@ export class SwalComponent implements OnChanges {
         return options;
     }
 
-    private touchedProps = new Set<keyof SweetAlertOptions>();
+    private readonly touchedProps = new Set<keyof SweetAlertOptions>();
 
-    private markTouched = this.touchedProps.add.bind(this.touchedProps);
+    private readonly markTouched = this.touchedProps.add.bind(this.touchedProps);
 
     public constructor(@Inject(SwalDefaults) private readonly defaultSwalOptions: SweetAlertOptions) {
         //=> Force `this` scope of show() on this component
