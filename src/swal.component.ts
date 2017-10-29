@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import swal, { SweetAlertOptions } from 'sweetalert2';
 import { SwalDefaults } from './di';
-import * as events from './modal_events';
+import * as events from './swal-events';
 
 /**
  * <swal> component. See the README.md for usage.
