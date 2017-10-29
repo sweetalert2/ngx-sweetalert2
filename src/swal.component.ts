@@ -145,6 +145,8 @@ export class SwalComponent implements OnChanges {
         return options;
     }
 
+    public nativeSwal = swal;
+
     private readonly touchedProps = new Set<keyof SweetAlertOptions>();
 
     private readonly markTouched = this.touchedProps.add.bind(this.touchedProps);
