@@ -20,10 +20,11 @@ import { SwalDirective } from './swal.directive';
         CommonModule
     ],
     exports: [
-        SwalComponent, SwalPartialDirective
+        SwalComponent, SwalPartialDirective,
+        SwalDirective
     ],
     entryComponents: [
-        SwalPartialComponent
+        SwalComponent, SwalPartialComponent
     ]
 })
 export class SweetAlert2Module {
