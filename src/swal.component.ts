@@ -33,6 +33,8 @@ export class SwalComponent implements OnChanges {
     @Input() public text: SweetAlertOptions['text'];
     @Input() public html: SweetAlertOptions['html'];
     @Input() public type: SweetAlertOptions['type'];
+    @Input() public backdrop: SweetAlertOptions['backdrop'];
+    @Input() public toast: SweetAlertOptions['toast'];
     @Input() public target: SweetAlertOptions['target'];
     @Input() public input: SweetAlertOptions['input'];
     @Input() public width: SweetAlertOptions['width'];
