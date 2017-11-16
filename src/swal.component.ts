@@ -8,7 +8,7 @@ import * as events from './swal-events';
 /**
  * <swal> component. See the README.md for usage.
  *
- * It contains a bunch of @Inputs that have a 1:1 mapping with SweetAlert2 options.
+ * It contains a bunch of @Inputs that have a perfect 1:1 mapping with SweetAlert2 options.
  * Their types are directly coming from SweetAlert2 types defintitions, meaning that NgSweetAlert2 is tightly coupled
  * to SweetAlert2, but also is type-safe.
  *
@@ -16,9 +16,9 @@ import * as events from './swal-events';
  *     However, preConfirm and inputValidtor are still @Inputs because there are not event handlers, there can't be
  *     multiple listeners and we need the Promise they must return.
  *
- * /!\ You can notice that the SweetAlert2 `useRejections` option is the only one that does not have an @Input().
- *     It's forced by NgSweetAlert2, by design, to allow consistent handling of `confirm` and `cancel` @Outputs, and
- *     allow cleaner code for the API consumer.
+ * /!\ You can notice that the SweetAlert2 `useRejections` and `expectRejections` are the only one to not have
+ *     an @Input(). That's because they are deprecated and not using the default value of these parameters leads to
+ *     clunky control flow. They are supported (use [options]="{}"), but please don't use them.
  */
 @Component({
     selector: 'swal',
@@ -171,7 +171,7 @@ export class SwalComponent implements OnChanges {
      * Returns the SweetAlert2 promise for convenience and use in code behind templates.
      * Otherwise, (confirm)="myHandler($event)" and (cancel)="myHandler($event)" can be used in templates.
      */
-    public async show(): Promise<any> {
+    public show(): Promise<any> {
         //=> Build the SweetAlert2 options
         const options: SweetAlertOptions = {
             //=> Merge with the default module-level options
@@ -183,17 +183,29 @@ export class SwalComponent implements OnChanges {
             //=> Handle modal lifecycle events
             onBeforeOpen: (modalElement) => this.onBeforeOpen.emit({ modalElement }),
             onOpen: (modalElement) => this.onOpen.emit({ modalElement }),
-            onClose: (modalElement) => this.onClose.emit({ modalElement }),
-
-            //=> Force useRejections to false - see the component's doc block for the reason.
-            useRejections: false
+            onClose: (modalElement) => this.onClose.emit({ modalElement })
         };
 
         //=> Show the Swal!
         const promise = swal(options);
 
         //=> Handle (confirm) and (cancel) @Outputs
-        // @todo: Implement this.
+        promise.then(
+            result => {
+                if (options.useRejections) {
+                    this.confirm.emit(result);
+                } else if ('value' in result) {
+                    this.confirm.emit(result.value);
+                } else {
+                    this.cancel.emit(result.dismiss);
+                }
+            },
+            err => {
+                if (options.useRejections) {
+                    this.cancel.emit(err);
+                }
+            }
+        );
 
         //=> Return the unaltered promise
         return promise;

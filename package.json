@@ -16,7 +16,7 @@
   },
   "private": false,
   "peerDependencies": {
-    "sweetalert2": "^6.11.0"
+    "sweetalert2": "^7.0.0"
   },
   "dependencies": {
     "@angular/animations": "^4.2.4",
@@ -50,7 +50,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^1.5.0-rc.1",
     "semantic-release": "^8.2.0",
-    "sweetalert2": "^6.11.1",
+    "sweetalert2": "^7.0.0",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.3.3"
