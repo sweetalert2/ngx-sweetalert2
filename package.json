@@ -53,6 +53,6 @@
     "sweetalert2": "^7.0.0",
     "ts-node": "^3.2.0",
     "tslint": "^5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "~2.3.4"
   }
 }
