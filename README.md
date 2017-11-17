@@ -1,4 +1,4 @@
-# Ng[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngsweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngsweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
+# Ngx-[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngsweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngsweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
 
 [SweetAlert2](https://github.com/limonte/sweetalert2) integration for Angular. This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
@@ -15,13 +15,13 @@
 
 ## :package: Installation & Usage
 
-1) Install NgSweetAlert2 and SweetAlert2 via the npm registry:
+1) Install _ngx-sweetalert2_ and _sweetalert2_ via the npm registry:
 
 ```bash
-npm install --save sweetalert2 @toverux/ngsweetalert2
+npm install --save sweetalert2 @toverux/ngx-sweetalert2
 ```
 
-:arrow_double_up: Always upgrade _SweetAlert2_ when you upgrade _NgSweetAlert2_. The latter is statically linked with SweetAlert2's type definitions.
+:arrow_double_up: Always upgrade SweetAlert2 when you upgrade ngx-sweetalert2. The latter is statically linked with SweetAlert2's type definitions.
 
 2) Import SweetAlert's CSS (or SCSS) file, do it like you're usually doing with vendor styles.
    Using Angular CLI for example, you can put this in your `.angular-cli.json`:
@@ -36,7 +36,7 @@ npm install --save sweetalert2 @toverux/ngsweetalert2
 3) Finally, import the module:
 
 ```typescript
-import { SweetAlert2Module } from '@toverux/ngsweetalert2';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 @NgModule({
     //=> Basic usage

@@ -1,8 +1,8 @@
 {
-  "name": "@toverux/ngsweetalert2",
+  "name": "@toverux/ngx-sweetalert2",
   "version": "0.0.0-semantic-released",
   "description": "SweetAlert2 directive and service for Angular 4+",
-  "repository": "git@github.com:toverux/ngsweetalert2.git",
+  "repository": "git@github.com:toverux/ngx-sweetalert2.git",
   "author": "Morgan Touverey Quilling <mtouverey@methodinthemadness.eu>",
   "license": "MIT",
   "scripts": {

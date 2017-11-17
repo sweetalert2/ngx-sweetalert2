@@ -9,7 +9,7 @@ import * as events from './swal-events';
  * <swal> component. See the README.md for usage.
  *
  * It contains a bunch of @Inputs that have a perfect 1:1 mapping with SweetAlert2 options.
- * Their types are directly coming from SweetAlert2 types defintitions, meaning that NgSweetAlert2 is tightly coupled
+ * Their types are directly coming from SweetAlert2 types defintitions, meaning that ngx-sweetalert2 is tightly coupled
  * to SweetAlert2, but also is type-safe.
  *
  * /!\ Some SweetAlert options aren't @Inputs but @Outputs: onBeforeOpen, onOpen, and onClose.
@@ -125,7 +125,7 @@ export class SwalComponent implements OnChanges {
     /**
      * An object of SweetAlert2 native options, useful if:
      *  - you don't want to use the @Inputs for practical/philosophical reasons ;
-     *  - there are missing @Inputs because NgSweetAlert2 isn't up-to-date with SweetAlert2's latest changes.
+     *  - there are missing @Inputs because ngx-sweetalert2 isn't up-to-date with SweetAlert2's latest changes.
      *
      * /!\ Be aware that the options defined in this object will override the @Inputs of the same name.
      */
