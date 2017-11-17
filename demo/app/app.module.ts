@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { SweetAlert2Module } from '../../src/sweetalert2.module';
+import { SweetAlert2Module } from '../../public_api';
 import { AppComponent } from './app.component';
 
 @NgModule({
