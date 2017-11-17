@@ -1,8 +1,10 @@
-# Ngx-[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngsweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngsweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
+# Ngx[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngsweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngx-sweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
 
 [SweetAlert2](https://github.com/limonte/sweetalert2) integration for Angular. This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
-**Before posting an issue**, please check that the problem isn't on SweetAlert's side.
+:point_right: **Migrating from v2.x to v3.x?** [Read the release notes!](https://github.com/toverux/ngx-sweetalert2/releases/tag/v3.0.0)
+
+:point_right: **Before posting an issue**, please check that the problem isn't on SweetAlert's side.
 
 ----------------
 
@@ -23,17 +25,7 @@ npm install --save sweetalert2 @toverux/ngx-sweetalert2
 
 :arrow_double_up: Always upgrade SweetAlert2 when you upgrade ngx-sweetalert2. The latter is statically linked with SweetAlert2's type definitions.
 
-2) Import SweetAlert's CSS (or SCSS) file, do it like you're usually doing with vendor styles.
-   Using Angular CLI for example, you can put this in your `.angular-cli.json`:
-
-```json
-{
-  "apps": [
-    {
-      "styles": ["styles.css", "../node_modules/sweetalert2/dist/sweetalert2.css"]
-```
-  
-3) Finally, import the module:
+2) Import the module:
 
 ```typescript
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
