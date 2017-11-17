@@ -154,11 +154,11 @@ You can pass native SweetAlert2 options via the `options` input, just in case yo
 You can catch other modal lifecycle events than (confirm) or (cancel):
 
 ```html
-<swal (onBeforeOpen)="onBeforeOpen($event)" (onOpen)="onOpen($event)" (onClose)="onClose($event)"></swal>
+<swal (beforeOpen)="onBeforeOpen($event)" (open)="onOpen($event)" (close)="onClose($event)"></swal>
 ```
 
 ```typescript
-public onBeforeOpen(event: OnBeforeOpenEvent): void {
+public onBeforeOpen(event: BeforeOpenEvent): void {
   // You can access the modal's native DOM node:
   console.log(event.modalElement);
 }

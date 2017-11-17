@@ -70,7 +70,7 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
      * receive the consumer's template.
      */
     public ngOnInit(): void {
-        this.beforeOpenSubscription = this.swalComponent.onBeforeOpen.asObservable().subscribe(() => {
+        this.beforeOpenSubscription = this.swalComponent.beforeOpen.asObservable().subscribe(() => {
             //=> Create the SwalPartialComponent on the target DOM node in the Sweet Alert
             const targetEl = this.swalPartial ? this.swalPartial() : this.swalTargets.content();
             const factory = this.resolver.resolveComponentFactory(SwalPartialComponent);
@@ -84,7 +84,7 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
             this.app.attachView(this.partialRef.hostView);
         });
 
-        this.closeSubscription = this.swalComponent.onClose.asObservable().subscribe(() => {
+        this.closeSubscription = this.swalComponent.close.asObservable().subscribe(() => {
             //=> Detach the partial component from the app and destroy it
             this.app.detachView(this.partialRef.hostView);
             this.partialRef.destroy();

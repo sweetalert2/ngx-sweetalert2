@@ -12,7 +12,7 @@ import * as events from './swal-events';
  * Their types are directly coming from SweetAlert2 types defintitions, meaning that ngx-sweetalert2 is tightly coupled
  * to SweetAlert2, but also is type-safe.
  *
- * /!\ Some SweetAlert options aren't @Inputs but @Outputs: onBeforeOpen, onOpen, and onClose.
+ * /!\ Some SweetAlert options aren't @Inputs but @Outputs: onBeforeOpen, onOpen, and onClose (without "on*" prefix).
  *     However, preConfirm and inputValidtor are still @Inputs because there are not event handlers, there can't be
  *     multiple listeners and we need the Promise they must return.
  *
@@ -83,20 +83,20 @@ export class SwalComponent implements OnChanges {
     @Input() public progressStepsDistance: SweetAlertOptions['progressStepsDistance'];
 
     /**
-     * Emits an OnBeforeOpenEvent when the modal DOM element has been created.
+     * Emits a BeforeOpenEvent when the modal DOM element has been created.
      * Useful to perform DOM mutations before the modal is shown.
      */
-    @Output() public readonly onBeforeOpen = new EventEmitter<events.OnBeforeOpenEvent>();
+    @Output() public readonly beforeOpen = new EventEmitter<events.BeforeOpenEvent>();
 
     /**
-     * Emits an OnOpenEvent when the modal is shown.
+     * Emits an OpenEvent when the modal is shown.
      */
-    @Output() public readonly onOpen = new EventEmitter<events.OnOpenEvent>();
+    @Output() public readonly open = new EventEmitter<events.OpenEvent>();
 
     /**
-     * Emits an OnCloseEvent when modal get closed.
+     * Emits a CloseEvent when modal get closed.
      */
-    @Output() public readonly onClose = new EventEmitter<events.OnCloseEvent>();
+    @Output() public readonly close = new EventEmitter<events.CloseEvent>();
 
     /**
      * Emits when the user clicks "Confirm".
@@ -181,9 +181,9 @@ export class SwalComponent implements OnChanges {
             ...this.options,
 
             //=> Handle modal lifecycle events
-            onBeforeOpen: (modalElement) => this.onBeforeOpen.emit({ modalElement }),
-            onOpen: (modalElement) => this.onOpen.emit({ modalElement }),
-            onClose: (modalElement) => this.onClose.emit({ modalElement })
+            onBeforeOpen: (modalElement) => this.beforeOpen.emit({ modalElement }),
+            onOpen: (modalElement) => this.open.emit({ modalElement }),
+            onClose: (modalElement) => this.close.emit({ modalElement })
         };
 
         //=> Show the Swal!
