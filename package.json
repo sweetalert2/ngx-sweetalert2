@@ -12,7 +12,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "packagr": "ng-packagr -p ng-package.json",
-    "semantic-release": "semantic-release pre && npm publish dist && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "private": false,
   "peerDependencies": {
@@ -49,7 +49,7 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^1.5.0-rc.1",
-    "semantic-release": "^8.2.0",
+    "semantic-release": "^9.1.1",
     "sweetalert2": "^7.0.0",
     "ts-node": "^3.2.0",
     "tslint": "^5.7.0",
