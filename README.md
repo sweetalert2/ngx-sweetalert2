@@ -1,4 +1,4 @@
-# Ngx[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngsweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngx-sweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
+# Ngx[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngx-sweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngx-sweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
 
 [SweetAlert2](https://github.com/limonte/sweetalert2) integration for Angular. This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
