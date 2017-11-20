@@ -1,7 +1,7 @@
 {
-  "name": "@toverux/ngx-sweetalert2",
-  "version": "0.0.0-semantic-released",
-  "description": "SweetAlert2 directive and service for Angular 4+",
+  "name": "ngx-sweetalert2-repository",
+  "version": "0.0.0",
+  "description": "This is the package.json for ngx-sweetalert2's repository. See src/package.json for the library itself.",
   "repository": "git@github.com:toverux/ngx-sweetalert2.git",
   "author": "Morgan Touverey Quilling <mtouverey@methodinthemadness.eu>",
   "license": "MIT",
@@ -12,12 +12,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "packagr": "ng-packagr -p ng-package.json",
-    "semantic-release": "semantic-release"
+    "semantic-release": "cd dist && semantic-release && cd .."
   },
-  "private": false,
-  "peerDependencies": {
-    "sweetalert2": "^7.0.0"
-  },
+  "private": true,
   "dependencies": {
     "@angular/animations": "^4.2.4",
     "@angular/common": "^4.2.4",
