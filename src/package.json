@@ -1,0 +1,13 @@
+{
+  "name": "@toverux/ngx-sweetalert2",
+  "version": "0.0.0-semantic-released",
+  "description": "SweetAlert2 integration for Angular 4+",
+  "repository": "git@github.com:toverux/ngx-sweetalert2.git",
+  "author": "Morgan Touverey Quilling <mtouverey@methodinthemadness.eu>",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "@angular/common": "^4.0.0",
+    "sweetalert2": "^7.0.0"
+  }
+}
