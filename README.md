@@ -1,6 +1,6 @@
-# Ngx[SweetAlert2](https://github.com/limonte/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngx-sweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngx-sweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
+# Ngx[SweetAlert2](https://github.com/sweetalert2/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngx-sweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngx-sweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
 
-[SweetAlert2](https://github.com/limonte/sweetalert2) integration for Angular. This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
+[SweetAlert2](https://github.com/sweetalert2/sweetalert2) integration for Angular. This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
 :point_right: **Migrating from v2.x to v3.x?** [Read the release notes!](https://github.com/toverux/ngx-sweetalert2/releases/tag/v3.0.0)
 
@@ -33,7 +33,7 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 @NgModule({
     //=> Basic usage
     imports: [SweetAlert2Module.forRoot()],
-    
+
     //=> Or provide default SweetAlert2-native options
     //   (here, we make Swal more Bootstrap-friendly)
     imports: [
@@ -44,7 +44,7 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
             cancelButtonClass: 'btn'
         })
     ],
-    
+
     //=> In submodules only:
     imports: [SweetAlert2Module]
 })
@@ -58,7 +58,7 @@ export class AppModule {
 
 Add the `[swal]` attribute to an element to show a simple modal when that element is clicked.
 
-To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/limonte/sweetalert2/blob/master/sweetalert2.d.ts#L225) object, or a simple array of strings, of format `[title: string, text: string (, type: string)]`.
+To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/master/sweetalert2.d.ts#L225) object, or a simple array of strings, of format `[title: string, text: string (, type: string)]`.
 
 Simple dialog:
 
@@ -71,11 +71,11 @@ Simple dialog:
 More advanced (input in dialog, dismissal handling):
 
 ```html
-<button 
+<button
   [swal]="{ title: 'Enter your email', input: 'email' }"
   (confirm)="saveEmail($event)"
   (cancel)="handleRefusalToSetEmail($event)">
-  
+
   Set my e-mail address
 </button>
 ```
@@ -112,7 +112,7 @@ The component also allows you to use Angular dynamic templates inside the SweetA
 Simple example:
 
 ```html
-<swal 
+<swal
   #deleteSwal
   title="Delete {{ file.name }}?"
   text="This cannot be undone"
@@ -194,7 +194,7 @@ And then, set the appropriate target as the value of `*swalPartial`.
   <form *swalPartial [formControl]="myForm">
     ...
   </form>
-        
+
   <!-- This targets the confirm button's inner content
        Notice the usage of ng-container to avoid creating an useless DOM element inside the button -->
   <ng-container *swalPartial="swalTargets.confirmButton">
