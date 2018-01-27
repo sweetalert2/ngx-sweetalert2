@@ -8,6 +8,7 @@
   "peerDependencies": {
     "@angular/core": "^4.0.0",
     "@angular/common": "^4.0.0",
+    "rxjs": "^5.0.0",
     "sweetalert2": "^7.4.0"
   }
 }
