@@ -119,9 +119,12 @@ export class SwalDirective implements OnInit, OnDestroy {
         if (this.swalRef) {
             this.swalRef.destroy();
         }
-
-        this.confirmSubscription.unsubscribe();
-        this.cancelSubscription.unsubscribe();
+        if(this.confirmSubscription){
+            this.confirmSubscription.unsubscribe();
+        }
+        if(this.cancelSubscription) {
+            this.cancelSubscription.unsubscribe();
+        }
     }
 
     /**
