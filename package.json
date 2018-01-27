@@ -47,7 +47,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^1.5.0-rc.1",
     "semantic-release": "^9.1.1",
-    "sweetalert2": "^7.0.0",
+    "sweetalert2": "^7.4.0",
     "ts-node": "^3.2.0",
     "tslint": "^5.7.0",
     "typescript": "~2.3.4"
