@@ -2,23 +2,21 @@ language: node_js
 
 cache:
   directories:
-    - node_modules
+    - ~/.npm
 
 notifications:
   email: false
 
 node_js:
-  - '8'
-
-before_install:
-  - npm i -g npm@5.3.0
+  - 8
+  - 9
 
 script:
   - echo "Please test the package locally with 'npm test'. Or help me fix .travis.yml to get Angular tests run on Travis."
 
 after_success:
   - yarn packagr
-  - yarn semantic-release
+  - yarn travis-deploy-once "yarn semantic-release"
 
 branches:
   except:
