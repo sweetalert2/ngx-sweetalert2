@@ -203,4 +203,4 @@ And then, set the appropriate target as the value of `*swalPartial`.
 <swal>
 ```
 
-We have the following targets: `title`, `content`, `confirmButton`, `cancelButton`, `buttonsWrapper`. These are provided by SweetAlert2.
+We have the following targets: `title`, `content`, `actions`, `confirmButton`, `cancelButton`. These are provided by SweetAlert2.

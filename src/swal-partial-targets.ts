@@ -7,8 +7,17 @@ import swal from 'sweetalert2';
  */
 export class SwalPartialTargets {
     public readonly title = () => swal.getTitle();
+
     public readonly content = () => swal.getContent();
-    public readonly confirmButton = () => swal.getConfirmButton();
-    public readonly cancelButton = () => swal.getCancelButton();
+
+    /**
+     * @deprecated Will be removed in the next major version, please use {@link SwalPartialTargets#actions} instead.
+     */
     public readonly buttonsWrapper = () => swal.getButtonsWrapper();
+
+    public readonly actions = () => swal.getActions();
+
+    public readonly confirmButton = () => swal.getConfirmButton();
+
+    public readonly cancelButton = () => swal.getCancelButton();
 }
