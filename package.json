@@ -1,6 +1,6 @@
 {
   "name": "ngx-sweetalert2-repository",
-  "version": "0.0.0",
+  "version": "0.0.0-unreleased-demo-project",
   "description": "This is the package.json for ngx-sweetalert2's repository. See src/package.json for the library itself.",
   "repository": "git@github.com:sweetalert2/ngx-sweetalert2.git",
   "author": "Morgan Touverey Quilling <mtouverey@methodinthemadness.eu>",
@@ -12,7 +12,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "packagr": "ng-packagr -p ng-package.json",
-    "semantic-release": "cd dist && semantic-release && cd .."
+    "semantic-release": "cd dist && semantic-release; cd ..",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "private": true,
   "dependencies": {
@@ -46,8 +47,9 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^1.5.0-rc.1",
-    "semantic-release": "^9.1.1",
+    "semantic-release": "^12.2.5",
     "sweetalert2": "^7.4.0",
+    "travis-deploy-once": "^4.3.3",
     "ts-node": "^4.1.0",
     "tslint": "^5.7.0",
     "typescript": "^2.6.2"
