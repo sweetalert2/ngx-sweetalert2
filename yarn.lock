@@ -8351,9 +8351,9 @@ svgo@^0.7.0:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
-sweetalert2@^7.4.0:
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.7.0.tgz#8fcce6ae12108aa0ae6df94adf7bf37272c9934f"
+sweetalert2@^7.8.0:
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.8.2.tgz#12f2d263fcae529e6e9bac64b2aaea7255fd3841"
 
 symbol-observable@1.0.1:
   version "1.0.1"
