@@ -20,4 +20,6 @@ export class SwalPartialTargets {
     public readonly confirmButton = () => swal.getConfirmButton();
 
     public readonly cancelButton = () => swal.getCancelButton();
+
+    public readonly footer = () => swal.getFooter();
 }
