@@ -1,16 +1,13 @@
 <p align="center">
   <a href="https://sweetalert2.github.io">
-    <img src="https://sweetalert2.github.io/images/swal2-logo.png" alt="SweetAlert2">
+    <img src="ngx-sweetalert2-logo.png" alt="SweetAlert2">
   </a>
 </p>
 
-
-<h1 align="center">
-  Ngx<a href="https://sweetalert2.github.io">SweetAlert2</a>
-</h1>
+<h1 align="center">ngx-sweetalert2</h1>
 
 <p align="center">
-  Official SweetAlert2 integration for Angular 4+
+  Official <a href="https://sweetalert2.github.io">SweetAlert2</a> integration for Angular 4+
 </p>
 
 <p align="center">
