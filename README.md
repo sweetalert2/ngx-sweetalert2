@@ -1,6 +1,28 @@
-# Ngx[SweetAlert2](https://github.com/sweetalert2/sweetalert2) [![npm version](https://img.shields.io/npm/v/@toverux/ngx-sweetalert2.svg?style=flat-square)](https://www.npmjs.com/package/@toverux/ngsweetalert2) ![license](https://img.shields.io/github/license/toverux/ngx-sweetalert2.svg?style=flat-square) ![npm total downloads](https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square)
+<p align="center">
+  <a href="https://sweetalert2.github.io">
+    <img src="https://sweetalert2.github.io/images/swal2-logo.png" alt="SweetAlert2">
+  </a>
+</p>
 
-[SweetAlert2](https://github.com/sweetalert2/sweetalert2) integration for Angular. This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
+
+<h1 align="center">
+  Ngx<a href="https://sweetalert2.github.io">SweetAlert2</a>
+</h1>
+
+<p align="center">
+  Official SweetAlert2 integration for Angular 4+
+</p>
+
+<p align="center">
+    <a href="https://www.npmjs.com/package/@toverux/ngsweetalert2"><img alt="npm version" src="https://img.shields.io/npm/v/@toverux/ngx-sweetalert2.svg?style=flat-square"></a>
+    <a href="LICENSE"><img alt="license" src="https://img.shields.io/github/license/toverux/ngx-sweetalert2.svg?style=flat-square"></a>
+    <img alt="npm total downloads" src="https://img.shields.io/npm/dt/@toverux/ngx-sweetalert2.svg?style=flat-square">
+    <img alt="npm legacy total downloads" src="https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square&label=downloads%20(legacy)">
+</p>
+
+<br>
+
+This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
 :point_right: **Migrating from v2.x to v3.x?** [Read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v3.0.0)
 
