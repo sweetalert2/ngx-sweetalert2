@@ -1,5 +1,5 @@
 import {
-    ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges
+    ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, Output, SimpleChanges
 } from '@angular/core';
 import swal, { SweetAlertOptions } from 'sweetalert2';
 import { SwalDefaults } from './di';
@@ -25,7 +25,7 @@ import * as events from './swal-events';
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SwalComponent implements OnChanges {
+export class SwalComponent implements OnChanges, OnDestroy {
     // If Swal gets more than a hundred props, I'll write a code generator, I promise.
     // And I always resolve() my promises.
     @Input() public title: SweetAlertOptions['title'];
@@ -150,6 +150,8 @@ export class SwalComponent implements OnChanges {
 
     public nativeSwal = swal;
 
+    private isCurrentlyShown = false;
+
     private readonly touchedProps = new Set<keyof SweetAlertOptions>();
 
     private readonly markTouched = this.touchedProps.add.bind(this.touchedProps);
@@ -164,6 +166,12 @@ export class SwalComponent implements OnChanges {
         Object.keys(changes)
             .filter(prop => prop !== 'options')
             .forEach(this.markTouched);
+    }
+
+    public ngOnDestroy(): void {
+        if (this.isCurrentlyShown) {
+            swal.close();
+        }
     }
 
     /**
@@ -182,9 +190,19 @@ export class SwalComponent implements OnChanges {
             ...this.options,
 
             //=> Handle modal lifecycle events
-            onBeforeOpen: (modalElement) => this.beforeOpen.emit({ modalElement }),
-            onOpen: (modalElement) => this.open.emit({ modalElement }),
-            onClose: (modalElement) => this.close.emit({ modalElement })
+            onBeforeOpen: (modalElement) => {
+                this.beforeOpen.emit({ modalElement });
+            },
+
+            onOpen: (modalElement) => {
+                this.isCurrentlyShown = true;
+                this.open.emit({ modalElement });
+            },
+
+            onClose: (modalElement) => {
+                this.isCurrentlyShown = false;
+                this.close.emit({ modalElement });
+            }
         };
 
         //=> Show the Swal!
@@ -193,6 +211,7 @@ export class SwalComponent implements OnChanges {
         //=> Handle (confirm) and (cancel) @Outputs
         promise.then(
             result => {
+                // noinspection JSDeprecatedSymbols - support for old SweetAlert2 versions
                 if (options.useRejections) {
                     this.confirm.emit(result);
                 } else if ('value' in result) {
@@ -202,6 +221,7 @@ export class SwalComponent implements OnChanges {
                 }
             },
             err => {
+                // noinspection JSDeprecatedSymbols - support for old SweetAlert2 versions
                 if (options.useRejections) {
                     this.cancel.emit(err);
                 }
