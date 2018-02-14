@@ -2,7 +2,6 @@ import {
     ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output,
     ViewContainerRef
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
 import { SwalComponent } from './swal.component';
 
@@ -86,9 +85,6 @@ export class SwalDirective implements OnInit, OnDestroy {
      */
     private swalOptions: SweetAlertOptions;
 
-    private confirmSubscription: Subscription;
-    private cancelSubscription: Subscription;
-
     public constructor(
         private readonly viewContainerRef: ViewContainerRef,
         private readonly resolver: ComponentFactoryResolver) {
@@ -106,9 +102,6 @@ export class SwalDirective implements OnInit, OnDestroy {
             this.swalRef = this.viewContainerRef.createComponent(factory);
             this.swalInstance = this.swalRef.instance;
         }
-
-        this.confirmSubscription = this.swalInstance.confirm.asObservable().subscribe(v => this.confirm.emit(v));
-        this.cancelSubscription = this.swalInstance.cancel.asObservable().subscribe(v => this.cancel.emit(v));
     }
 
     /**
@@ -119,9 +112,6 @@ export class SwalDirective implements OnInit, OnDestroy {
         if (this.swalRef) {
             this.swalRef.destroy();
         }
-
-        this.confirmSubscription.unsubscribe();
-        this.cancelSubscription.unsubscribe();
     }
 
     /**
@@ -139,6 +129,14 @@ export class SwalDirective implements OnInit, OnDestroy {
             this.swalInstance.options = this.swalOptions;
         }
 
-        this.swalInstance.show();
+        const confirmSub = this.swalInstance.confirm.asObservable().subscribe(v => this.confirm.emit(v));
+        const cancelSub = this.swalInstance.cancel.asObservable().subscribe(v => this.cancel.emit(v));
+
+        this.swalInstance.show().then(unsubscribe);
+
+        function unsubscribe() {
+            confirmSub.unsubscribe();
+            cancelSub.unsubscribe();
+        }
     }
 }
