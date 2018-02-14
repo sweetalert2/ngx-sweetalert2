@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://xoriylp.github.stackblitz.io/">
+  <a href="https://github-ieasgo.stackblitz.io/">
     See SweetAlert2 in action ↗
   </a>
 </p>
