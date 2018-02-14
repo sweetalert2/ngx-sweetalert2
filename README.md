@@ -17,6 +17,12 @@
     <img alt="npm legacy total downloads" src="https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square&label=downloads%20(legacy)">
 </p>
 
+<p align="center">
+  <a href="https://xoriylp.github.stackblitz.io/">
+    See SweetAlert2 in action ↗
+  </a>
+</p>
+
 <br>
 
 This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
