@@ -77,7 +77,7 @@ export class AppModule {
 
 Add the `[swal]` attribute to an element to show a simple modal when that element is clicked.
 
-To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/master/sweetalert2.d.ts#L225) object, or a simple array of strings, of format `[title: string, text: string (, type: string)]`.
+To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/master/sweetalert2.d.ts#L248) object, or a simple array of strings, of format `[title: string, text: string (, type: string)]`.
 
 Simple dialog:
 
