@@ -209,10 +209,12 @@ export class SwalComponent implements OnChanges, OnDestroy {
         const promise = swal(options);
 
         //=> Handle (confirm) and (cancel) @Outputs
+        // tslint:disable-next-line:no-string-literal
+        const useRejections = (options as { useRejections?: boolean }).useRejections;
+
         promise.then(
             result => {
-                // noinspection JSDeprecatedSymbols - support for old SweetAlert2 versions
-                if (options.useRejections) {
+                if (useRejections) {
                     this.confirm.emit(result);
                 } else if ('value' in result) {
                     this.confirm.emit(result.value);
@@ -221,8 +223,7 @@ export class SwalComponent implements OnChanges, OnDestroy {
                 }
             },
             err => {
-                // noinspection JSDeprecatedSymbols - support for old SweetAlert2 versions
-                if (options.useRejections) {
+                if (useRejections) {
                     this.cancel.emit(err);
                 }
             }
