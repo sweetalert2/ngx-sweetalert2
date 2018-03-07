@@ -2,10 +2,8 @@ import {
     ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output,
     ViewContainerRef
 } from '@angular/core';
-import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
+import swal, { SweetAlertOptions, SweetAlertArrayOptions } from 'sweetalert2';
 import { SwalComponent } from './swal.component';
-
-export type SimpleSweetAlertOptions = [string, string, SweetAlertType | null];
 
 /**
  * [swal] directive. It takes a value that defines the Sweet Alert and can be of three types:
@@ -31,14 +29,13 @@ export class SwalDirective implements OnInit, OnDestroy {
      * SweetAlert2 options or a SwalComponent instance.
      * See the class doc block for more informations.
      */
-    @Input() public set swal(swal: SwalComponent | SweetAlertOptions | SimpleSweetAlertOptions) {
-        if (swal instanceof SwalComponent) {
-            this.swalInstance = swal;
-        } else if (Array.isArray(swal)) {
-            this.swalOptions = {};
-            [this.swalOptions.title, this.swalOptions.text, this.swalOptions.type] = swal;
+    @Input() public set swal(options: SwalComponent | SweetAlertOptions | SweetAlertArrayOptions) {
+        if (options instanceof SwalComponent) {
+            this.swalInstance = options;
+        } else if (Array.isArray(options)) {
+            this.swalOptions = swal.argsToParams(options);
         } else {
-            this.swalOptions = swal;
+            this.swalOptions = options;
         }
     }
 
