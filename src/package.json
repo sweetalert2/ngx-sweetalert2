@@ -9,7 +9,7 @@
     "@angular/core": "^4.0.0 || ^5.0.0",
     "@angular/common": "^4.0.0 || ^5.0.0",
     "rxjs": "^5.0.0",
-    "sweetalert2": "^7.8.0"
+    "sweetalert2": "^7.15.1"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
