@@ -2,7 +2,7 @@ import {
     ApplicationRef, ComponentFactoryResolver, ComponentRef, Directive, Host, Injector, Input, OnDestroy, OnInit,
     TemplateRef
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { SwalPartialTargets } from './swal-partial-targets';
 import { SwalPartialComponent } from './swal-partial.component';
 import { SwalComponent } from './swal.component';
