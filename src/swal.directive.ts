@@ -2,7 +2,7 @@ import {
     ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output,
     ViewContainerRef
 } from '@angular/core';
-import swal, { SweetAlertOptions, SweetAlertArrayOptions } from 'sweetalert2';
+import swal, { SweetAlertArrayOptions, SweetAlertOptions } from 'sweetalert2';
 import { SwalComponent } from './swal.component';
 
 /**
