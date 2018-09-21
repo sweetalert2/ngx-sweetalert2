@@ -198,6 +198,8 @@ The other cool thing about using a structural directive is that the modal's cont
 You just have to change the _target_ of the partial view (_`content`_ is the default target). First, inject this service in your component:
 
 ```typescript
+import { SwalPartialTargets } from '@toverux/ngx-sweetalert2';
+
 export class MyComponent {
   public constructor(public readonly swalTargets: SwalPartialTargets) {
   }
