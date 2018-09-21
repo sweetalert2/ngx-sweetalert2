@@ -188,7 +188,7 @@ This allows you to have data binding, use directives and components and benefit 
   <div *swalPartial class="alert alert-info">
     <strong>{{ elapsedSeconds }}</strong> seconds elapsed since then.
   </div>
-<swal>
+</swal>
 ```
 
 The other cool thing about using a structural directive is that the modal's contents won't be instantiated before the modal is shown.
@@ -219,7 +219,7 @@ And then, set the appropriate target as the value of `*swalPartial`.
   <ng-container *swalPartial="swalTargets.confirmButton">
     Send ({{ secondsLeft }} seconds left)
   </ng-container>
-<swal>
+</swal>
 ```
 
 We have the following targets: `title`, `content`, `actions`, `confirmButton`, `cancelButton`. These are provided by SweetAlert2.
