@@ -27,6 +27,8 @@ This is not a regular API wrapper for SweetAlert (which already works very well 
 
 ----------------
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sweetalert2/ngx-sweetalert2.svg)](https://greenkeeper.io/)
+
  - [Installation & Usage](#package-installation--usage)
  - [`[swal]` directive](#swaldirective) — for simple, one-liner dialogs
  - [`<swal>` component](#swalcomponent) — for advanced use cases and extended Swal2 API coverage
