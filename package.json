@@ -31,28 +31,28 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.6.1",
-    "@angular/cli": "6.0.3",
-    "@angular/compiler-cli": "6.0.2",
-    "@angular/language-service": "6.0.2",
+    "@angular-devkit/build-angular": "~0.8.5",
+    "@angular/cli": "6.2.5",
+    "@angular/compiler-cli": "6.1.10",
+    "@angular/language-service": "6.1.10",
     "@types/jasmine": "^2.8.7",
     "@types/jasminewd2": "^2.0.2",
     "@types/node": "^10.1.1",
     "codelyzer": "^4.3.0",
     "jasmine-core": "^3.1.0",
     "jasmine-spec-reporter": "^4.1.0",
-    "karma": "^2.0.2",
+    "karma": "^3.0.0",
     "karma-chrome-launcher": "^2.1.1",
     "karma-cli": "^1.0.1",
     "karma-coverage-istanbul-reporter": "^2.0.0",
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "^1.1.0",
-    "ng-packagr": "^2.4.5",
+    "ng-packagr": "^4.3.1",
     "semantic-release": "^15.4.1",
     "sweetalert2": "^7.8.0",
     "travis-deploy-once": "^5.0.0",
-    "ts-node": "^6.0.3",
+    "ts-node": "^7.0.1",
     "tslint": "^5.10.0",
-    "typescript": "2.7.2"
+    "typescript": "3.1.3"
   }
 }
