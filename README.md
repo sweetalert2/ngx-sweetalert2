@@ -39,7 +39,7 @@ This is not a regular API wrapper for SweetAlert (which already works very well 
 1) Install _ngx-sweetalert2_ and _sweetalert2_ via the npm registry:
 
 ```bash
-npm install --save sweetalert2@7 @toverux/ngx-sweetalert2
+npm install --save sweetalert2@^7.15.1 @toverux/ngx-sweetalert2
 ```
 
 :arrow_double_up: Always upgrade SweetAlert2 when you upgrade ngx-sweetalert2. The latter is statically linked with SweetAlert2's type definitions.
