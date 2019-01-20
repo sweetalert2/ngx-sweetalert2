@@ -1,4 +1,6 @@
 language: node_js
+dist: xenial
+node_js: lts/*
 sudo: true
 
 cache:
@@ -7,10 +9,6 @@ cache:
 
 notifications:
   email: false
-
-node_js:
-  - 8
-  - 10
 
 script:
   - ng test --watch false
