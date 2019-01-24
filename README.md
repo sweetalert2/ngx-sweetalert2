@@ -126,7 +126,7 @@ The directive can also take a reference to a [`<swal>` component](#swalcomponent
 
 The library also provides a component, that can be useful for advanced use cases, or when you `[swal]` has too much options.
 
-The component also allows you to use Angular dynamic templates inside the SweetAlert (see the [`*swalPartial` directive](#swalpartial) for that).
+The component also allows you to use Angular dynamic templates inside the SweetAlert (see the [`*swalPartial` directive](#swalpartialdirective) for that).
 
 Simple example:
 
