@@ -1,7 +1,7 @@
 import {
     ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, Output, SimpleChanges
 } from '@angular/core';
-import swal, { SweetAlertOptions } from 'sweetalert2';
+import Swal, { SweetAlertOptions } from 'sweetalert2';
 import { SwalDefaults } from './di';
 import * as events from './swal-events';
 
@@ -148,7 +148,7 @@ export class SwalComponent implements OnChanges, OnDestroy {
         return options;
     }
 
-    public nativeSwal = swal;
+    public nativeSwal = Swal;
 
     private isCurrentlyShown = false;
 
@@ -170,7 +170,7 @@ export class SwalComponent implements OnChanges, OnDestroy {
 
     public ngOnDestroy(): void {
         if (this.isCurrentlyShown) {
-            swal.close();
+            Swal.close();
         }
     }
 
@@ -206,7 +206,7 @@ export class SwalComponent implements OnChanges, OnDestroy {
         };
 
         //=> Show the Swal!
-        const promise = swal(options);
+        const promise = Swal.fire(options);
 
         //=> Handle (confirm) and (cancel) @Outputs
         // tslint:disable-next-line:no-string-literal
