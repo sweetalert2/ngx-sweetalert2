@@ -2,7 +2,7 @@ import {
     ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output,
     ViewContainerRef
 } from '@angular/core';
-import swal, { SweetAlertArrayOptions, SweetAlertOptions } from 'sweetalert2';
+import Swal, { SweetAlertArrayOptions, SweetAlertOptions } from 'sweetalert2';
 import { SwalComponent } from './swal.component';
 
 /**
@@ -33,7 +33,7 @@ export class SwalDirective implements OnInit, OnDestroy {
         if (options instanceof SwalComponent) {
             this.swalInstance = options;
         } else if (Array.isArray(options)) {
-            this.swalOptions = swal.argsToParams(options);
+            this.swalOptions = Swal.argsToParams(options);
         } else {
             this.swalOptions = options;
         }
