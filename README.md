@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">ngx-sweetalert2</h1>
+<h1 align="center">@sweetalert2/ngx-sweetalert2</h1>
 
 <p align="center">
   Official <a href="https://sweetalert2.github.io">SweetAlert2</a> integration for Angular 4+
@@ -19,7 +19,7 @@
 
 This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
-:point_right: **Migrating from v2.x to v3.x?** [Read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v3.0.0)
+:warning: Package has been renamed to `@sweetalert2/ngx-sweetalert2`, [Read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v5.0.0)
 
 :point_right: **Before posting an issue**, please check that the problem isn't on SweetAlert's side.
 
