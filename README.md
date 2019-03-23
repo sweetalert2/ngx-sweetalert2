@@ -13,8 +13,6 @@
 <p align="center">
     <a href="https://www.npmjs.com/package/@sweetalert2/ngx-sweetalert2"><img alt="npm version" src="https://img.shields.io/npm/v/@sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
     <a href="LICENSE"><img alt="license" src="https://img.shields.io/github/license/sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
-    <img alt="npm total downloads" src="https://img.shields.io/npm/dt/@sweetalert2/ngx-sweetalert2.svg?style=flat-square">
-    <img alt="npm legacy total downloads" src="https://img.shields.io/npm/dt/@sweetalert2/ngsweetalert2.svg?style=flat-square&label=downloads%20(legacy)">
 </p>
 
 <br>
