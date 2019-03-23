@@ -11,10 +11,10 @@
 </p>
 
 <p align="center">
-    <a href="https://www.npmjs.com/package/@toverux/ngsweetalert2"><img alt="npm version" src="https://img.shields.io/npm/v/@toverux/ngx-sweetalert2.svg?style=flat-square"></a>
-    <a href="LICENSE"><img alt="license" src="https://img.shields.io/github/license/toverux/ngx-sweetalert2.svg?style=flat-square"></a>
-    <img alt="npm total downloads" src="https://img.shields.io/npm/dt/@toverux/ngx-sweetalert2.svg?style=flat-square">
-    <img alt="npm legacy total downloads" src="https://img.shields.io/npm/dt/@toverux/ngsweetalert2.svg?style=flat-square&label=downloads%20(legacy)">
+    <a href="https://www.npmjs.com/package/@sweetalert2/ngx-sweetalert2"><img alt="npm version" src="https://img.shields.io/npm/v/@sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
+    <a href="LICENSE"><img alt="license" src="https://img.shields.io/github/license/sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
+    <img alt="npm total downloads" src="https://img.shields.io/npm/dt/@sweetalert2/ngx-sweetalert2.svg?style=flat-square">
+    <img alt="npm legacy total downloads" src="https://img.shields.io/npm/dt/@sweetalert2/ngsweetalert2.svg?style=flat-square&label=downloads%20(legacy)">
 </p>
 
 <br>
@@ -39,7 +39,7 @@ This is not a regular API wrapper for SweetAlert (which already works very well 
 1) Install _ngx-sweetalert2_ and _sweetalert2_ via the npm registry:
 
 ```bash
-npm install --save sweetalert2@^7.15.1 @toverux/ngx-sweetalert2
+npm install --save sweetalert2 @sweetalert2/ngx-sweetalert2
 ```
 
 :arrow_double_up: Always upgrade SweetAlert2 when you upgrade ngx-sweetalert2. The latter is statically linked with SweetAlert2's type definitions.
@@ -47,7 +47,7 @@ npm install --save sweetalert2@^7.15.1 @toverux/ngx-sweetalert2
 2) Import the module:
 
 ```typescript
-import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
     //=> Basic usage
@@ -198,7 +198,7 @@ The other cool thing about using a structural directive is that the modal's cont
 You just have to change the _target_ of the partial view (_`content`_ is the default target). First, inject this service in your component:
 
 ```typescript
-import { SwalPartialTargets } from '@toverux/ngx-sweetalert2';
+import { SwalPartialTargets } from '@sweetalert2/ngx-sweetalert2';
 
 export class MyComponent {
   public constructor(public readonly swalTargets: SwalPartialTargets) {

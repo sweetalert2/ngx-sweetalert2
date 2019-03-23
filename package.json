@@ -49,7 +49,7 @@
     "karma-jasmine-html-reporter": "^1.1.0",
     "ng-packagr": "^4.3.1",
     "semantic-release": "^15.4.1",
-    "sweetalert2": "^7.8.0",
+    "sweetalert2": "^8.5.0",
     "travis-deploy-once": "^5.0.0",
     "ts-node": "^7.0.1",
     "tsickle": "^0.33.0",

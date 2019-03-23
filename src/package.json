@@ -1,5 +1,5 @@
 {
-  "name": "@toverux/ngx-sweetalert2",
+  "name": "@sweetalert2/ngx-sweetalert2",
   "version": "0.0.0-semantic-released",
   "description": "SweetAlert2 integration for Angular 4+",
   "repository": "git@github.com:sweetalert2/ngx-sweetalert2.git",
@@ -9,7 +9,7 @@
     "@angular/core": "^5.0.0 || ^6.0.0 || ^7.0.0",
     "@angular/common": "^5.0.0 || ^6.0.0 || ^7.0.0",
     "rxjs": "^6.1.0",
-    "sweetalert2": "^7.15.1"
+    "sweetalert2": "^8.5.0"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",

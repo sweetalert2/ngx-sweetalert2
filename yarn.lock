@@ -9083,10 +9083,10 @@ supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0, supports-co
   dependencies:
     has-flag "^3.0.0"
 
-sweetalert2@^7.8.0:
-  version "7.28.7"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.28.7.tgz#69a138f1e47b091fb0c310c47feeb123fcea14ca"
-  integrity sha512-gl+/201OeRJbGbor7GBM5pP6f8VUkAM1qxusNCQ9VmTMFtFHVUUntPctcNbGWh2r0vlsexO40u7ry5KIvQ5IGA==
+sweetalert2@^8.5.0:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.5.0.tgz#453ee0b3dd4ab5b8d89b1588c48ea90d74b16d63"
+  integrity sha512-cvGitYfnutaRIWuLJ+p+eLXieJyodWpB9F8AtD6Y5uNWN5OcQD1dDwN7VPDo4U7y4ni3rgK9gDYmkz9RCf4PSA==
 
 symbol-observable@1.2.0, symbol-observable@^1.2.0:
   version "1.2.0"
