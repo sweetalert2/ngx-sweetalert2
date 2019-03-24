@@ -12,6 +12,7 @@
 
 <p align="center">
     <a href="https://www.npmjs.com/package/@sweetalert2/ngx-sweetalert2"><img alt="npm version" src="https://img.shields.io/npm/v/@sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
+    <a href="https://travis-ci.org/sweetalert2/sweetalert2"><img alt="Build Status: Travis CI" src="https://img.shields.io/travis/sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
     <a href="LICENSE"><img alt="license" src="https://img.shields.io/github/license/sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
 </p>
 
