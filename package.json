@@ -11,7 +11,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "packagr": "ng-packagr -p src/package.json",
+    "packagr": "cp README.md src && ng-packagr -p src/package.json",
     "semantic-release": "cd dist && semantic-release; cd ..",
     "travis-deploy-once": "travis-deploy-once"
   },
