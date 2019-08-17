@@ -13,6 +13,10 @@
     "target": "es2015",
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2018", "dom"],
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
     "paths": {
       "@sweetalert2/ngx-sweetalert2": ["dist/ngx-sweetalert2"],
       "@sweetalert2/ngx-sweetalert2/*": ["dist/ngx-sweetalert2/*"]
