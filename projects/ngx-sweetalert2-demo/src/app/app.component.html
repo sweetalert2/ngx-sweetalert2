@@ -1,1 +1,14 @@
-<swal-ngx-sweetalert2></swal-ngx-sweetalert2>
+<button (click)="show = !show">Toogle</button>
+
+<ng-container *ngIf="show">
+    <swal></swal>
+    <swal></swal>
+    <swal></swal>
+    <swal></swal>
+</ng-container>
+
+<hr>
+
+<a routerLink="nested">Load Submodule</a>
+<br>
+<router-outlet></router-outlet>
