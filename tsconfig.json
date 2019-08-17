@@ -1,17 +1,25 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "strictNullChecks": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
     "typeRoots": ["node_modules/@types"],
-    "target": "es5",
-    "lib": ["es2017", "dom"]
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@sweetalert2/ngx-sweetalert2": ["dist/ngx-sweetalert2"],
+      "@sweetalert2/ngx-sweetalert2/*": ["dist/ngx-sweetalert2/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

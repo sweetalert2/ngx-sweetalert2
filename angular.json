@@ -4,28 +4,73 @@
   "newProjectRoot": "projects",
   "projects": {
     "ngx-sweetalert2": {
-      "root": "",
-      "sourceRoot": "demo",
+      "projectType": "library",
+      "root": "projects/ngx-sweetalert2",
+      "sourceRoot": "projects/ngx-sweetalert2/src",
+      "prefix": "swal",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-sweetalert2/tsconfig.lib.json",
+            "project": "projects/ngx-sweetalert2/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-sweetalert2/src/test.ts",
+            "tsConfig": "projects/ngx-sweetalert2/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-sweetalert2/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-sweetalert2/tsconfig.lib.json",
+              "projects/ngx-sweetalert2/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-sweetalert2-demo": {
       "projectType": "application",
+      "schematics": {},
+      "root": "projects/ngx-sweetalert2-demo",
+      "sourceRoot": "projects/ngx-sweetalert2-demo/src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/app",
-            "index": "demo/index.html",
-            "main": "demo/main.ts",
-            "tsConfig": "demo/tsconfig.app.json",
-            "polyfills": "demo/polyfills.ts",
+            "outputPath": "dist/ngx-sweetalert2-demo",
+            "index": "projects/ngx-sweetalert2-demo/src/index.html",
+            "main": "projects/ngx-sweetalert2-demo/src/main.ts",
+            "polyfills": "projects/ngx-sweetalert2-demo/src/polyfills.ts",
+            "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.app.json",
+            "aot": false,
             "assets": [
-              "demo/favicon.ico"
+              "projects/ngx-sweetalert2-demo/src/favicon.ico",
+              "projects/ngx-sweetalert2-demo/src/assets"
             ],
             "styles": [
-              "demo/styles.css"
+              "projects/ngx-sweetalert2-demo/src/styles.css"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-sweetalert2-demo/src/environments/environment.ts",
+                  "with": "projects/ngx-sweetalert2-demo/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -35,10 +80,16 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [
+              "budgets": [
                 {
-                  "replace": "demo/environments/environment.ts",
-                  "with": "demo/environments/environment.prod.ts"
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -47,42 +98,43 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-sweetalert2:build"
+            "browserTarget": "ngx-sweetalert2-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-sweetalert2:build:production"
+              "browserTarget": "ngx-sweetalert2-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-sweetalert2:build"
+            "browserTarget": "ngx-sweetalert2-demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "demo/test.ts",
-            "karmaConfig": "./karma.conf.js",
-            "polyfills": "demo/polyfills.ts",
-            "tsConfig": "demo/tsconfig.spec.json",
-            "scripts": [],
-            "styles": [
-              "demo/styles.css"
-            ],
+            "main": "projects/ngx-sweetalert2-demo/src/test.ts",
+            "polyfills": "projects/ngx-sweetalert2-demo/src/polyfills.ts",
+            "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-sweetalert2-demo/karma.conf.js",
             "assets": [
-              "demo/favicon.ico"
-            ]
+              "projects/ngx-sweetalert2-demo/src/favicon.ico",
+              "projects/ngx-sweetalert2-demo/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-sweetalert2-demo/src/styles.css"
+            ],
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "demo/tsconfig.app.json",
-              "demo/tsconfig.spec.json"
+              "projects/ngx-sweetalert2-demo/tsconfig.app.json",
+              "projects/ngx-sweetalert2-demo/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -90,24 +142,7 @@
           }
         }
       }
-    },
-    "ngx-sweetalert2-e2e": {
-      "root": "",
-      "sourceRoot": "",
-      "projectType": "application"
     }
   },
-  "defaultProject": "ngx-sweetalert2",
-  "schematics": {
-    "@schematics/angular:class": {
-      "spec": false
-    },
-    "@schematics/angular:component": {
-      "prefix": "app",
-      "styleext": "css"
-    },
-    "@schematics/angular:directive": {
-      "prefix": "app"
-    }
-  }
+  "defaultProject": "ngx-sweetalert2-demo"
 }

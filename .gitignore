@@ -1,4 +1,11 @@
-dist/
-node_modules/
-package-lock.json
-dist.tgz
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# misc
+npm-debug.log
+yarn-error.log
