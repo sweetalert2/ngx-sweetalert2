@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxSweetalert2Component } from './ngx-sweetalert2.component';
+import { SwalComponent } from './swal.component';
 
 describe('NgxSweetalert2Component', () => {
-    let component: NgxSweetalert2Component;
-    let fixture: ComponentFixture<NgxSweetalert2Component>;
+    let component: SwalComponent;
+    let fixture: ComponentFixture<SwalComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [NgxSweetalert2Component]
+            declarations: [SwalComponent]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(NgxSweetalert2Component);
+        fixture = TestBed.createComponent(SwalComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
