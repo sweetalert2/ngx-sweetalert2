@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
         AppComponent
     ],
     imports: [
-        BrowserModule, SweetAlert2Module
+        BrowserModule,
+        SweetAlert2Module.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent]
