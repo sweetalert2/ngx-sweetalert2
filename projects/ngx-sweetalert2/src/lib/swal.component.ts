@@ -269,7 +269,6 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
         if ('value' in result) {
             this.confirm.emit(result.value);
         } else {
-            // Types really are assignable, using 'as'
             this.cancel.emit(result.dismiss);
         }
 
@@ -287,8 +286,7 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
         if (!this.isCurrentlyShown) return;
 
         const swal = await this.sweetAlert2Loader.swal;
-        // SweetAlert2 types are wrong, using 'as'
-        swal.close(result as any);
+        swal.close(result);
     }
 
     /**
