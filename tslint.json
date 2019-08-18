@@ -11,6 +11,7 @@
     "object-literal-sort-keys": false,
     "comment-format": false,
     "arrow-parens": false,
-    "interface-name": false
+    "interface-name": false,
+    "no-object-literal-type-assertion": false
   }
 }
