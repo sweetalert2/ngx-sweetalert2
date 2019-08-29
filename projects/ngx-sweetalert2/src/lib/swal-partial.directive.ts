@@ -48,7 +48,7 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
      * See the {@link SwalPartialTargets} service to see the available targets.
      * See the class doc block for more informations.
      */
-    @Input('swalPartial') public target: SwalPartialTarget = this.swalTargets.content;
+    @Input('swalPartial') public target?: SwalPartialTarget;
 
     /**
      * Holds the component reference of the controlled SwalPartialComponent to destroy it when no longer needed.
@@ -72,6 +72,9 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
      * that will receive the consumer's template.
      */
     public ngOnInit(): void {
+        // Can't be set in a default property value, if the customer lets *swalPartial empty, the value we get is undef.
+        this.target = this.target || this.swalTargets.content;
+
         void this.swalComponent.update(this.target.options);
 
         this.swalComponent.beforeOpen.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
@@ -127,7 +130,7 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
         const swal = await this.sweetAlert2Loader.swal;
 
         //=> Find target element
-        const targetEl = this.target.element(swal);
+        const targetEl = this.target!.element(swal);
 
         //=> Replace target's contents with our component
         // https://jsperf.com/innerhtml-vs-removechild/15
