@@ -18,7 +18,7 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  * (?) If you are reading the TypeScript source of this component, you may think that it's a lot of code.
  *     Be sure that a lot of this code is types and Angular boilerplate. Compiled and minified code is much smaller.
  *     If you are really concerned about performance and/or don't care about the API and its convenient integration
- *     with Angular (notably change detection), you may totally use SweetAlert2 natively as well, without any wrapper ;)
+ *     with Angular (notably change detection and transclusion), you may totally use SweetAlert2 natively as well ;)
  *
  * /!\ Some SweetAlert options aren't @Inputs but @Outputs: onBeforeOpen, onOpen, onClose and onAfterClose
  *     (but without "on*" prefix to respect community standards).
@@ -100,24 +100,29 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public scrollbarPadding: SweetAlertOptions['scrollbarPadding'];
 
     /**
-     * Emits a BeforeOpenEvent when the modal DOM element has been created.
+     * Emits an event when the modal DOM element has been created.
      * Useful to perform DOM mutations before the modal is shown.
      */
     @Output() public readonly beforeOpen = new EventEmitter<events.BeforeOpenEvent>();
 
     /**
-     * Emits an OpenEvent when the modal is shown.
+     * Emits an event when the modal is shown.
      */
     @Output() public readonly open = new EventEmitter<events.OpenEvent>();
 
     /**
-     * Emits a CloseEvent when the modal will be closed.
+     * Emits an event when the modal is shown.
+     */
+    @Output() public readonly updated = new EventEmitter<events.UpdatedEvent>();
+
+    /**
+     * Emits an event when the modal will be closed.
      * If you just want to know when the user dismissed the modal, prefer the higher-level (cancel) output.
      */
     @Output() public readonly close = new EventEmitter<events.CloseEvent>();
 
     /**
-     * Emits after the modal had been closed.
+     * Emits an event after the modal had been closed.
      * If you just want to know when the user dismissed the modal, prefer the higher-level (cancel) output.
      */
     @Output() public readonly afterClose = new EventEmitter<void>();
@@ -206,6 +211,11 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
      */
     private isCurrentlyShown = false;
 
+    /**
+     * Current modal HTML element, if the modal is opened.
+     */
+    private currentModalElement?: HTMLElement;
+
     public constructor(private readonly sweetAlert2Loader: SweetAlert2LoaderService) {
     }
 
@@ -247,6 +257,7 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
 
             //=> Handle modal lifecycle events
             onBeforeOpen: (modalElement) => {
+                this.currentModalElement = modalElement;
                 this.beforeOpen.emit({ modalElement });
             },
             onOpen: (modalElement) => {
@@ -258,6 +269,7 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
                 this.close.emit({ modalElement });
             },
             onAfterClose: () => {
+                this.currentModalElement = void 0;
                 this.afterClose.emit();
             }
         };
@@ -315,5 +327,7 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
             }, {} as { [P in keyof SweetAlertOptions]: any });
 
         swal.update(updatableOptions);
+
+        this.updated.emit({ modalElement: this.currentModalElement! });
     }
 }

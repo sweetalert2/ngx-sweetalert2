@@ -3,15 +3,16 @@
   "rules": {
     "curly": false,
     "quotemark": [true, "single"],
-    "no-submodule-imports": [true, "@angular", "zone.js"],
+    "no-submodule-imports": [true, "@angular", "rxjs", "zone.js"],
     "no-implicit-dependencies": [true, [
-      "@angular/platform-browser-dynamic", "@sweetalert2/ngx-sweetalert2", "zone.js"
+      "@angular/platform-browser-dynamic", "@sweetalert2/ngx-sweetalert2", "rxjs", "zone.js"
     ]],
     "trailing-comma": false,
     "object-literal-sort-keys": false,
     "comment-format": false,
     "arrow-parens": false,
     "interface-name": false,
-    "no-object-literal-type-assertion": false
+    "no-object-literal-type-assertion": false,
+    "member-ordering": [true, { "order": "instance-sandwich" }]
   }
 }
