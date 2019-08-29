@@ -13,6 +13,13 @@ export interface OpenEvent {
 }
 
 /**
+ * Emitted when a SweetAlert modal gets updated (re-rendered).
+ */
+export interface UpdatedEvent {
+    readonly modalElement: HTMLElement;
+}
+
+/**
  * Emitted when a SweetAlert modal gets closed (because it's been confirmed, cancelled, or for no reason at all).
  */
 export interface CloseEvent {
