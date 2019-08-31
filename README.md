@@ -29,7 +29,7 @@ This is not a regular API wrapper for SweetAlert (which already works very well 
  - [Installation & Usage](#package-installation--usage)
  - [`[swal]` directive](#swaldirective) — for simple, one-liner dialogs
  - [`<swal>` component](#swalcomponent) — for advanced use cases and extended Swal2 API coverage
- - [`*swalPartial` directive](#swalpartialdirective) — use Angular dynamic templates in `<swal>`
+ - [`*swalPartial` directive](#swalpartialdirective) — use Angular templates in `<swal>`
 
 ----------------
 
@@ -49,26 +49,20 @@ npm install --save sweetalert2 @sweetalert2/ngx-sweetalert2
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
-    //=> Basic usage
+    //=> Basic usage (forRoot can also take options, see details below)
     imports: [SweetAlert2Module.forRoot()],
 
-    //=> Or provide default SweetAlert2-native options
-    //   (here, we make Swal more Bootstrap-friendly)
-    imports: [
-        SweetAlert2Module.forRoot({
-            buttonsStyling: false,
-            customClass: 'modal-content',
-            confirmButtonClass: 'btn btn-primary',
-            cancelButtonClass: 'btn'
-        })
-    ],
-
     //=> In submodules only:
-    imports: [SweetAlert2Module]
+    imports: [SweetAlert2Module],
+    
+    //=> In submodules only, overriding options from your root module:
+    imports: [SweetAlert2Module.forChild({ /* options */ })]
 })
 export class AppModule {
 }
 ```
+
+That's it! By default, SweetAlert2 will be lazy-loaded, only when needed, from your local dependency of `sweetalert2`, using the `import()` syntax under the hood.
 
 ## :link: API
 
@@ -76,7 +70,8 @@ export class AppModule {
 
 Add the `[swal]` attribute to an element to show a simple modal when that element is clicked.
 
-To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/master/sweetalert2.d.ts#L248) object, or a simple array of strings, of format `[title: string, text: string (, type: string)]`.
+To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/master/sweetalert2.d.ts) object,
+or a simple array of strings, of format `[title: string, text: string (, type: string)]`.
 
 Simple dialog:
 
@@ -123,9 +118,11 @@ The directive can also take a reference to a [`<swal>` component](#swalcomponent
 
 ### `SwalComponent`
 
-The library also provides a component, that can be useful for advanced use cases, or when you `[swal]` has too much options.
+The library also provides a component, that can be useful for advanced use cases, or when you `[swal]`
+has too much options.
 
-The component also allows you to use Angular dynamic templates inside the SweetAlert (see the [`*swalPartial` directive](#swalpartial) for that).
+The component also allows you to use Angular dynamic templates inside the SweetAlert
+(see the [`*swalPartial` directive](#swalpartial) for that).
 
 Simple example:
 
@@ -144,7 +141,7 @@ With [swal]:
 <button [swal]="deleteSwal">Delete {{ file.name }}</button>
 
 Or DIY:
-<button (click)="deleteSwal.show()">Delete {{ file.name }}</button>
+<button (click)="deleteSwal.fire()">Delete {{ file.name }}</button>
 ```
 
 You can access the dialog from your TypeScript code-behind like this:
@@ -155,16 +152,25 @@ class MyComponent {
 }
 ```
 
-You can pass native SweetAlert2 options via the `options` input, just in case you need that:
+You can pass native SweetAlert2 options via the `swalOptions` input, just in the case you need that:
 
 ```html
-<swal [options]="{ confirmButtonText: 'I understand' }"></swal>
+<swal [swalOptions]="{ confirmButtonText: 'I understand' }"></swal>
 ```
+
+By the way: every "special" option, like `swalOptions`, that are not native options from SweetAlert2,
+are prefixed with `swal`.
 
 You can catch other modal lifecycle events than (confirm) or (cancel):
 
 ```html
-<swal (beforeOpen)="onBeforeOpen($event)" (open)="onOpen($event)" (close)="onClose($event)"></swal>
+<swal 
+  (render)="onRender($event)"
+  (beforeOpen)="onBeforeOpen($event)"
+  (open)="onOpen($event)"
+  (close)="onClose($event)"
+  (afterClose)="onAfterClose()">
+</swal>
 ```
 
 ```typescript
@@ -176,25 +182,28 @@ public onBeforeOpen(event: BeforeOpenEvent): void {
 
 ### `SwalPartialDirective`
 
-So you really want more, huh?
+The `*swalPartial` directive lets you use Angular dynamic templates inside SweetAlerts.
+The directive will replace certain parts of the modal (aka. _swal targets_) with embedded Angular views.
 
-The `*swalPartial` directive lets you use Angular dynamic templates inside SweetAlerts. The directive will replace certain parts of the modal (aka. _swal targets_) with embedded Angular views.
-
-This allows you to have data binding, use directives and components and benefit from the Angular template syntax like if the SweetAlert was a normal Angular component (it's not. at all).
+This allows you to have data binding, change detection, and use every feature of the Angular template syntax
+you want, just like if the SweetAlert was a normal Angular component (it's not at all).
 
 ```html
 <swal title="SweetAlert2 Timer">
   <div *swalPartial class="alert alert-info">
-    <strong>{{ elapsedSeconds }}</strong> seconds elapsed since then.
+    <strong>{{ elapsedSeconds }}</strong> seconds elapsed since the modal was opened.
   </div>
 </swal>
 ```
 
-The other cool thing about using a structural directive is that the modal's contents won't be instantiated before the modal is shown.
+The other cool thing about using a structural directive is that the modal's contents won't be instantiated
+before the modal is shown.
 
-> But, I want to use a template inside the modal's _title_. Your example only sets the main content.
+This examples sets the main content of the modal, where the `text` property is usually rendered.
+But you can also target the title, the footer, or even the confirm button!
 
-You just have to change the _target_ of the partial view (_`content`_ is the default target). First, inject this service in your component:
+You just have to change the _target_ of the partial view (_`content`_ is the default target).
+First, inject this little service in your component:
 
 ```typescript
 import { SwalPartialTargets } from '@sweetalert2/ngx-sweetalert2';
@@ -205,10 +214,11 @@ export class MyComponent {
 }
 ```
 
-And then, set the appropriate target as the value of `*swalPartial`.
+And then, set the appropriate target as the value of `*swalPartial`, here using two partials,
+one targeting the modal's content (default), and the other one targeting the confirm button text.
 
 ```html
-<swal title="Fill the form, rapidly">
+<swal title="Fill the form, rapidly" (confirm)="sendForm(myForm.value)">
   <!-- This form will be displayed as the alert main content
        Targets the alert's main content zone by default -->
   <form *swalPartial [formControl]="myForm">
@@ -223,4 +233,9 @@ And then, set the appropriate target as the value of `*swalPartial`.
 </swal>
 ```
 
-We have the following targets: `title`, `content`, `actions`, `confirmButton`, `cancelButton`. These are provided by SweetAlert2.
+We have the following targets: `closeButton`, `title`, `content`, `actions`, `confirmButton`, `cancelButton`, and `footer`.
+
+These targets are mostly provided by SweetAlert2 and made available in the right format for swal partials
+by this library, but you can also make your own if you need to (take inspiration from the original service source).
+Those are just variables containing a function that returns a modal DOM element, not magic.
+The magic is inside the directive ;)
