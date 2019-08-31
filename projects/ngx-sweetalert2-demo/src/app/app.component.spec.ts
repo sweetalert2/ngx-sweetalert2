@@ -1,4 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppComponent } from './app.component';
 
@@ -9,7 +10,8 @@ describe('AppComponent', () => {
                 AppComponent
             ],
             imports: [
-                SweetAlert2Module
+                RouterModule.forRoot([]),
+                SweetAlert2Module.forRoot()
             ]
         }).compileComponents();
     }));
