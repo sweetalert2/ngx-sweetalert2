@@ -13,9 +13,9 @@ export interface OpenEvent {
 }
 
 /**
- * Emitted when a SweetAlert modal gets updated (re-rendered).
+ * Emitted when a SweetAlert modal gets rendered.
  */
-export interface UpdatedEvent {
+export interface RenderEvent {
     readonly modalElement: HTMLElement;
 }
 
