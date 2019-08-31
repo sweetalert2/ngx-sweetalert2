@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { dismissOnDestroyToken, swalProviderToken } from './di';
-import { SwalPartialComponent } from './swal-partial.component';
-import { SwalPartialDirective } from './swal-partial.directive';
+import { SwalPortalComponent } from './swal-portal.component';
+import { SwalPortalDirective } from './swal-portal.directive';
 import { SwalComponent } from './swal.component';
 import { SwalDirective } from './swal.directive';
 import { SwalProvider, SweetAlert2LoaderService } from './sweetalert2-loader.service';
@@ -18,16 +18,16 @@ export function provideDefaultSwal() {
 
 @NgModule({
     declarations: [
-        SwalDirective, SwalComponent, SwalPartialDirective, SwalPartialComponent
+        SwalDirective, SwalComponent, SwalPortalDirective, SwalPortalComponent
     ],
     imports: [
         CommonModule
     ],
     exports: [
-        SwalComponent, SwalPartialDirective, SwalDirective
+        SwalComponent, SwalPortalDirective, SwalDirective
     ],
     entryComponents: [
-        SwalComponent, SwalPartialComponent
+        SwalComponent, SwalPortalComponent
     ]
 })
 export class SweetAlert2Module {

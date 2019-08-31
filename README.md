@@ -29,7 +29,7 @@ This is not a regular API wrapper for SweetAlert (which already works very well 
  - [Installation & Usage](#package-installation--usage)
  - [`[swal]` directive](#swaldirective) — for simple, one-liner dialogs
  - [`<swal>` component](#swalcomponent) — for advanced use cases and extended Swal2 API coverage
- - [`*swalPartial` directive](#swalpartialdirective) — use Angular templates in `<swal>`
+ - [`*swalPortal` directive](#swalportaldirective) — use Angular templates in `<swal>`
 
 ----------------
 
@@ -121,8 +121,8 @@ The directive can also take a reference to a [`<swal>` component](#swalcomponent
 The library also provides a component, that can be useful for advanced use cases, or when you `[swal]`
 has too much options.
 
-The component also allows you to use Angular dynamic templates inside the SweetAlert
-(see the [`*swalPartial` directive](#swalpartial) for that).
+The component also allows you to use Angular dynamic templates inside the SweetAlert (see the
+[`*swalPortal` directive](#swalportaldirective) for that).
 
 Simple example:
 
@@ -180,9 +180,11 @@ public onBeforeOpen(event: BeforeOpenEvent): void {
 }
 ```
 
-### `SwalPartialDirective`
+### `SwalPortalDirective`
 
-The `*swalPartial` directive lets you use Angular dynamic templates inside SweetAlerts.
+The `*swalPortal` structural directive lets you use Angular dynamic templates inside SweetAlerts.
+
+The name "portal" is inspired by React or Angular CDK portals.
 The directive will replace certain parts of the modal (aka. _swal targets_) with embedded Angular views.
 
 This allows you to have data binding, change detection, and use every feature of the Angular template syntax
@@ -190,44 +192,46 @@ you want, just like if the SweetAlert was a normal Angular component (it's not a
 
 ```html
 <swal title="SweetAlert2 Timer">
-  <div *swalPartial class="alert alert-info">
+  <div *swalPortal class="alert alert-info">
     <strong>{{ elapsedSeconds }}</strong> seconds elapsed since the modal was opened.
   </div>
 </swal>
 ```
 
-The other cool thing about using a structural directive is that the modal's contents won't be instantiated
-before the modal is shown.
+Using a structural directives allows us to take your content as a template, instantiate it lazily when needed
+(ie. when the modal is shown), and putting it in a native DOM element that is originally outside the scope of
+your Angular app.
 
-This examples sets the main content of the modal, where the `text` property is usually rendered.
-But you can also target the title, the footer, or even the confirm button!
+This examples sets the main content of the modal, where the `text` property is usually rendered when SweetAlert2
+is in charge.
+But you can also target the title, the footer, or even the confirm button, and more!
 
-You just have to change the _target_ of the partial view (_`content`_ is the default target).
+You just have to change the _target_ of the portal (_`content`_ is the default target).
 First, inject this little service in your component:
 
 ```typescript
-import { SwalPartialTargets } from '@sweetalert2/ngx-sweetalert2';
+import { SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 
 export class MyComponent {
-  public constructor(public readonly swalTargets: SwalPartialTargets) {
+  public constructor(public readonly swalTargets: SwalPortalTargets) {
   }
 }
 ```
 
-And then, set the appropriate target as the value of `*swalPartial`, here using two partials,
-one targeting the modal's content (default), and the other one targeting the confirm button text.
+And then, set the appropriate target as the value of `*swalPortal`, here using two portals, the first one
+targeting the modal's content (this is the default), and the other one targeting the confirm button text.
 
 ```html
 <swal title="Fill the form, rapidly" (confirm)="sendForm(myForm.value)">
   <!-- This form will be displayed as the alert main content
        Targets the alert's main content zone by default -->
-  <form *swalPartial [formControl]="myForm">
+  <form *swalPortal [formControl]="myForm">
     ...
   </form>
 
   <!-- This targets the confirm button's inner content
        Notice the usage of ng-container to avoid creating an useless DOM element inside the button -->
-  <ng-container *swalPartial="swalTargets.confirmButton">
+  <ng-container *swalPortal="swalTargets.confirmButton">
     Send ({{ secondsLeft }} seconds left)
   </ng-container>
 </swal>
@@ -235,7 +239,7 @@ one targeting the modal's content (default), and the other one targeting the con
 
 We have the following targets: `closeButton`, `title`, `content`, `actions`, `confirmButton`, `cancelButton`, and `footer`.
 
-These targets are mostly provided by SweetAlert2 and made available in the right format for swal partials
-by this library, but you can also make your own if you need to (take inspiration from the original service source).
+These targets are mostly provided by SweetAlert2 and made available in the right format for swal portals by
+this library, but you can also make your own if you need to (take inspiration from the original service source).
 Those are just variables containing a function that returns a modal DOM element, not magic.
 The magic is inside the directive ;)
