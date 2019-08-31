@@ -1,6 +1,10 @@
 {
   "name": "@sweetalert2/ngx-sweetalert2",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sweetalert2/ngx-sweetalert2.git"
+  },
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0",
