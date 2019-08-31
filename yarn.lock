@@ -6719,10 +6719,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-sweetalert2@^8.16.2:
-  version "8.16.2"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.16.2.tgz#3ebc47a4f76b31e7d1d2b9a3b524f5c822a8776f"
-  integrity sha512-x0QMDnRbxETUi28Aiv/ucLCvLKc/vzE03wIqzJ0c6wy2xINJ+tFht3vZ+5QLZAiLHRoA0uPO54oq4+hSqUVHzw==
+sweetalert2@^8.17.0:
+  version "8.17.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.17.0.tgz#cbc9cd3dcd4c1c5464c336cd330e5fb86b48db4e"
+  integrity sha512-rOeyjPMleV24Zl/xdLuVv7p41fft9JNXzFLTWZS6I8pOxyKA2YSslxqLdGtgMojhxaPqbDSL6yYIUKctbB1KhQ==
 
 symbol-observable@1.2.0:
   version "1.2.0"

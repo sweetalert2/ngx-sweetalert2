@@ -111,9 +111,9 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Output() public readonly open = new EventEmitter<events.OpenEvent>();
 
     /**
-     * Emits an event when the modal is shown.
+     * Emits an event when the modal DOM is rendered.
      */
-    @Output() public readonly updated = new EventEmitter<events.UpdatedEvent>();
+    @Output() public readonly render = new EventEmitter<events.RenderEvent>();
 
     /**
      * Emits an event when the modal will be closed.
@@ -211,11 +211,6 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
      */
     private isCurrentlyShown = false;
 
-    /**
-     * Current modal HTML element, if the modal is opened.
-     */
-    private currentModalElement?: HTMLElement;
-
     public constructor(private readonly sweetAlert2Loader: SweetAlert2LoaderService) {
     }
 
@@ -257,19 +252,20 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
 
             //=> Handle modal lifecycle events
             onBeforeOpen: (modalElement) => {
-                this.currentModalElement = modalElement;
                 this.beforeOpen.emit({ modalElement });
             },
             onOpen: (modalElement) => {
                 this.isCurrentlyShown = true;
                 this.open.emit({ modalElement });
             },
+            onRender: (modalElement) => {
+                this.render.emit({ modalElement });
+            },
             onClose: (modalElement) => {
                 this.isCurrentlyShown = false;
                 this.close.emit({ modalElement });
             },
             onAfterClose: () => {
-                this.currentModalElement = void 0;
                 this.afterClose.emit();
             }
         };
@@ -327,7 +323,5 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
             }, {} as { [P in keyof SweetAlertOptions]: any });
 
         swal.update(updatableOptions);
-
-        this.updated.emit({ modalElement: this.currentModalElement! });
     }
 }

@@ -75,42 +75,34 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
         // Can't be set in a default property value, if the customer lets *swalPartial empty, the value we get is undef.
         this.target = this.target || this.swalTargets.content;
 
+        //=> Apply the options provided by the target definition
         void this.swalComponent.update(this.target.options);
 
-        this.swalComponent.beforeOpen.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
-            //=> Create the SwalPartialComponent that will hold our content and install it in the target element
-            const factory = this.resolver.resolveComponentFactory(SwalPartialComponent);
+        this.swalComponent.render.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
+            //=> Ensure the partial component is created
+            this.ensurePartialComponentIsCreated();
 
-            // Yes, we do not use the third argument that would directly use the target as the component's view
-            // (unfortunately, because that would give a cleaner DOM and would avoid dirty and direct DOM manipulations)
-            // That's because we want to keep our component safe from SweetAlert2's operations on the DOM, and to be
-            // able to restore it at any moment, ie. after the modal has been re-rendered.
-            this.partialComponentRef = factory.create(this.injector, []);
-
-            //=> Install the component on the modal
-            void this.mountComponentOnTarget();
-
-            //=> Apply the consumer's template on the component
-            this.partialComponentRef.instance.template = this.templateRef;
-
-            //=> Make the Angular app aware of that detached view so rendering and change detection can happen
-            this.app.attachView(this.partialComponentRef.hostView);
-        });
-
-        this.swalComponent.updated.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
-            //=> SweetAlert2 erased all of our content, so we need to reinstall it
+            //=> SweetAlert2 created the modal or just erased all of our content, so we need to install/reinstall it.
             // Swal.update() is synchronous, this observable too, and mountComponentOnTarget too (the promise inside
             // this function is already resolved at this point), so the whole process of re-rendering and re-mounting
             // the partial component is fully synchronous, causing no blinks in the modal contents.
             void this.mountComponentOnTarget();
         });
 
-        this.swalComponent.close.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
+        this.swalComponent.beforeOpen.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
+            if (!this.partialComponentRef) return;
+
+            //=> Make the Angular app aware of that detached view so rendering and change detection can happen
+            this.app.attachView(this.partialComponentRef.hostView);
+        });
+
+        this.swalComponent.afterClose.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
             if (!this.partialComponentRef) return;
 
             //=> Detach the partial component from the app and destroy it
             this.app.detachView(this.partialComponentRef.hostView);
             this.partialComponentRef.destroy();
+            this.partialComponentRef = void 0;
         });
     }
 
@@ -119,6 +111,22 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
      */
     public ngOnDestroy(): void {
         this.destroyedSubject.next();
+    }
+
+    private ensurePartialComponentIsCreated(): void {
+        if (this.partialComponentRef) return;
+
+        //=> Create the SwalPartialComponent that will hold our content and install it in the target element
+        const factory = this.resolver.resolveComponentFactory(SwalPartialComponent);
+
+        // Yes, we do not use the third argument that would directly use the target as the component's view
+        // (unfortunately, because that would give a cleaner DOM and would avoid dirty and direct DOM manipulations)
+        // That's because we want to keep our component safe from SweetAlert2's operations on the DOM, and to be
+        // able to restore it at any moment, ie. after the modal has been re-rendered.
+        this.partialComponentRef = factory.create(this.injector, []);
+
+        //=> Apply the consumer's template on the component
+        this.partialComponentRef.instance.template = this.templateRef;
     }
 
     /**
