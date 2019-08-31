@@ -10,11 +10,12 @@ import { SwalComponent } from './swal.component';
 import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
 
 /**
- * A structural directive that lets you use Angular templates inside of Sweet Alerts.
- * There are different targetable zones in a Sweet Alert: title, content, confirmButton, cancelButton, buttonsWrapper.
- * The default target is the content zone.
+ * A structural directive that lets you use Angular templates inside of SweetAlerts.
+ * There are different targetable zones provided by {@link SwalPartialTargets}: title, content, confirmButton, etc, but
+ * you can also make your own target by implementing {@link SwalPartialTarget} and giving it to this directive.
+ * The default target is the alert text content zone.
  *
- * Usage in your component's TypeScript code-behind (if you use another target than "content"):
+ * Usage in your component's TypeScript (if you use another target than {@link SwalPartialTargets.content}):
  *
  *     @Component({ ... })
  *     export class MyComponent {
@@ -55,7 +56,7 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
      */
     private partialComponentRef?: ComponentRef<SwalPartialComponent>;
 
-    private readonly destroyedSubject = new Subject<void>();
+    private readonly destroyed = new Subject<void>();
 
     public constructor(
         private readonly resolver: ComponentFactoryResolver,
@@ -78,63 +79,35 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
         //=> Apply the options provided by the target definition
         void this.swalComponent.update(this.target.options);
 
-        this.swalComponent.render.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
-            //=> Ensure the partial component is created
-            this.ensurePartialComponentIsCreated();
-
-            //=> SweetAlert2 created the modal or just erased all of our content, so we need to install/reinstall it.
-            // Swal.update() is synchronous, this observable too, and mountComponentOnTarget too (the promise inside
-            // this function is already resolved at this point), so the whole process of re-rendering and re-mounting
-            // the partial component is fully synchronous, causing no blinks in the modal contents.
-            void this.mountComponentOnTarget();
-        });
-
-        this.swalComponent.beforeOpen.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
-            if (!this.partialComponentRef) return;
-
-            //=> Make the Angular app aware of that detached view so rendering and change detection can happen
-            this.app.attachView(this.partialComponentRef.hostView);
-        });
-
-        this.swalComponent.afterClose.pipe(takeUntil(this.destroyedSubject)).subscribe(() => {
-            if (!this.partialComponentRef) return;
-
-            //=> Detach the partial component from the app and destroy it
-            this.app.detachView(this.partialComponentRef.hostView);
-            this.partialComponentRef.destroy();
-            this.partialComponentRef = void 0;
-        });
+        //=> Subscribe to a few hooks frm the parent SwalComponent.
+        this.swalComponent.render.pipe(takeUntil(this.destroyed)).subscribe(this.renderHook.bind(this));
+        this.swalComponent.beforeOpen.pipe(takeUntil(this.destroyed)).subscribe(this.beforeOpenHook.bind(this));
+        this.swalComponent.afterClose.pipe(takeUntil(this.destroyed)).subscribe(this.afterCloseHook.bind(this));
     }
 
     /**
-     * Unsubscribes from the SweetAlert appearance/disappearance events.
+     * Signal any {@link destroyed} consumer that this is over, so they can unsubscribe from the
+     * parent SwalComponent events.
      */
     public ngOnDestroy(): void {
-        this.destroyedSubject.next();
-    }
-
-    private ensurePartialComponentIsCreated(): void {
-        if (this.partialComponentRef) return;
-
-        //=> Create the SwalPartialComponent that will hold our content and install it in the target element
-        const factory = this.resolver.resolveComponentFactory(SwalPartialComponent);
-
-        // Yes, we do not use the third argument that would directly use the target as the component's view
-        // (unfortunately, because that would give a cleaner DOM and would avoid dirty and direct DOM manipulations)
-        // That's because we want to keep our component safe from SweetAlert2's operations on the DOM, and to be
-        // able to restore it at any moment, ie. after the modal has been re-rendered.
-        this.partialComponentRef = factory.create(this.injector, []);
-
-        //=> Apply the consumer's template on the component
-        this.partialComponentRef.instance.template = this.templateRef;
+        this.destroyed.next();
     }
 
     /**
-     * Mounts the current SwalPartialComponent onto its target in the SweetAlert2 modal.
+     * This render hook runs 1..n times (per modal instance), just before the modal is shown (and also before the
+     * {@link beforeOpenHook}), or after Swal.update() is called.
+     * This is a good place to render, or re-render, our partial content.
      */
-    private async mountComponentOnTarget(): Promise<void> {
-        if (!this.partialComponentRef) return;
+    private async renderHook(): Promise<void> {
+        //=> Ensure the partial component is created
+        if (!this.partialComponentRef) {
+            this.partialComponentRef = this.createPartialComponent();
+        }
 
+        //=> SweetAlert2 created the modal or just erased all of our content, so we need to install/reinstall it.
+        // Swal.update() is synchronous, this observable too, and mountComponentOnTarget too (the promise inside
+        // this function is already resolved at this point), so the whole process of re-rendering and re-mounting
+        // the partial component is fully synchronous, causing no blinks in the modal contents.
         const swal = await this.sweetAlert2Loader.swal;
 
         //=> Find target element
@@ -147,5 +120,48 @@ export class SwalPartialDirective implements OnInit, OnDestroy {
         }
 
         targetEl.appendChild(this.partialComponentRef.location.nativeElement);
+    }
+
+    /**
+     * This beforeOpen hook runs once (per modal instance), just before the modal is shown on the screen.
+     * This is a good place to declare our detached view to the Angular app.
+     */
+    private beforeOpenHook(): void {
+        if (!this.partialComponentRef) return;
+
+        //=> Make the Angular app aware of that detached view so rendering and change detection can happen
+        this.app.attachView(this.partialComponentRef.hostView);
+    }
+
+    /**
+     * This afterClose hook runs once (per modal instance), just after the modal closing animation terminated.
+     * This is a good place to detach and destroy our content, that is not visible anymore.
+     */
+    private afterCloseHook(): void {
+        if (!this.partialComponentRef) return;
+
+        //=> Detach the partial component from the app and destroy it
+        this.app.detachView(this.partialComponentRef.hostView);
+        this.partialComponentRef.destroy();
+        this.partialComponentRef = void 0;
+    }
+
+    /**
+     * Creates the {@link SwalPartialComponent} and gives it the customer's template ref.
+     */
+    private createPartialComponent(): ComponentRef<SwalPartialComponent> {
+        //=> Create the SwalPartialComponent that will hold our content
+        const factory = this.resolver.resolveComponentFactory(SwalPartialComponent);
+
+        // Yes, we do not use the third argument that would directly use the target as the component's view
+        // (unfortunately, because that would give a cleaner DOM and would avoid dirty and direct DOM manipulations)
+        // That's because we want to keep our component safe from SweetAlert2's operations on the DOM, and to be
+        // able to restore it at any moment, ie. after the modal has been re-rendered.
+        const componentRef = factory.create(this.injector, []);
+
+        //=> Apply the consumer's template on the component
+        componentRef.instance.template = this.templateRef;
+
+        return componentRef;
     }
 }
