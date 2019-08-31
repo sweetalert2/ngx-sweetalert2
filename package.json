@@ -1,6 +1,10 @@
 {
   "name": "ngx-sweetalert2-repository",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sweetalert2/ngx-sweetalert2.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "yarn serve",
@@ -14,7 +18,8 @@
     "lint": "run-s lint:*",
     "lint:lib": "ng lint ngx-sweetalert2",
     "lint:demo": "ng lint ngx-sweetalert2-demo",
-    "tmux:serve": "tmuxinator local"
+    "tmux:serve": "tmuxinator local",
+    "semantic-release": "cd dist/ngx-sweetalert2 && semantic-release; cd .."
   },
   "private": true,
   "dependencies": {
@@ -53,6 +58,7 @@
     "ts-node": "~7.0.0",
     "tsickle": "^0.36.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "semantic-release": "^15.13.24"
   }
 }
