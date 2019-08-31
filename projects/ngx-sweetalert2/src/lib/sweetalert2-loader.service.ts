@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import SwalDefault, * as Swal from 'sweetalert2';
-import { swalProviderToken } from './config';
+import { swalProviderToken } from './di';
 
 export type SwalModule = typeof SwalDefault | typeof Swal;
 
