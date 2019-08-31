@@ -1,14 +1,25 @@
-<button (click)="show = !show">Toogle</button>
+<h1>Ngx-SweetAlert2</h1>
 
-<ng-container *ngIf="show">
-    <swal></swal>
-    <swal></swal>
-    <swal></swal>
-    <swal></swal>
-</ng-container>
+<h2>[swal]</h2>
+
+<h3>Using the <code>[swal]="['title', 'text', 'type']"</code> syntax</h3>
+
+<button [swal]="['Hello world!', 'How\'s the world going?', 'question']">Show modal</button>
 
 <hr>
 
-<a routerLink="nested">Load Submodule</a>
-<br>
+<h3>Using the <code>[swal]="{{ '{ title: \'title\', ... }' }}"</code> syntax</h3>
+
+<button [swal]="{ title: 'Hello world!', text: 'How\'s the world going?', type: 'question' }">Show modal</button>
+
+<hr>
+
+<h3>Using the <code>[swal]="swalRef"</code> syntax with a <code>&lt;swal #swalRef&gt;&lt;/swal&gt;</code> component</h3>
+
+<button [swal]="swal1">Show modal</button>
+<swal #swal1 title="Hello world!" text="How's the world going?" type="question"></swal>
+
+<hr>
+
+<a routerLink="nested" routerLinkActive="nested-active">Load submodule</a>
 <router-outlet></router-outlet>
