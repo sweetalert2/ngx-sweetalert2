@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { swalProviderToken } from './config';
+import { swalProviderToken } from './di';
 import { SwalPartialComponent } from './swal-partial.component';
 import { SwalPartialDirective } from './swal-partial.directive';
 import { SwalComponent } from './swal.component';
