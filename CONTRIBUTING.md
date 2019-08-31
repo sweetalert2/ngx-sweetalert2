@@ -6,8 +6,6 @@ However, suggestions are welcome, as well as questions, if these are specific to
 
 If you're quite sure that you've found a bug in _ngx-sweetalert2_, please include:
 
-- a [Plunker](https://plnkr.co) (or JSFiddle, etc) in order for us to be able to reproduce the issue.
+- a Stackblitz link (or Plunker, JSFiddle, etc) in order for us to be able to reproduce the issue.
 - expected behavior of the module
 - actual behavior
-
-**Plunker template** (fork it and reproduce the problem): https://plnkr.co/edit/3a7EFAFtFQDMjw3BNEhn
