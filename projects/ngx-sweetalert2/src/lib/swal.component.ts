@@ -239,16 +239,16 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
      * Angular lifecycle hook.
      * Updates the SweetAlert options, and if the modal is opened, asks SweetAlert to render it again.
      */
-    public async ngOnChanges(changes: SimpleChanges): Promise<void> {
+    public ngOnChanges(changes: SimpleChanges): void {
         //=> For each changed @Input that matches a SweetAlert2 option, mark as touched so we can
         //   send it with the next fire() or update() calls.
         Object.keys(changes)
-            //=> If the filter logic becomes more complex here, we can use Swal.isValidParameter
-            .filter((prop): prop is keyof SweetAlertOptions => prop !== 'swalOptions')
+            //=> If the filtering logic becomes more complex here, we can use Swal.isValidParameter
+            .filter((prop): prop is keyof SweetAlertOptions => !prop.startsWith('swal'))
             .forEach(this.markTouched);
 
         //=> Eventually trigger re-render if the modal is open.
-        this.update();
+        void this.update();
     }
 
     /**
