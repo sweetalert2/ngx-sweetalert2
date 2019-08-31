@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
 
-export interface SwalPartialTarget {
+export interface SwalPortalTarget {
     options?: SweetAlertOptions;
     element(swal: typeof Swal): HTMLElement;
 }
 
 /**
- * Represents an object of targets for <swal> partials (use with *swalPartial directive).
+ * Represents an object of targets for <swal> portals (use with *swalPortal directive).
  * We must use thunks to access the Swal.* functions listed below, because they get created after the first modal is
  * shown, so this object lets us reference those functions safely and in a statically-typed manner.
  */
 @Injectable({ providedIn: 'root' })
-export class SwalPartialTargets {
+export class SwalPortalTargets {
     /**
      * Targets the modal close button block contents.
      */
-    public readonly closeButton: SwalPartialTarget = {
+    public readonly closeButton: SwalPortalTarget = {
         element: swal => swal.getCloseButton(),
         options: { showCloseButton: true }
     };
@@ -24,7 +24,7 @@ export class SwalPartialTargets {
     /**
      * Targets the modal title block contents.
      */
-    public readonly title: SwalPartialTarget = {
+    public readonly title: SwalPortalTarget = {
         element: swal => swal.getTitle(),
         // Empty text that will never be shown but necessary so SweetAlert2 makes the div visible.
         options: { title: ' ' }
@@ -34,7 +34,7 @@ export class SwalPartialTargets {
      * Targets the modal text block contents (that is another block inside the first content block, so you can still
      * use other modal features like Swal inputs, that are situated inside that parent content block).
      */
-    public readonly content: SwalPartialTarget = {
+    public readonly content: SwalPortalTarget = {
         element: swal => swal.getContent().querySelector('#swal2-content') as HTMLElement,
         // Empty text that will never be shown but necessary so SweetAlert2 makes the div visible.
         options: { text: ' ' }
@@ -47,7 +47,7 @@ export class SwalPartialTargets {
      *     We could workaround that inconvenient inside this integration, but that'd be detrimental to memory and
      *     performance of everyone, for a relatively rare use case.
      */
-    public readonly actions: SwalPartialTarget = {
+    public readonly actions: SwalPortalTarget = {
         element: swal => swal.getActions(),
         // The button will never exist, but SweetAlert2 shows the actions block only if there is at least one button.
         options: { showConfirmButton: true }
@@ -56,7 +56,7 @@ export class SwalPartialTargets {
     /**
      * Targets the confirm button contents, replacing the text inside it (not the button itself)
      */
-    public readonly confirmButton: SwalPartialTarget = {
+    public readonly confirmButton: SwalPortalTarget = {
         element: swal => swal.getConfirmButton(),
         options: { showConfirmButton: true }
     };
@@ -64,7 +64,7 @@ export class SwalPartialTargets {
     /**
      * Targets the cancel button contents, replacing the text inside it (not the button itself)
      */
-    public readonly cancelButton: SwalPartialTarget = {
+    public readonly cancelButton: SwalPortalTarget = {
         element: swal => swal.getCancelButton(),
         options: { showCancelButton: true }
     };
@@ -72,7 +72,7 @@ export class SwalPartialTargets {
     /**
      * Targets the modal footer contents.
      */
-    public readonly footer: SwalPartialTarget = {
+    public readonly footer: SwalPortalTarget = {
         element: swal => swal.getFooter(),
         // Empty text that will never be shown but necessary so SweetAlert2 makes the div visible.
         options: { footer: ' ' }
