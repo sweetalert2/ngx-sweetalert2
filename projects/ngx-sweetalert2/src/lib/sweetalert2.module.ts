@@ -4,6 +4,7 @@ import { swalProviderToken } from './config';
 import { SwalPartialComponent } from './swal-partial.component';
 import { SwalPartialDirective } from './swal-partial.directive';
 import { SwalComponent } from './swal.component';
+import { SwalDirective } from './swal.directive';
 import { SwalProvider, SweetAlert2LoaderService } from './sweetalert2-loader.service';
 
 export interface Sweetalert2ModuleConfig {
@@ -16,16 +17,16 @@ export function provideSwal() {
 
 @NgModule({
     declarations: [
-        SwalComponent, SwalPartialDirective, SwalPartialComponent
+        SwalDirective, SwalComponent, SwalPartialDirective, SwalPartialComponent
     ],
     imports: [
         CommonModule
     ],
     exports: [
-        SwalComponent, SwalPartialDirective
+        SwalComponent, SwalPartialDirective, SwalDirective
     ],
     entryComponents: [
-        SwalPartialComponent
+        SwalComponent, SwalPartialComponent
     ]
 })
 export class SweetAlert2Module {
