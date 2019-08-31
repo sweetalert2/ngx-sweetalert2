@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { swalProviderToken } from './di';
+import { dismissOnDestroyToken, swalProviderToken } from './di';
 import { SwalPartialComponent } from './swal-partial.component';
 import { SwalPartialDirective } from './swal-partial.directive';
 import { SwalComponent } from './swal.component';
@@ -9,9 +9,10 @@ import { SwalProvider, SweetAlert2LoaderService } from './sweetalert2-loader.ser
 
 export interface Sweetalert2ModuleConfig {
     provideSwal?: SwalProvider;
+    dismissOnDestroy?: boolean;
 }
 
-export function provideSwal() {
+export function provideDefaultSwal() {
     return import('sweetalert2');
 }
 
@@ -31,28 +32,30 @@ export function provideSwal() {
 })
 export class SweetAlert2Module {
     public static forRoot(options: Sweetalert2ModuleConfig = {}): ModuleWithProviders {
+        const { provideSwal = provideDefaultSwal, dismissOnDestroy = true } = options;
+
         return {
             ngModule: SweetAlert2Module,
             providers: [
                 SweetAlert2LoaderService,
-                {
-                    provide: swalProviderToken,
-                    useValue: options.provideSwal || provideSwal
-                }
+                { provide: swalProviderToken, useValue: provideSwal },
+                { provide: dismissOnDestroyToken, useValue: dismissOnDestroy }
             ]
         };
     }
 
     public static forChild(options: Sweetalert2ModuleConfig = {}): ModuleWithProviders {
+        const { provideSwal, dismissOnDestroy } = options;
+
         return {
             ngModule: SweetAlert2Module,
             providers: [
                 ...options.provideSwal ? [
                     SweetAlert2LoaderService,
-                    {
-                        provide: swalProviderToken,
-                        useValue: options.provideSwal
-                    }
+                    { provide: swalProviderToken, useValue: provideSwal }
+                ] : [],
+                ...options.dismissOnDestroy !== undefined ? [
+                    { provide: dismissOnDestroyToken, useValue: dismissOnDestroy }
                 ] : []
             ]
         };

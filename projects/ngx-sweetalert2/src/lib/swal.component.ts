@@ -1,7 +1,8 @@
 import {
-    ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges
+    ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges
 } from '@angular/core';
 import Swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
+import { dismissOnDestroyToken } from './di';
 import * as events from './swal-events';
 import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
 
@@ -100,6 +101,52 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public scrollbarPadding: SweetAlertOptions['scrollbarPadding'];
 
     /**
+     * An object of SweetAlert2 native options, useful if:
+     *  - you don't want to use the @Inputs for practical/philosophical reasons ;
+     *  - there are missing @Inputs because ngx-sweetalert2 isn't up-to-date with SweetAlert2's latest changes.
+     *
+     * /!\ Please note that setting this property does NOT erase what has been set before unless you specify the
+     *     previous properties you want to erase again.
+     *     Ie. setting { title: 'Title' } and then { text: 'Text' } will give { title: 'Title', text: 'Text' }.
+     *
+     * /!\ Be aware that the options defined in this object will override the @Inputs of the same name.
+     */
+    @Input()
+    public set swalOptions(options: SweetAlertOptions) {
+        //=> Update properties
+        Object.assign(this, options);
+
+        //=> Mark changed properties as touched
+        const touchedKeys = Object.keys(options) as Array<keyof SweetAlertOptions>;
+        touchedKeys.forEach(this.markTouched);
+    }
+
+    /**
+     * Computes the options object that will get passed to SweetAlert2.
+     * Only the properties that have been set at least once on this component will be returned.
+     * Mostly for internal usage.
+     */
+    public get swalOptions(): SweetAlertOptions {
+        const options: { [P in keyof SweetAlertOptions]: any } = {};
+
+        //=> We will compute the options object based on the option keys that are known to have changed.
+        //   That avoids passing a gigantic object to SweetAlert2, making debugging easier and potentially
+        //   avoiding side effects.
+        this.touchedProps.forEach(prop => {
+            options[prop] = this[prop as keyof this];
+        });
+
+        return options;
+    }
+
+    /**
+     * Whether to dismiss the modal when the <swal> component is destroyed by Angular (for any reason) or not.
+     * When left undefined (default), the value will be inherited from the module configuration.
+     */
+    @Input()
+    public swalDismissOnDestroy?: boolean;
+
+    /**
      * Emits an event when the modal DOM element has been created.
      * Useful to perform DOM mutations before the modal is shown.
      */
@@ -156,45 +203,6 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Output() public readonly cancel = new EventEmitter<Swal.DismissReason | undefined>();
 
     /**
-     * An object of SweetAlert2 native options, useful if:
-     *  - you don't want to use the @Inputs for practical/philosophical reasons ;
-     *  - there are missing @Inputs because ngx-sweetalert2 isn't up-to-date with SweetAlert2's latest changes.
-     *
-     * /!\ Please note that setting this property does NOT erase what has been set before unless you specify the
-     *     previous properties you want to erase again.
-     *     Ie. setting { title: 'Title' } and then { text: 'Text' } will give { title: 'Title', text: 'Text' }.
-     *
-     * /!\ Be aware that the options defined in this object will override the @Inputs of the same name.
-     */
-    @Input()
-    public set swalOptions(options: SweetAlertOptions) {
-        //=> Update properties
-        Object.assign(this, options);
-
-        //=> Mark changed properties as touched
-        const touchedKeys = Object.keys(options) as Array<keyof SweetAlertOptions>;
-        touchedKeys.forEach(this.markTouched);
-    }
-
-    /**
-     * Computes the options object that will get passed to SweetAlert2.
-     * Only the properties that have been set at least once on this component will be returned.
-     * Mostly for internal usage.
-     */
-    public get swalOptions(): SweetAlertOptions {
-        const options: { [P in keyof SweetAlertOptions]: any } = {};
-
-        //=> We will compute the options object based on the option keys that are known to have changed.
-        //   That avoids passing a gigantic object to SweetAlert2, making debugging easier and potentially
-        //   avoiding side effects.
-        this.touchedProps.forEach(prop => {
-            options[prop] = this[prop as keyof this];
-        });
-
-        return options;
-    }
-
-    /**
      * This Set retains the properties that have been changed from @Inputs, so we can know precisely
      * what options we have to send to {@link Swal.fire}.
      */
@@ -211,14 +219,26 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
      */
     private isCurrentlyShown = false;
 
-    public constructor(private readonly sweetAlert2Loader: SweetAlert2LoaderService) {
+    public constructor(
+        private readonly sweetAlert2Loader: SweetAlert2LoaderService,
+        @Inject(dismissOnDestroyToken) private readonly moduleLevelDismissOnDestroy: boolean) {
     }
 
+    /**
+     * Angular lifecycle hook.
+     * Asks the SweetAlert2 loader service to preload the SweetAlert2 library, so it begins to be loaded only if there
+     * is a <swal> component somewhere, and is probably fully loaded when the modal has to be displayed,
+     * causing no delay.
+     */
     public ngOnInit(): void {
         //=> Preload SweetAlert2 library in case this component is activated.
         this.sweetAlert2Loader.preloadSweetAlertLibrary();
     }
 
+    /**
+     * Angular lifecycle hook.
+     * Updates the SweetAlert options, and if the modal is opened, asks SweetAlert to render it again.
+     */
     public async ngOnChanges(changes: SimpleChanges): Promise<void> {
         //=> For each changed @Input that matches a SweetAlert2 option, mark as touched so we can
         //   send it with the next fire() or update() calls.
@@ -231,9 +251,17 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
         this.update();
     }
 
+    /**
+     * Angular lifecycle hook.
+     * Closes the SweetAlert when the component is destroyed.
+     */
     public ngOnDestroy(): void {
-        //=> Release the modal if the component is destroyed.
-        void this.dismiss();
+        //=> Release the modal if the component is destroyed and if that behaviour is not disabled.
+        const dismissOnDestroy = this.swalDismissOnDestroy === undefined
+            ? this.moduleLevelDismissOnDestroy
+            : this.swalDismissOnDestroy;
+
+        dismissOnDestroy && this.dismiss();
     }
 
     /**

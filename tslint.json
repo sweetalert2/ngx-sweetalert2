@@ -13,6 +13,7 @@
     "arrow-parens": false,
     "interface-name": false,
     "no-object-literal-type-assertion": false,
-    "member-ordering": [true, { "order": "instance-sandwich" }]
+    "member-ordering": [true, { "order": "instance-sandwich" }],
+    "no-unused-expression": false
   }
 }
