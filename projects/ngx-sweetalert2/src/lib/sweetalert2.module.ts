@@ -32,30 +32,26 @@ export function provideDefaultSwal() {
 })
 export class SweetAlert2Module {
     public static forRoot(options: Sweetalert2ModuleConfig = {}): ModuleWithProviders {
-        const { provideSwal = provideDefaultSwal, dismissOnDestroy = true } = options;
-
         return {
             ngModule: SweetAlert2Module,
             providers: [
                 SweetAlert2LoaderService,
-                { provide: swalProviderToken, useValue: provideSwal },
-                { provide: dismissOnDestroyToken, useValue: dismissOnDestroy }
+                { provide: swalProviderToken, useValue: options.provideSwal || provideDefaultSwal },
+                { provide: dismissOnDestroyToken, useValue: options.dismissOnDestroy || true }
             ]
         };
     }
 
     public static forChild(options: Sweetalert2ModuleConfig = {}): ModuleWithProviders {
-        const { provideSwal, dismissOnDestroy } = options;
-
         return {
             ngModule: SweetAlert2Module,
             providers: [
                 ...options.provideSwal ? [
                     SweetAlert2LoaderService,
-                    { provide: swalProviderToken, useValue: provideSwal }
+                    { provide: swalProviderToken, useValue: options.provideSwal }
                 ] : [],
                 ...options.dismissOnDestroy !== undefined ? [
-                    { provide: dismissOnDestroyToken, useValue: dismissOnDestroy }
+                    { provide: dismissOnDestroyToken, useValue: options.dismissOnDestroy }
                 ] : []
             ]
         };
