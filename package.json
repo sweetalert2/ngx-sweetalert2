@@ -12,6 +12,7 @@
     "build": "run-s build:*",
     "build:lib": "ng build ngx-sweetalert2",
     "build:demo": "ng build ngx-sweetalert2-demo",
+    "build:copy-files": "cp README.md dist/ngx-sweetalert2 && cp LICENSE.txt dist/ngx-sweetalert2",
     "test": "run-p test:*",
     "test:lib": "ng test ngx-sweetalert2",
     "test:demo": "ng test ngx-sweetalert2-demo",
