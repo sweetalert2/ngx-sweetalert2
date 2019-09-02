@@ -20,7 +20,7 @@
 
 This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
-:warning: Package has been renamed to `@sweetalert2/ngx-sweetalert2`, [Read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v5.0.0)
+:point_right: **Version 6 is out!** If you come from v5.x, [read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v6.0.0)
 
 :point_right: **Before posting an issue**, please check that the problem isn't on SweetAlert's side.
 
