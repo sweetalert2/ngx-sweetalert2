@@ -20,7 +20,7 @@
     "lint:lib": "ng lint ngx-sweetalert2",
     "lint:demo": "ng lint ngx-sweetalert2-demo",
     "tmux:serve": "tmuxinator local",
-    "semantic-release": "cd dist/ngx-sweetalert2 && semantic-release; cd .."
+    "semantic-release": "semantic-release"
   },
   "private": true,
   "dependencies": {
