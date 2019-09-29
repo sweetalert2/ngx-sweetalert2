@@ -7,7 +7,7 @@
 <h1 align="center">@sweetalert2/ngx-sweetalert2</h1>
 
 <p align="center">
-  Official <a href="https://sweetalert2.github.io">SweetAlert2</a> integration for Angular 4+
+  Official <a href="https://sweetalert2.github.io">SweetAlert2</a> integration for Angular
 </p>
 
 <p align="center">
