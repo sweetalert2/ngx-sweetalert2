@@ -38,7 +38,8 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public text: SweetAlertOptions['text'];
     @Input() public html: SweetAlertOptions['html'];
     @Input() public footer: SweetAlertOptions['footer'];
-    @Input() public type: SweetAlertOptions['type'];
+    @Input() public icon: SweetAlertOptions['icon'];
+    @Input() public iconHtml: SweetAlertOptions['iconHtml'];
     @Input() public backdrop: SweetAlertOptions['backdrop'];
     @Input() public toast: SweetAlertOptions['toast'];
     @Input() public target: SweetAlertOptions['target'];
@@ -48,10 +49,11 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public background: SweetAlertOptions['background'];
     @Input() public position: SweetAlertOptions['position'];
     @Input() public grow: SweetAlertOptions['grow'];
+    @Input() public showClass: SweetAlertOptions['showClass'];
+    @Input() public hideClass: SweetAlertOptions['hideClass'];
     @Input() public customClass: SweetAlertOptions['customClass'];
-    /** @deprecated Use customClass instead */
-    @Input() public customContainerClass: SweetAlertOptions['customContainerClass'];
     @Input() public timer: SweetAlertOptions['timer'];
+    /** @deprecated Use showClass and hideClass instead */
     @Input() public animation: SweetAlertOptions['animation'];
     @Input() public heightAuto: SweetAlertOptions['heightAuto'];
     @Input() public allowOutsideClick: SweetAlertOptions['allowOutsideClick'];
@@ -65,10 +67,6 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public cancelButtonText: SweetAlertOptions['cancelButtonText'];
     @Input() public confirmButtonColor: SweetAlertOptions['confirmButtonColor'];
     @Input() public cancelButtonColor: SweetAlertOptions['cancelButtonColor'];
-    /** @deprecated Use customClass instead */
-    @Input() public confirmButtonClass: SweetAlertOptions['confirmButtonClass'];
-    /** @deprecated Use customClass instead */
-    @Input() public cancelButtonClass: SweetAlertOptions['cancelButtonClass'];
     @Input() public confirmButtonAriaLabel: SweetAlertOptions['confirmButtonAriaLabel'];
     @Input() public cancelButtonAriaLabel: SweetAlertOptions['cancelButtonAriaLabel'];
     @Input() public buttonsStyling: SweetAlertOptions['buttonsStyling'];
@@ -84,8 +82,6 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public imageWidth: SweetAlertOptions['imageWidth'];
     @Input() public imageHeight: SweetAlertOptions['imageHeight'];
     @Input() public imageAlt: SweetAlertOptions['imageAlt'];
-    /** @deprecated Use customClass instead */
-    @Input() public imageClass: SweetAlertOptions['imageClass'];
     @Input() public inputPlaceholder: SweetAlertOptions['inputPlaceholder'];
     @Input() public inputValue: SweetAlertOptions['inputValue'];
     @Input() public inputOptions: SweetAlertOptions['inputOptions'];
@@ -93,8 +89,6 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public inputAttributes: SweetAlertOptions['inputAttributes'];
     @Input() public inputValidator: SweetAlertOptions['inputValidator'];
     @Input() public validationMessage: SweetAlertOptions['validationMessage'];
-    /** @deprecated Use customClass instead */
-    @Input() public inputClass: SweetAlertOptions['inputClass'];
     @Input() public progressSteps: SweetAlertOptions['progressSteps'];
     @Input() public currentProgressStep: SweetAlertOptions['currentProgressStep'];
     @Input() public progressStepsDistance: SweetAlertOptions['progressStepsDistance'];

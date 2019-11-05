@@ -10,7 +10,7 @@ import { SwalComponent } from './swal.component';
 /**
  * [swal] directive. It takes a value that defines the SweetAlert and can be of three types:
  *
- * 1) A simple array of two or three strings defining [title, text, type] - the type being optional, ex:
+ * 1) A simple array of two or three strings defining [title, text, icon] - the icon being optional, ex:
  *
  *    <button [swal]="['Title', 'Text']">Click me</button>
  *
@@ -36,7 +36,7 @@ export class SwalDirective implements OnInit, OnDestroy {
             this.swalInstance = options;
         } else if (Array.isArray(options)) {
             this.swalOptions = {};
-            [this.swalOptions.title, this.swalOptions.text, this.swalOptions.type] = options;
+            [this.swalOptions.title, this.swalOptions.text, this.swalOptions.icon] = options;
         } else {
             this.swalOptions = options;
         }
