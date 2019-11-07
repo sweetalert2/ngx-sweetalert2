@@ -2,7 +2,7 @@
 
 <h2>[swal]</h2>
 
-<h3>Using the <code>[swal]="['title', 'text', 'type']"</code> syntax</h3>
+<h3>Using the <code>[swal]="['title', 'text', 'icon']"</code> syntax</h3>
 
 <button [swal]="['Hello world!', 'How\'s the world going?', 'question']">Show modal</button>
 
@@ -10,14 +10,14 @@
 
 <h3>Using the <code>[swal]="{{ '{ title: \'title\', ... }' }}"</code> syntax</h3>
 
-<button [swal]="{ title: 'Hello world!', text: 'How\'s the world going?', type: 'question' }">Show modal</button>
+<button [swal]="{ title: 'Hello world!', text: 'How\'s the world going?', icon: 'question' }">Show modal</button>
 
 <hr>
 
 <h3>Using the <code>[swal]="swalRef"</code> syntax with a <code>&lt;swal #swalRef&gt;&lt;/swal&gt;</code> component</h3>
 
 <button [swal]="swal1">Show modal</button>
-<swal #swal1 title="Hello world!" text="How's the world going?" type="question"></swal>
+<swal #swal1 title="Hello world!" text="How's the world going?" icon="question"></swal>
 
 <hr>
 
