@@ -54,7 +54,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
     //=> In submodules only:
     imports: [SweetAlert2Module],
-    
+
     //=> In submodules only, overriding options from your root module:
     imports: [SweetAlert2Module.forChild({ /* options */ })]
 })
@@ -71,7 +71,7 @@ That's it! By default, SweetAlert2 will be lazy-loaded, only when needed, from y
 Add the `[swal]` attribute to an element to show a simple modal when that element is clicked.
 
 To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/master/sweetalert2.d.ts) object,
-or a simple array of strings, of format `[title: string, text: string (, type: string)]`.
+or a simple array of strings, of format `[title: string, text: string (, icon: string)]`.
 
 Simple dialog:
 
@@ -131,7 +131,7 @@ Simple example:
   #deleteSwal
   title="Delete {{ file.name }}?"
   text="This cannot be undone"
-  type="question"
+  icon="question"
   [showCancelButton]="true"
   [focusCancel]="true"
   (confirm)="deleteFile(file)">
@@ -164,7 +164,7 @@ are prefixed with `swal`.
 You can catch other modal lifecycle events than (confirm) or (cancel):
 
 ```html
-<swal 
+<swal
   (render)="onRender($event)"
   (beforeOpen)="onBeforeOpen($event)"
   (open)="onOpen($event)"
