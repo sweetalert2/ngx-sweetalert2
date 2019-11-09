@@ -1,6 +1,9 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
+const isCI = !!process.env.GITHUB_ACTION;
+const browsers = isCI ? ['ChromeHeadless'] : ['Chrome'];
+
 module.exports = function (config) {
     config.set({
         basePath: '',
@@ -25,7 +28,7 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['Chrome'],
+        browsers,
         singleRun: false,
         restartOnFileChange: true
     });
