@@ -12,13 +12,15 @@
 
 <p align="center">
     <a href="https://www.npmjs.com/package/@sweetalert2/ngx-sweetalert2"><img alt="npm version" src="https://img.shields.io/npm/v/@sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
-    <a href="https://travis-ci.org/sweetalert2/ngx-sweetalert2"><img alt="Build Status: Travis CI" src="https://img.shields.io/travis/sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
+    <a href="https://github.com/sweetalert2/ngx-sweetalert2/actions"><img alt="Build Status" src="https://github.com/sweetalert2/ngx-sweetalert2/workflows/build/badge.svg"></a>
     <a href="LICENSE"><img alt="license" src="https://img.shields.io/github/license/sweetalert2/ngx-sweetalert2.svg?style=flat-square"></a>
 </p>
 
 <br>
 
 This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
+
+:point_right: **Version 7 is out!** If you come from v6.x, [read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v7.0.0)
 
 :point_right: **Version 6 is out!** If you come from v5.x, [read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v6.0.0)
 
