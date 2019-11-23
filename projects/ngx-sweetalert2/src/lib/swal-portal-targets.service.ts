@@ -35,7 +35,7 @@ export class SwalPortalTargets {
      * use other modal features like Swal inputs, that are situated inside that parent content block).
      */
     public readonly content: SwalPortalTarget = {
-        element: swal => swal.getContent().querySelector('#swal2-content') as HTMLElement,
+        element: swal => swal.getHtmlContainer(),
         // Empty text that will never be shown but necessary so SweetAlert2 makes the div visible.
         options: { text: ' ' }
     };

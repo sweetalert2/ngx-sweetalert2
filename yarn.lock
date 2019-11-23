@@ -8656,10 +8656,10 @@ supports-hyperlinks@^1.0.1:
     has-flag "^2.0.0"
     supports-color "^5.0.0"
 
-sweetalert2@^9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.1.0.tgz#07680b8848bf829709096323990e6049d28c7488"
-  integrity sha512-z+inI9lvMV0GjvH3CKzHpwIHzTl4DJGlgD4Afgo58xNYMELa2y3CKyXOvEvb8maj7RG703s1cJJRDTkFycAezQ==
+sweetalert2@^9.4.0:
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.4.0.tgz#7dc06b09b830e201b5a51a2c84e52af3b8f396be"
+  integrity sha512-c9Azg2eVXIgaYV9Su2tRbRip7YD3baGwl9S7yKVdELu9E7rEcER+WBeJenVjR6kRGC426ggMFUgLTf0l/LUb1Q==
 
 symbol-observable@1.2.0:
   version "1.2.0"
