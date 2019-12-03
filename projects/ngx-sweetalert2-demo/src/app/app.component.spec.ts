@@ -13,7 +13,9 @@ describe('AppComponent', () => {
                 RouterModule.forRoot([]),
                 SweetAlert2Module.forRoot()
             ]
-        }).compileComponents();
+        });
+
+        TestBed.compileComponents();
     }));
 
     it('should create the app', () => {

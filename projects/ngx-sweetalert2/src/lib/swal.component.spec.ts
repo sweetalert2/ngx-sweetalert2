@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { dismissOnDestroyToken, swalProviderToken } from './di';
 
 import { SwalComponent } from './swal.component';
+import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
 
 describe('NgxSweetalert2Component', () => {
     let component: SwalComponent;
@@ -8,9 +10,15 @@ describe('NgxSweetalert2Component', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            providers: [
+                SweetAlert2LoaderService,
+                { provide: swalProviderToken, useValue: () => import('sweetalert2') },
+                { provide: dismissOnDestroyToken, useValue: true }
+            ],
             declarations: [SwalComponent]
-        })
-            .compileComponents();
+        });
+
+        TestBed.compileComponents();
     }));
 
     beforeEach(() => {
