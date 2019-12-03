@@ -22,6 +22,13 @@
             "main": "projects/ngx-sweetalert2/src/test.ts",
             "tsConfig": "projects/ngx-sweetalert2/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-sweetalert2/karma.conf.js"
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "progress": false,
+              "browsers": "ChromeHeadlessCI"
+            }
           }
         },
         "lint": {
@@ -127,6 +134,13 @@
               "projects/ngx-sweetalert2-demo/src/styles.css"
             ],
             "scripts": []
+          },
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "progress": false,
+              "browsers": "ChromeHeadlessCI"
+            }
           }
         },
         "lint": {
