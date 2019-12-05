@@ -1,8 +1,9 @@
 import {
+    AfterViewInit,
     ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges
 } from '@angular/core';
 import Swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
-import { dismissOnDestroyToken } from './di';
+import { dismissOnDestroyToken, fireOnInitToken } from './di';
 import * as events from './swal-events';
 import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
 
@@ -32,7 +33,7 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SwalComponent implements OnInit, OnChanges, OnDestroy {
+export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     @Input() public title: SweetAlertOptions['title'];
     @Input() public titleText: SweetAlertOptions['titleText'];
     @Input() public text: SweetAlertOptions['text'];
@@ -134,8 +135,18 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
+     * Whether to fire the modal as soon as the <swal> component is created and initialized in the view.
+     * When left undefined (default), the value will be inherited from the module configuration, which is `false`.
+     *
+     * Example:
+     *     <swal *ngIf="error" [title]="error.title" [text]="error.text" icon="error"></swal>
+     */
+    @Input()
+    public swalFireOnInit?: boolean;
+
+    /**
      * Whether to dismiss the modal when the <swal> component is destroyed by Angular (for any reason) or not.
-     * When left undefined (default), the value will be inherited from the module configuration.
+     * When left undefined (default), the value will be inherited from the module configuration, which is `true`.
      */
     @Input()
     public swalDismissOnDestroy?: boolean;
@@ -144,29 +155,34 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
      * Emits an event when the modal DOM element has been created.
      * Useful to perform DOM mutations before the modal is shown.
      */
-    @Output() public readonly beforeOpen = new EventEmitter<events.BeforeOpenEvent>();
+    @Output()
+    public readonly beforeOpen = new EventEmitter<events.BeforeOpenEvent>();
 
     /**
      * Emits an event when the modal is shown.
      */
-    @Output() public readonly open = new EventEmitter<events.OpenEvent>();
+    @Output()
+    public readonly open = new EventEmitter<events.OpenEvent>();
 
     /**
      * Emits an event when the modal DOM is rendered.
      */
-    @Output() public readonly render = new EventEmitter<events.RenderEvent>();
+    @Output()
+    public readonly render = new EventEmitter<events.RenderEvent>();
 
     /**
      * Emits an event when the modal will be closed.
      * If you just want to know when the user dismissed the modal, prefer the higher-level (cancel) output.
      */
-    @Output() public readonly close = new EventEmitter<events.CloseEvent>();
+    @Output()
+    public readonly close = new EventEmitter<events.CloseEvent>();
 
     /**
      * Emits an event after the modal had been closed.
      * If you just want to know when the user dismissed the modal, prefer the higher-level (cancel) output.
      */
-    @Output() public readonly afterClose = new EventEmitter<void>();
+    @Output()
+    public readonly afterClose = new EventEmitter<void>();
 
     /**
      * Emits when the user clicks "Confirm".
@@ -179,7 +195,8 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
      *         // ... save user email
      *     }
      */
-    @Output() public readonly confirm = new EventEmitter<any>();
+    @Output()
+    public readonly confirm = new EventEmitter<any>();
 
     /**
      * Emits when the user clicks "Cancel", or dismisses the modal by any other allowed way.
@@ -194,7 +211,8 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
      *         // ... do something
      *     }
      */
-    @Output() public readonly cancel = new EventEmitter<Swal.DismissReason | undefined>();
+    @Output()
+    public readonly cancel = new EventEmitter<Swal.DismissReason | undefined>();
 
     /**
      * This Set retains the properties that have been changed from @Inputs, so we can know precisely
@@ -215,6 +233,7 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
 
     public constructor(
         private readonly sweetAlert2Loader: SweetAlert2LoaderService,
+        @Inject(fireOnInitToken) private readonly moduleLevelFireOnInit: boolean,
         @Inject(dismissOnDestroyToken) private readonly moduleLevelDismissOnDestroy: boolean) {
     }
 
@@ -227,6 +246,18 @@ export class SwalComponent implements OnInit, OnChanges, OnDestroy {
     public ngOnInit(): void {
         //=> Preload SweetAlert2 library in case this component is activated.
         this.sweetAlert2Loader.preloadSweetAlertLibrary();
+    }
+
+    /**
+     * Angular lifecycle hook.
+     * Fires the modal, if the component or module is configured to do so.
+     */
+    public ngAfterViewInit(): void {
+        const fireOnInit = this.swalFireOnInit === undefined
+            ? this.moduleLevelFireOnInit
+            : this.swalFireOnInit;
+
+        fireOnInit && this.fire();
     }
 
     /**

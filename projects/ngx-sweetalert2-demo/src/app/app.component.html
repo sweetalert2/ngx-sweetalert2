@@ -21,5 +21,24 @@
 
 <hr>
 
+<h3><code>&lt;swal [swalFireOnInit]="true"&gt;&lt;/swal&gt;</code></h3>
+
+<button (click)="modalFireCondition = true">Fire! by setting modalFireCondition = true</button>
+<p>
+    The modal's presence in the DOM is conditioned by the <code>modalFireCondition</code> variable.<br>
+    As soon as this variable is set to <code>true</code>, the <code>*ngIf</code> on the <code>&lt;swal&gt;</code> element
+    creates the component, and the modal fires immediately since it has <code>[swalFireOnInit]="true"</code>.<br>
+    When the modal is closed, <code>modalFireCondition</code> is reset to <code>false</code>, the modal component is
+    then destroyed by <code>*ngIf</code>, so you can click the button again.
+</p>
+<swal
+    *ngIf="modalFireCondition"
+    text="modalFireCondition = {{ modalFireCondition }}"
+    [swalFireOnInit]="true"
+    (afterClose)="modalFireCondition = false">
+</swal>
+
+<hr>
+
 <a routerLink="nested" routerLinkActive="nested-active">Load submodule</a>
 <router-outlet></router-outlet>

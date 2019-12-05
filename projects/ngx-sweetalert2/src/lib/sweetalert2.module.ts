@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { dismissOnDestroyToken, swalProviderToken } from './di';
+import { dismissOnDestroyToken, fireOnInitToken, swalProviderToken } from './di';
 import { SwalPortalComponent } from './swal-portal.component';
 import { SwalPortalDirective } from './swal-portal.directive';
 import { SwalComponent } from './swal.component';
@@ -9,6 +9,7 @@ import { SwalProvider, SweetAlert2LoaderService } from './sweetalert2-loader.ser
 
 export interface Sweetalert2ModuleConfig {
     provideSwal?: SwalProvider;
+    fireOnInit?: boolean;
     dismissOnDestroy?: boolean;
 }
 
@@ -37,6 +38,7 @@ export class SweetAlert2Module {
             providers: [
                 SweetAlert2LoaderService,
                 { provide: swalProviderToken, useValue: options.provideSwal || provideDefaultSwal },
+                { provide: fireOnInitToken, useValue: options.fireOnInit || false },
                 { provide: dismissOnDestroyToken, useValue: options.dismissOnDestroy || true }
             ]
         };
@@ -49,6 +51,9 @@ export class SweetAlert2Module {
                 ...options.provideSwal ? [
                     SweetAlert2LoaderService,
                     { provide: swalProviderToken, useValue: options.provideSwal }
+                ] : [],
+                ...options.fireOnInit !== undefined ? [
+                    { provide: fireOnInitToken, useValue: options.fireOnInit }
                 ] : [],
                 ...options.dismissOnDestroy !== undefined ? [
                     { provide: dismissOnDestroyToken, useValue: options.dismissOnDestroy }
