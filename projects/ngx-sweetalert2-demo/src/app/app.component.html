@@ -40,5 +40,26 @@
 
 <hr>
 
+<h3><code>&lt;swal [swalVisible]="isSwalVisible"&gt;&lt;/swal&gt;</code></h3>
+
+<button (click)="isSwalVisible = true">Fire! by setting isSwalVisible = true</button>
+
+<p>
+    <code>[swalVisible]</code> provides a reactive way to change the modal visibility, if you do not want to use
+    <code>SwalComponent.fire()</code> or <code>SwalComponent.dismiss()</code>.<br>
+    This example uses a simple variable, but another common use case could be using an observable, binding it like this:
+    <code>&lt;swal [swalVisible]="currentError$ | async" [title]="currentError$ | async"&gt;</code>. Don't forget to reset
+    <code>currentError$</code> after though! (maybe <code>[swalFireOnInit]</code> with an <code>*ngIf</code> would be
+    simpler here).
+</p>
+
+<swal
+    text="isSwalVisible = {{ isSwalVisible }}"
+    [swalVisible]="isSwalVisible"
+    (afterClose)="isSwalVisible = false">
+</swal>
+
+<hr>
+
 <a routerLink="nested" routerLinkActive="nested-active">Load submodule</a>
 <router-outlet></router-outlet>
