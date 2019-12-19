@@ -139,7 +139,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * When left undefined (default), the value will be inherited from the module configuration, which is `false`.
      *
      * Example:
-     *     <swal *ngIf="error" [title]="error.title" [text]="error.text" icon="error"></swal>
+     *     <swal *ngIf="error" [title]="error.title" [text]="error.text" icon="error" [swalFireOnInit]="true"></swal>
      */
     @Input()
     public swalFireOnInit?: boolean;
@@ -150,6 +150,15 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      */
     @Input()
     public swalDismissOnDestroy?: boolean;
+
+    @Input()
+    public set swalVisible(visible: boolean) {
+        visible ? this.fire() : this.dismiss();
+    }
+
+    public get swalVisible(): boolean {
+        return this.isCurrentlyShown;
+    }
 
     /**
      * Emits an event when the modal DOM element has been created.
@@ -295,7 +304,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * Returns the SweetAlert2 promise for convenience and use in code behind templates.
      * Otherwise, (confirm)="myHandler($event)" and (cancel)="myHandler($event)" can be used in templates.
      */
-    public async fire(): Promise<any> {
+    public async fire(): Promise<SweetAlertResult> {
         const swal = await this.sweetAlert2Loader.swal;
 
         //=> Build the SweetAlert2 options
