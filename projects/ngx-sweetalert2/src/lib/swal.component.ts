@@ -22,7 +22,7 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  *     If you are really concerned about performance and/or don't care about the API and its convenient integration
  *     with Angular (notably change detection and transclusion), you may totally use SweetAlert2 natively as well ;)
  *
- * /!\ Some SweetAlert options aren't @Inputs but @Outputs: onBeforeOpen, onOpen, onClose and onAfterClose
+ * /!\ Some SweetAlert options aren't @Inputs but @Outputs: onBeforeOpen, onOpen, onClose, onAfterClose and onDestroy
  *     (but without "on*" prefix to respect community standards).
  *     However, preConfirm and inputValidator are still @Inputs because there are not event handlers, there can't be
  *     multiple listeners and we need the values they can/must return.
@@ -195,6 +195,15 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     public readonly afterClose = new EventEmitter<void>();
 
     /**
+     * Emits an event after the modal had been closed.
+     * The difference between {@link destroy} and {@link afterClose} is that the latter is called for user interactions
+     * only (clicks), whereas {@link destroy} is always called, both for user interactions and popup being closed by
+     * another popup.
+     */
+    @Output()
+    public readonly destroy = new EventEmitter<void>();
+
+    /**
      * Emits when the user clicks "Confirm".
      * Bears a value when using "input", resolved "preConfirm", etc.
      *
@@ -330,6 +339,9 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
             },
             onAfterClose: () => {
                 this.afterClose.emit();
+            },
+            onDestroy: () => {
+                this.destroy.emit();
             }
         };
 
