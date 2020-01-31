@@ -82,7 +82,7 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
         //=> Subscribe to a few hooks frm the parent SwalComponent.
         this.swalComponent.render.pipe(takeUntil(this.destroyed)).subscribe(this.renderHook.bind(this));
         this.swalComponent.beforeOpen.pipe(takeUntil(this.destroyed)).subscribe(this.beforeOpenHook.bind(this));
-        this.swalComponent.afterClose.pipe(takeUntil(this.destroyed)).subscribe(this.afterCloseHook.bind(this));
+        this.swalComponent.destroy.pipe(takeUntil(this.destroyed)).subscribe(this.destroyHook.bind(this));
     }
 
     /**
@@ -137,7 +137,7 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
      * This afterClose hook runs once (per modal instance), just after the modal closing animation terminated.
      * This is a good place to detach and destroy our content, that is not visible anymore.
      */
-    private afterCloseHook(): void {
+    private destroyHook(): void {
         if (!this.portalComponentRef) return;
 
         //=> Detach the portal component from the app and destroy it
