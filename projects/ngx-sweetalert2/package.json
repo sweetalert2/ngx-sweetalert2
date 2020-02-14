@@ -6,8 +6,8 @@
     "url": "https://github.com/sweetalert2/ngx-sweetalert2.git"
   },
   "peerDependencies": {
-    "@angular/common": "^8.2.0",
-    "@angular/core": "^8.2.0",
+    "@angular/common": ">=8.0.0",
+    "@angular/core": ">=8.0.0",
     "sweetalert2": "^9.7.0"
   }
 }

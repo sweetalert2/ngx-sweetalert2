@@ -14,6 +14,11 @@
           "options": {
             "tsConfig": "projects/ngx-sweetalert2/tsconfig.lib.json",
             "project": "projects/ngx-sweetalert2/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-sweetalert2/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -60,7 +65,7 @@
             "main": "projects/ngx-sweetalert2-demo/src/main.ts",
             "polyfills": "projects/ngx-sweetalert2-demo/src/polyfills.ts",
             "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/ngx-sweetalert2-demo/src/favicon.ico",
               "projects/ngx-sweetalert2-demo/src/assets"
@@ -83,7 +88,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
