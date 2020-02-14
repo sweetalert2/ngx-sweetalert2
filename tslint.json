@@ -13,7 +13,8 @@
     "arrow-parens": false,
     "interface-name": false,
     "no-object-literal-type-assertion": false,
-    "member-ordering": [true, { "order": "instance-sandwich" }],
-    "no-unused-expression": false
+    "member-ordering": false,
+    "no-unused-expression": false,
+    "array-type": [true, "array-simple"]
   }
 }

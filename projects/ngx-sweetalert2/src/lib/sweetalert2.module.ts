@@ -32,7 +32,7 @@ export function provideDefaultSwal() {
     ]
 })
 export class SweetAlert2Module {
-    public static forRoot(options: Sweetalert2ModuleConfig = {}): ModuleWithProviders {
+    public static forRoot(options: Sweetalert2ModuleConfig = {}): ModuleWithProviders<SweetAlert2Module> {
         return {
             ngModule: SweetAlert2Module,
             providers: [
@@ -44,7 +44,7 @@ export class SweetAlert2Module {
         };
     }
 
-    public static forChild(options: Sweetalert2ModuleConfig = {}): ModuleWithProviders {
+    public static forChild(options: Sweetalert2ModuleConfig = {}): ModuleWithProviders<SweetAlert2Module> {
         return {
             ngModule: SweetAlert2Module,
             providers: [
