@@ -9,5 +9,8 @@
     "@angular/common": ">=8.0.0",
     "@angular/core": ">=8.0.0",
     "sweetalert2": "^9.7.0"
+  },
+  "typesVersions": {
+    "<3.7": { "*": ["dts-ts3.4/sweetalert2-ngx-sweetalert2.d.ts"] }
   }
 }
