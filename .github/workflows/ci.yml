@@ -20,6 +20,9 @@ jobs:
     - name: Build library package
       run: yarn build:lib --prod
 
+    - name: Downlevel .d.ts files for TypeScript <3.7
+      run: yarn build:downlevel-dts
+
     - name: Copy readme and license files
       run: yarn build:copy-files
 
