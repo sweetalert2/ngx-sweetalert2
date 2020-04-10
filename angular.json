@@ -162,5 +162,8 @@
       }
     }
   },
-  "defaultProject": "ngx-sweetalert2-demo"
+  "defaultProject": "ngx-sweetalert2-demo",
+  "cli": {
+    "analytics": false
+  }
 }
