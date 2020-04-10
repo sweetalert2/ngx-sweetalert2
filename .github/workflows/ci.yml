@@ -23,9 +23,6 @@ jobs:
     - name: Copy readme and license files
       run: yarn build:copy-files
 
-    - name: Run library tests
-      run: yarn test:lib --configuration=ci
-
     - name: Show package.json
       run: cat dist/ngx-sweetalert2/package.json
 
