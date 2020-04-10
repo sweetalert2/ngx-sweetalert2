@@ -1,6 +1,6 @@
 import {
-    AfterViewInit,
-    ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges
+    AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit,
+    Output, SimpleChanges
 } from '@angular/core';
 import Swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
 import { dismissOnDestroyToken, fireOnInitToken } from './di';
@@ -317,32 +317,34 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     public async fire(): Promise<SweetAlertResult> {
         const swal = await this.sweetAlert2Loader.swal;
 
+        const userOptions = this.swalOptions;
+
         //=> Build the SweetAlert2 options
         const options: SweetAlertOptions = {
             //=> Merge with calculated options set for that specific swal
-            ...this.swalOptions,
+            ...userOptions,
 
             //=> Handle modal lifecycle events
-            onBeforeOpen: (modalElement) => {
+            onBeforeOpen: composeHook(userOptions.onBeforeOpen, (modalElement) => {
                 this.beforeOpen.emit({ modalElement });
-            },
-            onOpen: (modalElement) => {
+            }),
+            onOpen: composeHook(userOptions.onOpen, (modalElement) => {
                 this.isCurrentlyShown = true;
                 this.open.emit({ modalElement });
-            },
-            onRender: (modalElement) => {
+            }),
+            onRender: composeHook(userOptions.onRender, (modalElement) => {
                 this.render.emit({ modalElement });
-            },
-            onClose: (modalElement) => {
+            }),
+            onClose: composeHook(userOptions.onClose, (modalElement) => {
                 this.isCurrentlyShown = false;
                 this.close.emit({ modalElement });
-            },
-            onAfterClose: () => {
+            }),
+            onAfterClose: composeHook(userOptions.onAfterClose, () => {
                 this.afterClose.emit();
-            },
-            onDestroy: () => {
+            }),
+            onDestroy: composeHook(userOptions.onDestroy, () => {
                 this.destroy.emit();
-            }
+            })
         };
 
         //=> Show the Swal! And wait for confirmation or dimissal.
@@ -356,6 +358,13 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         }
 
         return result;
+
+        function composeHook<T extends (...args: any[]) => void>(
+            userHook: T | undefined,
+            libHook: T): (...args: Parameters<T>) => void {
+
+            return (...args) => (libHook(...args), userHook?.(...args));
+        }
     }
 
     /**
