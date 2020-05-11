@@ -32,10 +32,3 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: yarn semantic-release
-
-  skip:
-    if: "contains(github.event.commits[0].message, '[skip ci]')"
-    runs-on: ubuntu-latest
-    steps:
-      - name: skip ci
-        run: echo "skip ci"
