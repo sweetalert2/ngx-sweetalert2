@@ -113,6 +113,8 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
         //=> Find target element
         const targetEl = this.target!.element(swal);
 
+        if (!targetEl) return;
+
         //=> Replace target's contents with our component
         // https://jsperf.com/innerhtml-vs-removechild/15
         while (targetEl.firstChild) {

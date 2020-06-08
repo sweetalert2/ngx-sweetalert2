@@ -3,7 +3,7 @@ import Swal, { SweetAlertOptions } from 'sweetalert2';
 
 export interface SwalPortalTarget {
     options?: SweetAlertOptions;
-    element(swal: typeof Swal): HTMLElement;
+    element(swal: typeof Swal): HTMLElement | null;
 }
 
 /**
