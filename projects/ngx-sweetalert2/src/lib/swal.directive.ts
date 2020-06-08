@@ -38,7 +38,7 @@ export class SwalDirective implements OnInit, OnDestroy {
             this.swalOptions = {};
             [this.swalOptions.title, this.swalOptions.text, this.swalOptions.icon] = options;
         } else {
-            this.swalOptions = options;
+            this.swalOptions = options as SweetAlertOptions;
         }
     }
 
