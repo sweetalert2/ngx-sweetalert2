@@ -2,7 +2,7 @@ import {
     AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit,
     Output, SimpleChanges
 } from '@angular/core';
-import Swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
+import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertUpdatableParameters } from 'sweetalert2';
 import { dismissOnDestroyToken, fireOnInitToken } from './di';
 import * as events from './swal-events';
 import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
@@ -123,16 +123,13 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * Mostly for internal usage.
      */
     public get swalOptions(): SweetAlertOptions {
-        const options: { [P in keyof SweetAlertOptions]: any } = {};
-
         //=> We will compute the options object based on the option keys that are known to have changed.
         //   That avoids passing a gigantic object to SweetAlert2, making debugging easier and potentially
         //   avoiding side effects.
-        this.touchedProps.forEach(prop => {
-            options[prop] = this[prop as keyof this];
-        });
-
-        return options;
+        return [...this.touchedProps].reduce<SweetAlertOptions>(
+            (obj, key) => ({ ...obj, [key]: this[key as keyof this] }),
+            {}
+        );
     }
 
     /**
@@ -288,7 +285,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         //   send it with the next fire() or update() calls.
         Object.keys(changes)
             //=> If the filtering logic becomes more complex here, we can use Swal.isValidParameter
-            .filter((prop): prop is keyof SweetAlertOptions => !prop.startsWith('swal'))
+            .filter((key): key is keyof SweetAlertOptions => !key.startsWith('swal'))
             .forEach(this.markTouched);
 
         //=> Eventually trigger re-render if the modal is open.
@@ -389,7 +386,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      *
      * @param options
      */
-    public async update(options?: SweetAlertOptions): Promise<void> {
+    public async update(options?: Pick<SweetAlertOptions, SweetAlertUpdatableParameters>): Promise<void> {
         if (options) {
             this.swalOptions = options;
         }
@@ -397,14 +394,13 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         if (!this.isCurrentlyShown) return;
 
         const swal = await this.sweetAlert2Loader.swal;
-        const allOptions = this.swalOptions;
 
-        const updatableOptions = Object.keys(allOptions)
-            .filter((key): key is keyof SweetAlertOptions => swal.isUpdatableParameter(key))
-            .reduce((obj, key) => {
-                obj[key] = allOptions[key];
-                return obj;
-            }, {} as { [P in keyof SweetAlertOptions]: any });
+        const updatableOptions =
+            (Object.keys(this.swalOptions) as Array<keyof SweetAlertOptions>)
+            .reduce<Pick<SweetAlertOptions, SweetAlertUpdatableParameters>>(
+                (obj, key) => ({ ...obj, [key]: this.swalOptions[key] }),
+                {}
+            );
 
         swal.update(updatableOptions);
     }
