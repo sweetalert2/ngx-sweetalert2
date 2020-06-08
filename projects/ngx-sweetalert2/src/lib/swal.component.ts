@@ -2,7 +2,7 @@ import {
     AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit,
     Output, SimpleChanges
 } from '@angular/core';
-import Swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
+import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertUpdatableParameters } from 'sweetalert2';
 import { dismissOnDestroyToken, fireOnInitToken } from './di';
 import * as events from './swal-events';
 import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
@@ -400,7 +400,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         const allOptions = this.swalOptions;
 
         const updatableOptions = Object.keys(allOptions)
-            .filter((key): key is keyof SweetAlertOptions => swal.isUpdatableParameter(key))
+            .filter((key): key is keyof SweetAlertOptions => swal.isUpdatableParameter(key as SweetAlertUpdatableParameters))
             .reduce((obj, key) => {
                 obj[key] = allOptions[key];
                 return obj;
