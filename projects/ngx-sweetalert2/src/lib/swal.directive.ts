@@ -34,11 +34,15 @@ export class SwalDirective implements OnInit, OnDestroy {
     @Input() public set swal(options: SwalComponent | SweetAlertOptions | SweetAlertArrayOptions) {
         if (options instanceof SwalComponent) {
             this.swalInstance = options;
-        } else if (Array.isArray(options)) {
+        } else if (isArrayOptions(options)) {
             this.swalOptions = {};
             [this.swalOptions.title, this.swalOptions.text, this.swalOptions.icon] = options;
         } else {
-            this.swalOptions = options as SweetAlertOptions;
+            this.swalOptions = options;
+        }
+
+        function isArrayOptions(value: any): value is SweetAlertArrayOptions {
+            return Array.isArray(options);
         }
     }
 

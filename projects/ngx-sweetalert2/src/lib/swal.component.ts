@@ -128,8 +128,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         //   avoiding side effects.
         return [...this.touchedProps].reduce<SweetAlertOptions>(
             (obj, key) => ({ ...obj, [key]: this[key as keyof this] }),
-            {}
-        );
+            {});
     }
 
     /**
@@ -395,12 +394,13 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
 
         const swal = await this.sweetAlert2Loader.swal;
 
-        const updatableOptions =
-            (Object.keys(this.swalOptions) as Array<keyof SweetAlertOptions>)
+        const allOptions = this.swalOptions;
+
+        const updatableOptions = Object.keys(allOptions)
+            .filter(swal.isUpdatableParameter)
             .reduce<Pick<SweetAlertOptions, SweetAlertUpdatableParameters>>(
-                (obj, key) => ({ ...obj, [key]: this.swalOptions[key] }),
-                {}
-            );
+                (obj, key) => ({ ...obj, [key]: allOptions[key] }),
+                {});
 
         swal.update(updatableOptions);
     }
