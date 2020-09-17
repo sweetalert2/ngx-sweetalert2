@@ -61,5 +61,21 @@
 
 <hr>
 
+<h3><code>*swalPortal</code> demos</h3>
+
+<swal #swalWithPortals (open)="startDynamicTextRotation()" (afterClose)="stopDynamicTextRotation()">
+    <ng-container *swalPortal="targets.closeButton">{{ currentTextChunk }}</ng-container>
+    <ng-container *swalPortal="targets.title">{{ currentTextChunk }}</ng-container>
+    <ng-container *swalPortal="targets.content">{{ currentTextChunk }}</ng-container>
+    <ng-container *swalPortal="targets.confirmButton">{{ currentTextChunk }}</ng-container>
+    <ng-container *swalPortal="targets.denyButton">{{ currentTextChunk }}</ng-container>
+    <ng-container *swalPortal="targets.cancelButton">{{ currentTextChunk }}</ng-container>
+    <ng-container *swalPortal="targets.footer">{{ currentTextChunk }}</ng-container>
+</swal>
+
+<button [swal]="swalWithPortals">Show swal with lots of portals</button>
+
+<hr>
+
 <a routerLink="nested" routerLinkActive="nested-active">Load submodule</a>
 <router-outlet></router-outlet>
