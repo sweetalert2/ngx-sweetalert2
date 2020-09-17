@@ -78,6 +78,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     @Input() public showCloseButton: SweetAlertOptions['showCloseButton'];
     @Input() public closeButtonHtml: SweetAlertOptions['closeButtonHtml'];
     @Input() public closeButtonAriaLabel: SweetAlertOptions['closeButtonAriaLabel'];
+    @Input() public loaderHtml: SweetAlertOptions['loaderHtml'];
     @Input() public showLoaderOnConfirm: SweetAlertOptions['showLoaderOnConfirm'];
     @Input() public preConfirm: SweetAlertOptions['preConfirm'];
     @Input() public imageUrl: SweetAlertOptions['imageUrl'];
