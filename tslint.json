@@ -8,6 +8,9 @@
       "@angular/platform-browser-dynamic", "@sweetalert2/ngx-sweetalert2", "rxjs", "zone.js"
     ]],
     "trailing-comma": false,
+    "deprecation": {
+      "severity": "warning"
+    },
     "object-literal-sort-keys": false,
     "comment-format": false,
     "arrow-parens": false,

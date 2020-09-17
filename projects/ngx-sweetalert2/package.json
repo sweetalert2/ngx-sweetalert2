@@ -5,9 +5,12 @@
     "type": "git",
     "url": "https://github.com/sweetalert2/ngx-sweetalert2.git"
   },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": ">=9.0.0",
     "@angular/core": ">=9.0.0",
-    "sweetalert2": "^9.14.4"
+    "sweetalert2": "^10.1.0"
   }
 }
