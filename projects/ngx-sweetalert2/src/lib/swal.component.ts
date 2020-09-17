@@ -207,7 +207,10 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
 
     /**
      * Emits when the user clicks "Confirm".
-     * Bears a value when using "input", resolved "preConfirm", etc.
+     * The event value ($event) can be either:
+     *  - by default, just `true`,
+     *  - when using {@link input}, the input value,
+     *  - when using {@link preConfirm}, the return value of this function.
      *
      * Example:
      *     <swal (confirm)="handleConfirm($event)"></swal>
@@ -220,9 +223,24 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     public readonly confirm = new EventEmitter<any>();
 
     /**
+     * Emits when the user clicks "Deny".
+     * This event bears no value.
+     * Use `(deny)` (along with {@link showDenyButton}) when you want a modal with three buttons (confirm, deny and
+     * cancel), and/or when you want to handle clear refusal in a separate way than simple dismissal.
+     *
+     * Example:
+     *     <swal (deny)="handleDeny()"></swal>
+     *
+     *     public handleDeny(): void {
+     *     }
+     */
+    @Output()
+    public readonly deny = new EventEmitter<void>();
+
+    /**
      * Emits when the user clicks "Cancel", or dismisses the modal by any other allowed way.
-     * By default, it will emit a string representing the reason for which the SweetAlert has been closed.
-     * The reason is `undefined` when {@link dismiss} is called.
+     * The event value ($event) is a string that explains how the modal was dismissed. It is `undefined` when
+     * the modal was programmatically closed (through {@link dismiss} for example).
      *
      * Example:
      *     <swal (cancel)="handleCancel($event)"></swal>
@@ -352,11 +370,11 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         //=> Show the Swal! And wait for confirmation or dimissal.
         const result = await swal.fire(options);
 
-        //=> Emit on (confirm) or (cancel)
-        if ('value' in result) {
-            this.confirm.emit(result.value);
-        } else {
-            this.cancel.emit(result.dismiss);
+        //=> Emit on (confirm), (deny) or (cancel)
+        switch (true) {
+            case result.isConfirmed: this.confirm.emit(result.value); break;
+            case result.isDenied: this.deny.emit(); break;
+            case result.isDismissed: this.cancel.emit(result.dismiss); break;
         }
 
         return result;
