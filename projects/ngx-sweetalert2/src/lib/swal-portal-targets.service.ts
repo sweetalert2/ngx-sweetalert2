@@ -62,6 +62,14 @@ export class SwalPortalTargets {
     };
 
     /**
+     * Targets the deny button contents, replacing the text inside it (not the button itself)
+     */
+    public readonly denyButton: SwalPortalTarget = {
+        element: swal => swal.getDenyButton(),
+        options: { showDenyButton: true }
+    };
+
+    /**
      * Targets the cancel button contents, replacing the text inside it (not the button itself)
      */
     public readonly cancelButton: SwalPortalTarget = {
