@@ -1,5 +1,5 @@
 import { SimpleChange } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import OriginalSwal from 'sweetalert2';
 import { dismissOnDestroyToken, fireOnInitToken, swalProviderToken } from './di';
 import { SwalComponent } from './swal.component';
@@ -14,7 +14,7 @@ describe('SwalComponent', () => {
     const testTitle = 'Test title';
     const testText = 'Test text';
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         swal = jasmine.createSpyObj<typeof OriginalSwal>(['fire']);
 
         TestBed.configureTestingModule({
