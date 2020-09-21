@@ -49,7 +49,8 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
      * See the {@link SwalPortalTargets} service to see the available targets.
      * See the class doc block for more informations.
      */
-    @Input('swalPortal') public target?: SwalPortalTarget;
+    @Input('swalPortal')
+    public target?: SwalPortalTarget;
 
     /**
      * Holds the component reference of the controlled SwalPortalComponent to destroy it when no longer needed.
@@ -80,9 +81,9 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
         void this.swalComponent.update(this.target.options);
 
         //=> Subscribe to a few hooks frm the parent SwalComponent.
-        this.swalComponent.render.pipe(takeUntil(this.destroyed)).subscribe(this.renderHook.bind(this));
-        this.swalComponent.beforeOpen.pipe(takeUntil(this.destroyed)).subscribe(this.beforeOpenHook.bind(this));
-        this.swalComponent.destroy.pipe(takeUntil(this.destroyed)).subscribe(this.destroyHook.bind(this));
+        this.swalComponent.didRender.pipe(takeUntil(this.destroyed)).subscribe(this.didRenderHook.bind(this));
+        this.swalComponent.willOpen.pipe(takeUntil(this.destroyed)).subscribe(this.willOpenHook.bind(this));
+        this.swalComponent.didDestroy.pipe(takeUntil(this.destroyed)).subscribe(this.didDestroyHook.bind(this));
     }
 
     /**
@@ -94,11 +95,11 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
     }
 
     /**
-     * This render hook runs 1..n times (per modal instance), just before the modal is shown (and also before the
-     * {@link beforeOpenHook}), or after Swal.update() is called.
+     * This didRender hook runs 1..n times (per modal instance), just before the modal is shown (and also before the
+     * {@link willOpenHook}), or after Swal.update() is called.
      * This is a good place to render, or re-render, our portal contents.
      */
-    private async renderHook(): Promise<void> {
+    private async didRenderHook(): Promise<void> {
         //=> Ensure the portal component is created
         if (!this.portalComponentRef) {
             this.portalComponentRef = this.createPortalComponent();
@@ -124,10 +125,10 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
     }
 
     /**
-     * This beforeOpen hook runs once (per modal instance), just before the modal is shown on the screen.
+     * This willOpen hook runs once (per modal instance), just before the modal is shown on the screen.
      * This is a good place to declare our detached view to the Angular app.
      */
-    private beforeOpenHook(): void {
+    private willOpenHook(): void {
         if (!this.portalComponentRef) return;
 
         //=> Make the Angular app aware of that detached view so rendering and change detection can happen
@@ -135,10 +136,10 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
     }
 
     /**
-     * This afterClose hook runs once (per modal instance), just after the modal closing animation terminated.
+     * This didDestroy hook runs once (per modal instance), just after the modal closing animation terminated.
      * This is a good place to detach and destroy our content, that is not visible anymore.
      */
-    private destroyHook(): void {
+    private didDestroyHook(): void {
         if (!this.portalComponentRef) return;
 
         //=> Detach the portal component from the app and destroy it

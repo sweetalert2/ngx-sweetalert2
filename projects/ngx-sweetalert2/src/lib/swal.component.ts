@@ -12,7 +12,7 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  *
  * It contains a bunch of @Inputs that have a perfect 1:1 mapping with SweetAlert2 options.
  * Their types are directly coming from SweetAlert2 types defintitions, meaning that ngx-sweetalert2 is tightly coupled
- * to SweetAlert2, but also is type-safe.
+ * to SweetAlert2, but also is type-safe even if both libraries do not evolve in sync.
  *
  * (?) If you want to use an object that declares the SweetAlert2 options all at once rather than many @Inputs,
  *     take a look at [swalOptions], that lets you pass a full {@link SweetAlertOptions} object.
@@ -22,10 +22,10 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  *     If you are really concerned about performance and/or don't care about the API and its convenient integration
  *     with Angular (notably change detection and transclusion), you may totally use SweetAlert2 natively as well ;)
  *
- * /!\ Some SweetAlert options aren't @Inputs but @Outputs: onBeforeOpen, onOpen, onClose, onAfterClose and onDestroy
- *     (but without "on*" prefix to respect community standards).
- *     However, preConfirm and inputValidator are still @Inputs because there are not event handlers, there can't be
- *     multiple listeners and we need the values they can/must return.
+ * /!\ Some SweetAlert options aren't @Inputs but @Outputs: `willOpen`, `didOpen`, `didRender`, `willClose`, `didClose`
+ *     and `didDestroy`.
+ *     However, `preConfirm` and `inputValidator` are still @Inputs because they are not event handlers, there can't be
+ *     multiple listeners on them, and we need the values they can/must return.
  */
 @Component({
     // tslint:disable-next-line:component-selector
@@ -164,46 +164,49 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     }
 
     /**
-     * Emits an event when the modal DOM element has been created.
-     * Useful to perform DOM mutations before the modal is shown.
+     * Modal lifecycle hook. Synchronously runs before the modal is shown on screen.
      */
     @Output()
-    public readonly beforeOpen = new EventEmitter<events.BeforeOpenEvent>();
+    public readonly willOpen = new EventEmitter<events.WillOpenEvent>();
 
     /**
-     * Emits an event when the modal is shown.
+     * Modal lifecycle hook. Synchronously runs before the modal is shown on screen.
      */
     @Output()
-    public readonly open = new EventEmitter<events.OpenEvent>();
+    public readonly didOpen = new EventEmitter<events.DidOpenEvent>();
 
     /**
-     * Emits an event when the modal DOM is rendered.
+     * Modal lifecycle hook. Synchronously runs after the popup DOM has been updated (ie. just before the modal is
+     * repainted on the screen).
+     * Typically, this will happen after `Swal.fire()` or `Swal.update()`.
+     * If you want to perform changes in the popup's DOM, that survive `Swal.update()`, prefer {@link didRender} over
+     * {@link willOpen}.
      */
     @Output()
-    public readonly render = new EventEmitter<events.RenderEvent>();
+    public readonly didRender = new EventEmitter<events.DidRenderEvent>();
 
     /**
-     * Emits an event when the modal will be closed.
-     * If you just want to know when the user dismissed the modal, prefer the higher-level (cancel) output.
+     * Modal lifecycle hook. Synchronously runs when the popup closes by user interaction (and not due to another popup
+     * being fired).
      */
     @Output()
-    public readonly close = new EventEmitter<events.CloseEvent>();
+    public readonly willClose = new EventEmitter<events.WillCloseEvent>();
 
     /**
-     * Emits an event after the modal had been closed.
-     * If you just want to know when the user dismissed the modal, prefer the higher-level (cancel) output.
+     * Modal lifecycle hook. Asynchronously runs after the popup has been disposed by user interaction (and not due to
+     * another popup being fired).
      */
     @Output()
-    public readonly afterClose = new EventEmitter<void>();
+    public readonly didClose = new EventEmitter<void>();
 
     /**
-     * Emits an event after the modal had been closed.
-     * The difference between {@link destroy} and {@link afterClose} is that the latter is called for user interactions
-     * only (clicks), whereas {@link destroy} is always called, both for user interactions and popup being closed by
-     * another popup.
+     * Modal lifecycle hook. Synchronously runs after popup has been destroyed either by user interaction or by another
+     * popup.
+     * If you have cleanup operations that you need to reliably execute each time a modal is closed, prefer
+     * {@link didDestroy} over {@link didClose}.
      */
     @Output()
-    public readonly destroy = new EventEmitter<void>();
+    public readonly didDestroy = new EventEmitter<void>();
 
     /**
      * Emits when the user clicks "Confirm".
@@ -345,25 +348,25 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
             ...userOptions,
 
             //=> Handle modal lifecycle events
-            onBeforeOpen: composeHook(userOptions.onBeforeOpen, (modalElement) => {
-                this.beforeOpen.emit({ modalElement });
+            willOpen: composeHook(userOptions.willOpen, (modalElement) => {
+                this.willOpen.emit({ modalElement });
             }),
-            onOpen: composeHook(userOptions.onOpen, (modalElement) => {
+            didOpen: composeHook(userOptions.didOpen, (modalElement) => {
                 this.isCurrentlyShown = true;
-                this.open.emit({ modalElement });
+                this.didOpen.emit({ modalElement });
             }),
-            onRender: composeHook(userOptions.onRender, (modalElement) => {
-                this.render.emit({ modalElement });
+            didRender: composeHook(userOptions.didRender, (modalElement) => {
+                this.didRender.emit({ modalElement });
             }),
-            onClose: composeHook(userOptions.onClose, (modalElement) => {
+            willClose: composeHook(userOptions.willClose, (modalElement) => {
                 this.isCurrentlyShown = false;
-                this.close.emit({ modalElement });
+                this.willClose.emit({ modalElement });
             }),
-            onAfterClose: composeHook(userOptions.onAfterClose, () => {
-                this.afterClose.emit();
+            didClose: composeHook(userOptions.didClose, () => {
+                this.didClose.emit();
             }),
-            onDestroy: composeHook(userOptions.onDestroy, () => {
-                this.destroy.emit();
+            didDestroy: composeHook(userOptions.didDestroy, () => {
+                this.didDestroy.emit();
             })
         };
 

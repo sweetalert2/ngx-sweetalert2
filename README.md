@@ -181,18 +181,21 @@ You can catch other modal lifecycle events than (confirm) or (cancel):
 
 ```html
 <swal
-  (render)="onRender($event)"
-  (beforeOpen)="onBeforeOpen($event)"
-  (open)="onOpen($event)"
-  (close)="onClose($event)"
-  (afterClose)="onAfterClose()">
+  (willOpen)="swalWillOpen($event)"
+  (didOpen)="swalDidOpen($event)"
+  (didRender)="swalDidRender($event)"
+  (willClose)="swalWillClose($event)"
+  (didClose)="swalDidClose()"
+  (didDestroy)="swalDidDestroy()">
 </swal>
 ```
 
 ```typescript
-public onBeforeOpen(event: BeforeOpenEvent): void {
-  // You can access the modal's native DOM node:
-  console.log(event.modalElement);
+export class MyComponent { 
+    public swalWillOpen(event: WillOpenEvent): void {
+      // Most events (those using $event in the example above) will let you access the modal native DOM node, like this:
+      console.log(event.modalElement);
+    }
 }
 ```
 
