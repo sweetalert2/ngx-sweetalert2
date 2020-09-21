@@ -156,7 +156,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
 
     @Input()
     public set swalVisible(visible: boolean) {
-        visible ? this.fire() : this.dismiss();
+        visible ? this.fire() : this.close();
     }
 
     public get swalVisible(): boolean {
@@ -243,7 +243,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     /**
      * Emits when the user clicks "Cancel", or dismisses the modal by any other allowed way.
      * The event value ($event) is a string that explains how the modal was dismissed. It is `undefined` when
-     * the modal was programmatically closed (through {@link dismiss} for example).
+     * the modal was programmatically closed (through {@link close} for example).
      *
      * Example:
      *     <swal (cancel)="handleCancel($event)"></swal>
@@ -328,7 +328,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
             ? this.moduleLevelDismissOnDestroy
             : this.swalDismissOnDestroy;
 
-        dismissOnDestroy && this.dismiss();
+        dismissOnDestroy && this.close();
     }
 
     /**
@@ -394,10 +394,10 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * Closes the modal, if opened.
      *
      * @param result The value that the modal will resolve with, triggering either (confirm) or (cancel).
-     *               If the argument is not passed, (dimiss) will emit `undefined`.
-     *               See {@link Swal.close}
+     *               If the argument is not passed, (cancel) will emit `undefined`.
+     *               {@see Swal.close}.
      */
-    public async dismiss(result?: SweetAlertResult): Promise<void> {
+    public async close(result?: SweetAlertResult): Promise<void> {
         if (!this.isCurrentlyShown) return;
 
         const swal = await this.sweetAlert2Loader.swal;
