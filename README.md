@@ -103,7 +103,7 @@ More advanced (input in dialog, dismissal handling):
 <button
   [swal]="{ title: 'Enter your email', input: 'email' }"
   (confirm)="saveEmail($event)"
-  (cancel)="handleRefusalToSetEmail($event)">
+  (dismiss)="handleRefusalToSetEmail($event)">
 
   Set my e-mail address
 </button>
@@ -177,7 +177,7 @@ You can pass native SweetAlert2 options via the `swalOptions` input, just in the
 By the way: every "special" option, like `swalOptions`, that are not native options from SweetAlert2,
 are prefixed with `swal`.
 
-You can catch other modal lifecycle events than (confirm) or (cancel):
+You can catch other modal lifecycle events than (confirm), (deny) or (cancel):
 
 ```html
 <swal

@@ -246,15 +246,15 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * the modal was programmatically closed (through {@link close} for example).
      *
      * Example:
-     *     <swal (cancel)="handleCancel($event)"></swal>
+     *     <swal (dismiss)="handleDismiss($event)"></swal>
      *
-     *     public handleCancel(reason: DismissReason | undefined): void {
+     *     public handleDismiss(reason: DismissReason | undefined): void {
      *         // reason can be 'cancel', 'overlay', 'close', 'timer' or undefined.
      *         // ... do something
      *     }
      */
     @Output()
-    public readonly cancel = new EventEmitter<Swal.DismissReason | undefined>();
+    public readonly dismiss = new EventEmitter<Swal.DismissReason | undefined>();
 
     /**
      * This Set retains the properties that have been changed from @Inputs, so we can know precisely
@@ -335,7 +335,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * Shows the SweetAlert.
      *
      * Returns the SweetAlert2 promise for convenience and use in code behind templates.
-     * Otherwise, (confirm)="myHandler($event)" and (cancel)="myHandler($event)" can be used in templates.
+     * Otherwise, (confirm)="myHandler($event)" and (dismiss)="myHandler($event)" can be used in templates.
      */
     public async fire(): Promise<SweetAlertResult> {
         const swal = await this.sweetAlert2Loader.swal;
@@ -373,11 +373,11 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         //=> Show the Swal! And wait for confirmation or dimissal.
         const result = await swal.fire(options);
 
-        //=> Emit on (confirm), (deny) or (cancel)
+        //=> Emit on (confirm), (deny) or (dismiss)
         switch (true) {
             case result.isConfirmed: this.confirm.emit(result.value); break;
             case result.isDenied: this.deny.emit(); break;
-            case result.isDismissed: this.cancel.emit(result.dismiss); break;
+            case result.isDismissed: this.dismiss.emit(result.dismiss); break;
         }
 
         return result;
@@ -393,8 +393,8 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     /**
      * Closes the modal, if opened.
      *
-     * @param result The value that the modal will resolve with, triggering either (confirm) or (cancel).
-     *               If the argument is not passed, (cancel) will emit `undefined`.
+     * @param result The value that the modal will resolve with, triggering either (confirm), (deny) or (dismiss).
+     *               If the argument is not passed, it is (dismiss) that will emit an `undefined` reason.
      *               {@see Swal.close}.
      */
     public async close(result?: SweetAlertResult): Promise<void> {
