@@ -31,7 +31,8 @@ export class SwalDirective implements OnInit, OnDestroy {
      * SweetAlert2 options or a SwalComponent instance.
      * See the class doc block for more informations.
      */
-    @Input() public set swal(options: SwalComponent | SweetAlertOptions | SweetAlertArrayOptions) {
+    @Input()
+    public set swal(options: SwalComponent | SweetAlertOptions | SweetAlertArrayOptions) {
         if (options instanceof SwalComponent) {
             this.swalInstance = options;
         } else if (isArrayOptions(options)) {
@@ -57,7 +58,8 @@ export class SwalDirective implements OnInit, OnDestroy {
      *         // ... save user email
      *     }
      */
-    @Output() public readonly confirm = new EventEmitter<any>();
+    @Output()
+    public readonly confirm = new EventEmitter<any>();
 
     /**
      * Emits when the user clicks "Cancel", or dismisses the modal by any other allowed way.
@@ -72,7 +74,8 @@ export class SwalDirective implements OnInit, OnDestroy {
      *         // ... do something
      *     }
      */
-    @Output() public readonly cancel = new EventEmitter<Swal.DismissReason | undefined>();
+    @Output()
+    public readonly cancel = new EventEmitter<Swal.DismissReason | undefined>();
 
     /**
      * When the user does not provides a SwalComponent instance, we create it on-the-fly and assign the plain-object

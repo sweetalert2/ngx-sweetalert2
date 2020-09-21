@@ -11,5 +11,6 @@ import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SwalPortalComponent {
-    @Input() public template: TemplateRef<any> | null = null;
+    @Input()
+    public template: TemplateRef<any> | null = null;
 }

@@ -11,6 +11,6 @@
   "peerDependencies": {
     "@angular/common": ">=9.0.0",
     "@angular/core": ">=9.0.0",
-    "sweetalert2": "^10.1.0"
+    "sweetalert2": "^10.3.0"
   }
 }

@@ -35,7 +35,7 @@
     *ngIf="modalFireCondition"
     text="modalFireCondition = {{ modalFireCondition }}"
     [swalFireOnInit]="true"
-    (afterClose)="modalFireCondition = false">
+    (didClose)="modalFireCondition = false">
 </swal>
 
 <hr>
@@ -56,14 +56,14 @@
 <swal
     text="isSwalVisible = {{ isSwalVisible }}"
     [swalVisible]="isSwalVisible"
-    (afterClose)="isSwalVisible = false">
+    (didClose)="isSwalVisible = false">
 </swal>
 
 <hr>
 
 <h3><code>*swalPortal</code> demos</h3>
 
-<swal #swalWithPortals (open)="startDynamicTextRotation()" (afterClose)="stopDynamicTextRotation()">
+<swal #swalWithPortals (didOpen)="startDynamicTextRotation()" (didClose)="stopDynamicTextRotation()">
     <ng-container *swalPortal="targets.closeButton">{{ currentTextChunk }}</ng-container>
     <ng-container *swalPortal="targets.title">{{ currentTextChunk }}</ng-container>
     <ng-container *swalPortal="targets.content">{{ currentTextChunk }}</ng-container>
