@@ -85,15 +85,15 @@ export class SwalDirective implements OnInit, OnDestroy {
      * the modal was programmatically closed (through {@link dismiss} for example).
      *
      * Example:
-     *     <swal (cancel)="handleCancel($event)"></swal>
+     *     <swal (dismiss)="handleDismiss($event)"></swal>
      *
-     *     public handleCancel(reason: DismissReason | undefined): void {
+     *     public handleDismiss(reason: DismissReason | undefined): void {
      *         // reason can be 'cancel', 'overlay', 'close', 'timer' or undefined.
      *         // ... do something
      *     }
      */
     @Output()
-    public readonly cancel = new EventEmitter<Swal.DismissReason | undefined>();
+    public readonly dismiss = new EventEmitter<Swal.DismissReason | undefined>();
 
     /**
      * When the user does not provides a SwalComponent instance, we create it on-the-fly and assign the plain-object
@@ -121,8 +121,8 @@ export class SwalDirective implements OnInit, OnDestroy {
 
     /**
      * OnInit lifecycle handler.
-     * Creates a SwalComponent instance if the user didn't provided one and binds on that component (confirm) and
-     * (cancel) outputs to reemit on the directive.
+     * Creates a SwalComponent instance if the user didn't provided one and binds on that component (confirm),
+     * (deny) and (dismiss) outputs to reemit on the directive.
      */
     public ngOnInit(): void {
         if (!this.swalInstance) {
@@ -164,7 +164,7 @@ export class SwalDirective implements OnInit, OnDestroy {
 
         this.swalInstance.confirm.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.confirm.emit(v));
         this.swalInstance.deny.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.deny.emit(v));
-        this.swalInstance.cancel.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.cancel.emit(v));
+        this.swalInstance.dismiss.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.dismiss.emit(v));
 
         this.swalInstance.fire().then(() => swalClosed.next());
     }
