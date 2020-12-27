@@ -20,9 +20,7 @@
 
 This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
-:point_right: **Version 8 for Angular 9 is out!** Attention, it is [not compatible with Angular 8 AoT](https://github.com/sweetalert2/ngx-sweetalert2/issues/149#issuecomment-587132566). 
-
-:point_right: **Version 7 is out!** If you come from v6.x, [read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v7.0.0)
+:point_right: **Version 9 is out!** To upgrade from v8.x, [read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v9.0.0)
 
 :point_right: **Before posting an issue**, please check that the problem isn't on SweetAlert's side.
 
@@ -40,7 +38,7 @@ This is not a regular API wrapper for SweetAlert (which already works very well 
 1) Install _ngx-sweetalert2_ and _sweetalert2_ via the npm registry:
 
 ```sh
-npm install --save sweetalert2 @sweetalert2/ngx-sweetalert2
+npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 ```
 
 :arrow_double_up: Always upgrade SweetAlert2 when you upgrade ngx-sweetalert2. The latter is statically linked with SweetAlert2's type definitions.
@@ -50,7 +48,7 @@ npm install --save sweetalert2 @sweetalert2/ngx-sweetalert2
 
 | Angular version | Latest compatible version range                                                                                                                          | Required SweetAlert2 version range |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
-| Angular 9       | @sweetalert2/ngx-sweetalert2@**^8.1.1** (current)                                                                                                        | sweetalert2@**^9.14.4**            |
+| Angular 9+      | @sweetalert2/ngx-sweetalert2@**^9.0.0** (current)                                                                                                        | sweetalert2@**^10.3.0**            |
 | Angular 8       | [@sweetalert2/ngx-sweetalert2@**~7.3.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v7.3.0#readme) (:warning: NOT ~7.4.0, broken AoT metadata) | sweetalert2@**^9.7.0**             |
 | Angular 7       | [@sweetalert2/ngx-sweetalert2@**^5.1.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v5.1.0#readme)                                             | sweetalert2@**^8.5.0**             |
 | Angular 6       | [@sweetalert2/ngx-sweetalert2@**^5.1.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v5.1.0#readme)                                             | sweetalert2@**^8.5.0**             |
@@ -89,7 +87,7 @@ Add the `[swal]` attribute to an element to show a simple modal when that elemen
 To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/master/sweetalert2.d.ts) object,
 or a simple array of strings, of format `[title: string, text: string (, icon: string)]`.
 
-Simple dialog:
+A simple dialog:
 
 ```html
 <button [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
@@ -97,25 +95,30 @@ Simple dialog:
 </button>
 ```
 
-More advanced (input in dialog, dismissal handling):
+More advanced, with text input, confirmation, denial and dismissal handling:
 
 ```html
 <button
-  [swal]="{ title: 'Enter your email', input: 'email' }"
-  (confirm)="saveEmail($event)"
-  (dismiss)="handleRefusalToSetEmail($event)">
+  [swal]="{ title: 'Save file as...', input: 'text', showDenyButton: true, denyButtonText: 'Don\'t save', showCancelButton: true }"
+  (confirm)="saveFile($event)"
+  (deny)="handleDenial()"
+  (dismiss)="handleDismiss($event)">
 
-  Set my e-mail address
+  Save
 </button>
 ```
 
 ```typescript
 export class MyComponent {
-  public saveEmail(email: string): void {
-    // ... save user email
+  public saveFile(fileName: string): void {
+    // ... save file
   }
 
-  public handleRefusalToSetEmail(dismissMethod: string): void {
+  public handleDenial(): void {
+      // ... don't save file and quit
+  }
+
+  public handleDismiss(dismissMethod: string): void {
     // dismissMethod can be 'cancel', 'overlay', 'close', and 'timer'
     // ... do something
   }
@@ -129,13 +132,13 @@ The directive can also take a reference to a [`<swal>` component](#swalcomponent
   Delete {{ file.name }}
 </button>
 
-<swal #deleteSwal ...></swal>
+<swal #deleteSwal title="Delete {{ file.name }}?" etc></swal>
 ```
 
 ### `SwalComponent`
 
 The library also provides a component, that can be useful for advanced use cases, or when you `[swal]`
-has too much options.
+has too many options.
 
 The component also allows you to use Angular dynamic templates inside the SweetAlert (see the
 [`*swalPortal` directive](#swalportaldirective) for that).
@@ -218,12 +221,12 @@ you want, just like if the SweetAlert was a normal Angular component (it's not a
 ```
 
 Using a structural directives allows us to take your content as a template, instantiate it lazily when needed
-(ie. when the modal is shown), and putting it in a native DOM element that is originally outside the scope of
+(i.e. when the modal is shown), and putting it in a native DOM element that is originally outside the scope of
 your Angular app.
 
-This examples sets the main content of the modal, where the `text` property is usually rendered when SweetAlert2
+In this example we set the main content of the modal, where the `text` property is usually rendered when SweetAlert2
 is in charge.
-But you can also target the title, the footer, or even the confirm button, and more!
+You can also target the title, the footer, or even the confirm button, and more!
 
 You just have to change the _target_ of the portal (_`content`_ is the default target).
 First, inject this little service in your component:
@@ -237,7 +240,7 @@ export class MyComponent {
 }
 ```
 
-And then, set the appropriate target as the value of `*swalPortal`, here using two portals, the first one
+Then, set the appropriate target as the value of `*swalPortal`, here using two portals, the first one
 targeting the modal's content (this is the default), and the other one targeting the confirm button text.
 
 ```html
