@@ -40,6 +40,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     @Input() public html: SweetAlertOptions['html'];
     @Input() public footer: SweetAlertOptions['footer'];
     @Input() public icon: SweetAlertOptions['icon'];
+    @Input() public iconColor: SweetAlertOptions['iconColor'];
     @Input() public iconHtml: SweetAlertOptions['iconHtml'];
     @Input() public backdrop: SweetAlertOptions['backdrop'];
     @Input() public toast: SweetAlertOptions['toast'];
