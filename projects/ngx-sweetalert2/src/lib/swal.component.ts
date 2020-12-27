@@ -24,8 +24,8 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  *
  * /!\ Some SweetAlert options aren't @Inputs but @Outputs: `willOpen`, `didOpen`, `didRender`, `willClose`, `didClose`
  *     and `didDestroy`.
- *     However, `preConfirm` and `inputValidator` are still @Inputs because they are not event handlers, there can't be
- *     multiple listeners on them, and we need the values they can/must return.
+ *     However, `preConfirm`, `preDeny` and `inputValidator` are still @Inputs because they are not event handlers,
+ *     there can't be multiple listeners on them, and we need the values they can/must return.
  */
 @Component({
     // tslint:disable-next-line:component-selector
@@ -86,16 +86,19 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     @Input() public loaderHtml: SweetAlertOptions['loaderHtml'];
     @Input() public showLoaderOnConfirm: SweetAlertOptions['showLoaderOnConfirm'];
     @Input() public preConfirm: SweetAlertOptions['preConfirm'];
+    @Input() public preDeny: SweetAlertOptions['preDeny'];
     @Input() public imageUrl: SweetAlertOptions['imageUrl'];
     @Input() public imageWidth: SweetAlertOptions['imageWidth'];
     @Input() public imageHeight: SweetAlertOptions['imageHeight'];
     @Input() public imageAlt: SweetAlertOptions['imageAlt'];
+    @Input() public inputLabel: SweetAlertOptions['inputLabel'];
     @Input() public inputPlaceholder: SweetAlertOptions['inputPlaceholder'];
     @Input() public inputValue: SweetAlertOptions['inputValue'];
     @Input() public inputOptions: SweetAlertOptions['inputOptions'];
     @Input() public inputAutoTrim: SweetAlertOptions['inputAutoTrim'];
     @Input() public inputAttributes: SweetAlertOptions['inputAttributes'];
     @Input() public inputValidator: SweetAlertOptions['inputValidator'];
+    @Input() public returnInputValueOnDeny: SweetAlertOptions['returnInputValueOnDeny'];
     @Input() public validationMessage: SweetAlertOptions['validationMessage'];
     @Input() public progressSteps: SweetAlertOptions['progressSteps'];
     @Input() public currentProgressStep: SweetAlertOptions['currentProgressStep'];
