@@ -72,7 +72,7 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
-    //=> Basic usage (forRoot can also take options, see details below)
+    //=> Basic usage (forRoot can also take options, see the wiki)
     imports: [SweetAlert2Module.forRoot()],
 
     //=> In submodules only:
@@ -174,9 +174,10 @@ Or DIY:
 
 You can access the dialog from your TypeScript code-behind like this:
 
-```typescript
+```ts
 class MyComponent {
-  @ViewChild('deleteSwal') private deleteSwal: SwalComponent;
+  @ViewChild('deleteSwal')
+  public readonly deleteSwal!: SwalComponent;
 }
 ```
 
