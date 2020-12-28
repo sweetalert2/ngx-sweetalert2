@@ -26,10 +26,19 @@ This is not a regular API wrapper for SweetAlert (which already works very well 
 
 ----------------
 
+### Quick start
+
  - [Installation & Usage](#package-installation--usage)
  - [`[swal]` directive](#swaldirective) — for simple, one-liner dialogs
  - [`<swal>` component](#swalcomponent) — for advanced use cases and extended Swal2 API coverage
  - [`*swalPortal` directive](#swalportaldirective) — use Angular templates in `<swal>`
+
+### Wiki recipes
+
+ - 🔌 [All possible ways of firing a modal and controlling its visibility](https://github.com/sweetalert2/ngx-sweetalert2/wiki/All-possible-ways-of-firing-a-modal-and-controlling-its-visibility)
+ - :wrench: [Setting global defaults (SweetAlert2 mixins)](https://github.com/sweetalert2/ngx-sweetalert2/wiki/Setting-global-defaults-(SweetAlert2-mixins))
+ - :art: [Use a theme from @sweetalert2/themes (and or customize SCSS variables)
+](https://github.com/sweetalert2/ngx-sweetalert2/wiki/Use-a-theme-from-@sweetalert2-themes-(and-or-customize-SCSS-variables))
 
 ----------------
 
