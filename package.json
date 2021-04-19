@@ -33,7 +33,7 @@
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
     "rxjs": "~6.6.7",
-    "sweetalert2": "^10.16.0",
+    "sweetalert2": "^10.16.3",
     "tslib": "^2.2.0",
     "zone.js": "~0.10.3"
   },
@@ -44,7 +44,7 @@
     "@angular/language-service": "~11.0.5",
     "@types/jasmine": "~3.6.9",
     "@types/jasminewd2": "~2.0.8",
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.14.41",
     "codelyzer": "^6.0.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~6.0.0",
