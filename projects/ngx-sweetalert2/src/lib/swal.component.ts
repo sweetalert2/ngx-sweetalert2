@@ -56,8 +56,6 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     @Input() public customClass: SweetAlertOptions['customClass'];
     @Input() public timer: SweetAlertOptions['timer'];
     @Input() public timerProgressBar: SweetAlertOptions['timerProgressBar'];
-    /** @deprecated Use showClass and hideClass instead */
-    @Input() public animation: SweetAlertOptions['animation'];
     @Input() public heightAuto: SweetAlertOptions['heightAuto'];
     @Input() public allowOutsideClick: SweetAlertOptions['allowOutsideClick'];
     @Input() public allowEscapeKey: SweetAlertOptions['allowEscapeKey'];
