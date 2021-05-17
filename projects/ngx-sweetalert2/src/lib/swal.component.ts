@@ -28,7 +28,6 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  *     there can't be multiple listeners on them, and we need the values they can/must return.
  */
 @Component({
-    // tslint:disable-next-line:component-selector
     selector: 'swal',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -5,8 +5,6 @@ import { dismissOnDestroyToken, fireOnInitToken, swalProviderToken } from './di'
 import { SwalComponent } from './swal.component';
 import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
 
-/* tslint:disable:no-lifecycle-call max-classes-per-file */
-
 describe('SwalComponent', () => {
     let swal: typeof OriginalSwal;
     let component: SwalComponent;
