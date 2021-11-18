@@ -58,7 +58,7 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 | Angular version | Latest compatible version range                                                                                                                          | Required SweetAlert2 version range |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
 | Angular 12      | @sweetalert2/ngx-sweetalert2@**^10.0.0** (current)                                                                                                       | sweetalert2@**^11.0.0**            |
-| Angular 9 to 11 | [@sweetalert2/ngx-sweetalert2@**~7.3.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v9.0.0#readme)                                             | sweetalert2@**^10.8.0**            |
+| Angular 9 to 11 | [@sweetalert2/ngx-sweetalert2@**~9.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v9.0.0#readme)                                             | sweetalert2@**^10.8.0**            |
 | Angular 8       | [@sweetalert2/ngx-sweetalert2@**~7.3.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v7.3.0#readme) (:warning: NOT ~7.4.0, broken AoT metadata) | sweetalert2@**^9.7.0**             |
 | Angular 7       | [@sweetalert2/ngx-sweetalert2@**^5.1.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v5.1.0#readme)                                             | sweetalert2@**^8.5.0**             |
 | Angular 6       | [@sweetalert2/ngx-sweetalert2@**^5.1.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v5.1.0#readme)                                             | sweetalert2@**^8.5.0**             |
