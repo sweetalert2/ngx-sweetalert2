@@ -3,6 +3,9 @@
 /tmp
 /out-tsc
 
+# caches
+/.angular/cache
+
 # dependencies
 /node_modules
 
