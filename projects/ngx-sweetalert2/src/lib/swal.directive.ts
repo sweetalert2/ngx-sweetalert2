@@ -160,7 +160,7 @@ export class SwalDirective implements OnInit, OnDestroy {
             this.swalInstance.swalOptions = this.swalOptions;
         }
 
-        const swalClosed = new Subject();
+        const swalClosed = new Subject<void>();
 
         this.swalInstance.confirm.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.confirm.emit(v));
         this.swalInstance.deny.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.deny.emit(v));

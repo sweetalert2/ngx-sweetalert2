@@ -26,9 +26,6 @@ export function provideDefaultSwal() {
     ],
     exports: [
         SwalComponent, SwalPortalDirective, SwalDirective
-    ],
-    entryComponents: [
-        SwalComponent, SwalPortalComponent
     ]
 })
 export class SweetAlert2Module {

@@ -2,9 +2,6 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-sweetalert2",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "sweetalert2": "Sweetalert2"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }

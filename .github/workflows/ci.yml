@@ -18,7 +18,7 @@ jobs:
       run: yarn install
 
     - name: Build library package
-      run: yarn build:lib
+      run: yarn build:lib --configuration=production
 
     - name: Copy readme and license files
       run: yarn build:copy-files
