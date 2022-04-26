@@ -94,7 +94,7 @@ That's it! By default, SweetAlert2 will be lazy-loaded, only when needed, from y
 
 Add the `[swal]` attribute to an element to show a simple modal when that element is clicked.
 
-To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/master/sweetalert2.d.ts) object,
+To define the modal contents, you can pass a [`SweetAlertOptions` (provided by sweetalert2)](https://github.com/sweetalert2/sweetalert2/blob/main/sweetalert2.d.ts) object,
 or a simple array of strings, of format `[title: string, text: string (, icon: string)]`.
 
 A simple dialog:
