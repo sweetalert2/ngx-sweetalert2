@@ -5084,10 +5084,10 @@ jasmine-core@^4.1.0:
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.1.0.tgz#2377349b0e8bfd3fbdb36c9e4f09e3b1a17cf5c2"
   integrity sha512-8E8BiffCL8sBwK1zU9cbavLe8xpJAgOduSJ6N8PJVv8VosQ/nxVTuXj2kUeHxTlZBVvh24G19ga7xdiaxlceKg==
 
-jasmine-core@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.2.0.tgz#0605bea284d6d78276f43c47de2532ecd4a73b00"
-  integrity sha512-OcFpBrIhnbmb9wfI8cqPSJ50pv3Wg4/NSgoZIqHzIwO/2a9qivJWzv8hUvaREIMYYJBas6AvfXATFdVuzzCqVw==
+jasmine-core@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.3.0.tgz#aee841fbe7373c2586ed8d8d48f5cc4a88be8390"
+  integrity sha512-qybtBUesniQdW6n+QIHMng2vDOHscIC/dEXjW+JzO9+LoAZMb03RCUC5xFOv/btSKPm1xL42fn+RjlU4oB42Lg==
 
 jasmine-spec-reporter@^7.0.0:
   version "7.0.0"
@@ -7602,10 +7602,17 @@ rxjs@6.6.7:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.0.0, rxjs@^7.2.0, rxjs@~7.5.5:
+rxjs@^7.0.0, rxjs@^7.2.0:
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.5.tgz#2ebad89af0f560f460ad5cc4213219e1f7dd4e9f"
   integrity sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==
+  dependencies:
+    tslib "^2.1.0"
+
+rxjs@~7.5.6:
+  version "7.5.6"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.6.tgz#0446577557862afd6903517ce7cae79ecb9662bc"
+  integrity sha512-dnyv2/YsXhnm461G+R/Pe5bWP41Nm6LBXEYWI6eiFP4fiwx6WRI/CD0zbdVAudd9xwLEF2IDcKXLHit0FYjUzw==
   dependencies:
     tslib "^2.1.0"
 
@@ -8270,10 +8277,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sweetalert2@^11.4.18:
-  version "11.4.18"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.4.18.tgz#fd8f57adacffad472ff0e28d6fc029ad521d14b2"
-  integrity sha512-BZPTQI54NYdjIVe2tmsS5JVU7E623P3Sv4ce3BO8V6PdeIdGPGmQm43ojr1cnpGJ1xYhbdwsHIH+t5tICvZ6ZA==
+sweetalert2@^11.4.24:
+  version "11.4.24"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.4.24.tgz#9dbe1e3096d6fd739e03d5c5fe2d218638fceaf4"
+  integrity sha512-wbD3SbaOhWyebVfnrY9rMjjVf7ZKUHjmn5Ch83NWUg84b/SYn0N4F0Dhxq3QYSAbnAQ7ArovQb2JfxZi5+Ieug==
 
 symbol-observable@4.0.0:
   version "4.0.0"
@@ -8977,9 +8984,9 @@ yn@3.1.1:
   resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 
-zone.js@~0.11.6:
-  version "0.11.6"
-  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.6.tgz#c7cacfc298fe24bb585329ca04a44d9e2e840e74"
-  integrity sha512-umJqFtKyZlPli669gB1gOrRE9hxUUGkZr7mo878z+NEBJZZixJkKeVYfnoLa7g25SseUDc92OZrMKKHySyJrFg==
+zone.js@~0.11.7:
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.7.tgz#262194267c7b964e8da77ce16b9fba9bea23cfdc"
+  integrity sha512-e39K2EdK5JfA3FDuUTVRvPlYV4aBfnOOcGuILhQAT7nzeV12uSrLBzImUM9CDVoncDSX4brR/gwqu0heQ3BQ0g==
   dependencies:
     tslib "^2.3.0"
