@@ -8277,10 +8277,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sweetalert2@^11.4.24:
-  version "11.4.24"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.4.24.tgz#9dbe1e3096d6fd739e03d5c5fe2d218638fceaf4"
-  integrity sha512-wbD3SbaOhWyebVfnrY9rMjjVf7ZKUHjmn5Ch83NWUg84b/SYn0N4F0Dhxq3QYSAbnAQ7ArovQb2JfxZi5+Ieug==
+sweetalert2@^11.4.29:
+  version "11.4.29"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.4.29.tgz#0b42c924dc79eda6580a753e045a5ec7044a0e2e"
+  integrity sha512-UMCZgyEk0m+KizxspB8Bsm5ZQRdguba2t2+Rf0r8XBmq5YqhXq7ItV2C15A3VLfRlxHnEJBTYg6hkSk/x+5Ofw==
 
 symbol-observable@4.0.0:
   version "4.0.0"
@@ -8984,9 +8984,9 @@ yn@3.1.1:
   resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 
-zone.js@~0.11.7:
-  version "0.11.7"
-  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.7.tgz#262194267c7b964e8da77ce16b9fba9bea23cfdc"
-  integrity sha512-e39K2EdK5JfA3FDuUTVRvPlYV4aBfnOOcGuILhQAT7nzeV12uSrLBzImUM9CDVoncDSX4brR/gwqu0heQ3BQ0g==
+zone.js@~0.11.8:
+  version "0.11.8"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.8.tgz#40dea9adc1ad007b5effb2bfed17f350f1f46a21"
+  integrity sha512-82bctBg2hKcEJ21humWIkXRlLBBmrc3nN7DFh5LGGhcyycO2S7FN8NmdvlcKaGFDNVL4/9kFLmwmInTavdJERA==
   dependencies:
     tslib "^2.3.0"
