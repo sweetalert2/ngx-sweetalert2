@@ -20,8 +20,6 @@
 
 This is not a regular API wrapper for SweetAlert (which already works very well alone), it intends to provide Angular-esque utilities on top of it.
 
-:point_right: **Version 9 is out!** To upgrade from v8.x, [read the release notes!](https://github.com/sweetalert2/ngx-sweetalert2/releases/tag/v9.0.0)
-
 :point_right: **Before posting an issue**, please check that the problem isn't on SweetAlert's side.
 
 ----------------
@@ -52,12 +50,12 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 
 :arrow_double_up: Always upgrade SweetAlert2 when you upgrade ngx-sweetalert2. The latter is statically linked with SweetAlert2's type definitions.
 
-<details>
-<summary><b>Angular and SweetAlert2 versions compatibility table</b> (click to show)</summary>
+## Angular and SweetAlert2 versions compatibility table
 
 | Angular version | Latest compatible version range                                                                                                                          | Required SweetAlert2 version range |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
-| Angular 12+     | @sweetalert2/ngx-sweetalert2@**^11.0.0** (current)                                                                                                       | sweetalert2@**^11.0.0**            |
+| Angular 14+     | @sweetalert2/ngx-sweetalert2@**^12.0.0** (current)                                                                                                       | sweetalert2@**^11.0.0**            |
+| Angular 12, 13  | [@sweetalert2/ngx-sweetalert2@**^11.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v11.0.0#readme)                                           | sweetalert2@**^11.0.0**            |
 | Angular 9 to 11 | [@sweetalert2/ngx-sweetalert2@**~9.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v9.0.0#readme)                                             | sweetalert2@**^10.8.0**            |
 | Angular 8       | [@sweetalert2/ngx-sweetalert2@**~7.3.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v7.3.0#readme) (:warning: NOT ~7.4.0, broken AoT metadata) | sweetalert2@**^9.7.0**             |
 | Angular 7       | [@sweetalert2/ngx-sweetalert2@**^5.1.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v5.1.0#readme)                                             | sweetalert2@**^8.5.0**             |
@@ -65,7 +63,6 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 | Angular 5       | [@sweetalert2/ngx-sweetalert2@**^5.1.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v5.1.0#readme)                                             | sweetalert2@**^8.5.0**             |
 | Angular 4       | [@toverux/ngx-sweetalert2@**^3.4.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v3.4.0#readme)                                                 | sweetalert2@**^7.15.1**            |
 | Angular 2       | Try Angular 4 versions requirements, or older versions like @toverux/ngsweetalert2                                                                       | unknown                            |
-</details>
 
 2) Import the module:
 
