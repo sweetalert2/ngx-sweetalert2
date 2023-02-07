@@ -269,6 +269,35 @@ targeting the modal's content (this is the default), and the other one targeting
 
 We have the following targets: `closeButton`, `title`, `content`, `actions`, `confirmButton`, `cancelButton`, and `footer`.
 
+### simple `SwalPortalDirective`
+
+The following example demonstrates a simple Swal with a button.
+In this example, you could provide more HTML within your HTML component rather than binding the HTML to an `[html]`.
+You would still need to import the `SwalPortalTargets` in your component.
+
+```typescript
+import { SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
+
+export class MyComponent {
+  public constructor(public readonly swal_targets: SwalPortalTargets) { }
+}
+```
+
+Here, the container with `swalPortal` directive's value is the target's `content`:
+
+```html
+<button [swal]="swal_portal" (confirm)="submit()">
+  Swal button
+</button>
+
+<swal #swal_portal title="Swal Title" icon="warning">
+  <ng-container *swalPortal="swal_targets.content">
+    Please press <b>OK</b>?
+  </ng-container>
+</swal>
+```
+
+
 These targets are mostly provided by SweetAlert2 and made available in the right format for swal portals by
 this library, but you can also make your own if you need to (take inspiration from the original service source).
 Those are just variables containing a function that returns a modal DOM element, not magic.
