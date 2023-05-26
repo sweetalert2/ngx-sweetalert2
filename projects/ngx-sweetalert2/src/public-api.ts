@@ -5,3 +5,4 @@ export * from './lib/swal-events';
 export { SwalPortalTarget, SwalPortalTargets } from './lib/swal-portal-targets.service';
 export { SweetAlert2Module, Sweetalert2ModuleConfig } from './lib/sweetalert2.module';
 export { SwalModuleLoader, SweetAlert2LoaderService } from './lib/sweetalert2-loader.service';
+export { provideSweetalert2 } from './lib/sweetalert2.provider';
