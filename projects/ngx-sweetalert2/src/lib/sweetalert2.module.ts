@@ -19,13 +19,13 @@ export function provideDefaultSwal() {
 
 @NgModule({
     declarations: [
-        SwalDirective, SwalComponent, SwalPortalDirective, SwalPortalComponent
+        SwalComponent, SwalPortalDirective, SwalPortalComponent
     ],
     imports: [
         NgTemplateOutlet
     ],
     exports: [
-        SwalComponent, SwalPortalDirective, SwalDirective
+        SwalComponent, SwalPortalDirective
     ]
 })
 export class SweetAlert2Module {
