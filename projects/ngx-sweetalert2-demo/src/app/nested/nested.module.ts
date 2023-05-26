@@ -12,9 +12,7 @@ export function provideSwal() {
 @NgModule({
     imports: [
         SweetAlert2Module.forChild({ provideSwal }),
-        NestedRoutingModule
-    ],
-    declarations: [
+        NestedRoutingModule,
         NestedComponent
     ]
 })

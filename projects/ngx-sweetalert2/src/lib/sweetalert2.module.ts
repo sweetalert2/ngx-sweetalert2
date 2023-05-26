@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { dismissOnDestroyToken, fireOnInitToken, swalProviderToken } from './di';
 import { SwalPortalComponent } from './swal-portal.component';
@@ -22,7 +22,7 @@ export function provideDefaultSwal() {
         SwalDirective, SwalComponent, SwalPortalDirective, SwalPortalComponent
     ],
     imports: [
-        CommonModule
+        NgTemplateOutlet
     ],
     exports: [
         SwalComponent, SwalPortalDirective, SwalDirective

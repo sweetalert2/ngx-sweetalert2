@@ -51,9 +51,10 @@
             "outputPath": "dist/ngx-sweetalert2-demo",
             "index": "projects/ngx-sweetalert2-demo/src/index.html",
             "main": "projects/ngx-sweetalert2-demo/src/main.ts",
-            "polyfills": "projects/ngx-sweetalert2-demo/src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/ngx-sweetalert2-demo/src/favicon.ico",
               "projects/ngx-sweetalert2-demo/src/assets"
@@ -90,8 +91,17 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -101,8 +111,12 @@
           "configurations": {
             "production": {
               "browserTarget": "ngx-sweetalert2-demo:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-sweetalert2-demo:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -114,7 +128,10 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/ngx-sweetalert2-demo/src/test.ts",
-            "polyfills": "projects/ngx-sweetalert2-demo/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-sweetalert2-demo/karma.conf.js",
             "assets": [
@@ -137,7 +154,6 @@
       }
     }
   },
-  "defaultProject": "ngx-sweetalert2-demo",
   "cli": {
     "analytics": false
   }

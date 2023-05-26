@@ -6,11 +6,11 @@
     "url": "https://github.com/sweetalert2/ngx-sweetalert2.git"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^14.0.0 || ^15.0.0",
-    "@angular/core": "^14.0.0 || ^15.0.0",
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
     "sweetalert2": "^11.0.0"
   }
 }
