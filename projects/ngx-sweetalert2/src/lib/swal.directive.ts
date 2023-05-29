@@ -25,7 +25,6 @@ import { SwalComponent } from './swal.component';
  */
 @Directive({
     selector: '[swal]',
-    standalone: true,
 })
 export class SwalDirective implements OnInit, OnDestroy {
     /**
