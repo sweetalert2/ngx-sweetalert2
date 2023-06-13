@@ -61,6 +61,9 @@
             "styles": [
               "projects/ngx-sweetalert2-demo/src/styles.css"
             ],
+            "allowedCommonJsDependencies": [
+                "sweetalert2"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -137,7 +140,6 @@
       }
     }
   },
-  "defaultProject": "ngx-sweetalert2-demo",
   "cli": {
     "analytics": false
   }
