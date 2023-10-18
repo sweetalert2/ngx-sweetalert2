@@ -2143,10 +2143,15 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jasmine@*", "@types/jasmine@^4.3.0":
+"@types/jasmine@*":
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-4.3.2.tgz#27045b95e1249e67ef02c7966e12003fb25df18b"
   integrity sha512-lKkWBcbxEZX/7nxPqEtv/OjPLaBa2j0o+hmv5Yn83b/+11C1kfBAkgvmrb13WDkmizUJ3B+jYrWh4M0YRtrzEQ==
+
+"@types/jasmine@^5.0.0":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-5.1.1.tgz#7d2a2a983e1e822858ea9e30d90e11a3fe408fc0"
+  integrity sha512-qL4GoZHHJl1JQ0vK31OtXMfkfGxYJnysmYz9kk0E8j5W96ThKykBF90uD3PcVmQUAzulbsaus2eFiBhCH5itfw==
 
 "@types/jasminewd2@~2.0.10":
   version "2.0.10"
