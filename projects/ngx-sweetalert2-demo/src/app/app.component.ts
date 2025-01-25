@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
-import { SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
+import { Component, Inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { SwalDirective, SwalPortalTargets, SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
     selector: 'demo-app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
+    standalone: true,
+    imports: [RouterModule, SwalComponent, SwalDirective],
+    providers: [SwalPortalTargets]
 })
 export class AppComponent {
     public modalFireCondition = false;
@@ -17,7 +21,7 @@ export class AppComponent {
 
     private currentTextChunkOffset = 0;
 
-    public constructor(public readonly targets: SwalPortalTargets) {
+    public constructor(@Inject(SwalPortalTargets) public readonly targets: SwalPortalTargets) {
     }
 
     public get currentTextChunk(): string {
