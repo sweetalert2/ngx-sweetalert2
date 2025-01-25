@@ -99,18 +99,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-sweetalert2-demo:build"
+            "buildTarget": "ngx-sweetalert2-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-sweetalert2-demo:build:production"
+              "buildTarget": "ngx-sweetalert2-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-sweetalert2-demo:build"
+            "buildTarget": "ngx-sweetalert2-demo:build"
           }
         },
         "test": {
