@@ -6,6 +6,7 @@ import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertUpdatableParameter
 import { dismissOnDestroyToken, fireOnInitToken } from './di';
 import * as events from './swal-events';
 import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
+import { CommonModule } from '@angular/common';
 
 /**
  * <swal> component. See the README.md for usage.
@@ -30,7 +31,10 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
 @Component({
     selector: 'swal',
     template: '',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [CommonModule],
+    providers: [SweetAlert2LoaderService],
 })
 export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     @Input() public title: SweetAlertOptions['title'];
