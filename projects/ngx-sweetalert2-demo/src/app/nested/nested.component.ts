@@ -4,7 +4,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 @Component({
     selector: 'demo-nested',
     templateUrl: './nested.component.html',
-    standalone: true,
     imports: [SweetAlert2Module]
 })
 export class NestedComponent {

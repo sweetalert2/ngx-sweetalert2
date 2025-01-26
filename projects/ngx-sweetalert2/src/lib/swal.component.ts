@@ -30,7 +30,8 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
 @Component({
     selector: 'swal',
     template: '',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     @Input() public title: SweetAlertOptions['title'];

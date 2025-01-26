@@ -6,7 +6,6 @@ import { SwalPortalTargets, SweetAlert2Module } from '@sweetalert2/ngx-sweetaler
     selector: 'demo-app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    standalone: true,
     imports: [RouterModule, SweetAlert2Module]
 })
 export class AppComponent {
