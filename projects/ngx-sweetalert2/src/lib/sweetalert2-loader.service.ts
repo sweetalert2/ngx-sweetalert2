@@ -1,6 +1,6 @@
-import { Inject, Injectable } from '@angular/core';
-import SwalDefault, * as Swal from 'sweetalert2';
-import { swalProviderToken } from './di';
+import { Inject, Injectable } from "@angular/core";
+import SwalDefault, * as Swal from "sweetalert2";
+import { swalProviderToken } from "./di";
 
 export type SwalModule = typeof SwalDefault | typeof Swal;
 
@@ -30,18 +30,16 @@ export class SweetAlert2LoaderService {
     public preloadSweetAlertLibrary(): void {
         if (this.swalPromiseCache) return;
 
-        const libPromise = isLoader(this.swalProvider)
-            ? this.swalProvider()
-            : Promise.resolve(this.swalProvider);
+        const libPromise = isLoader(this.swalProvider) ? this.swalProvider() : Promise.resolve(this.swalProvider);
 
-        this.swalPromiseCache = libPromise.then(value => isDefaultExport(value) ? value : value.default);
+        this.swalPromiseCache = libPromise.then((value) => (isDefaultExport(value) ? value : value.default));
 
         function isLoader(value: SwalProvider): value is SwalModuleLoader {
-            return typeof value === 'function' && (value as any).version === undefined;
+            return typeof value === "function" && (value as any).version === undefined;
         }
 
         function isDefaultExport(value: SwalModule): value is typeof SwalDefault {
-            return typeof value === 'function';
+            return typeof value === "function";
         }
     }
 }

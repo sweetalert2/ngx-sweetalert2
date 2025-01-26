@@ -1,13 +1,21 @@
 import {
-    ApplicationRef, ComponentFactoryResolver, ComponentRef, Directive, Host, Injector, Input, OnDestroy, OnInit,
-    TemplateRef
-} from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { SwalPortalTarget, SwalPortalTargets } from './swal-portal-targets.service';
-import { SwalPortalComponent } from './swal-portal.component';
-import { SwalComponent } from './swal.component';
-import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
+    ApplicationRef,
+    ComponentFactoryResolver,
+    ComponentRef,
+    Directive,
+    Host,
+    Injector,
+    Input,
+    OnDestroy,
+    OnInit,
+    TemplateRef,
+} from "@angular/core";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { SwalPortalTarget, SwalPortalTargets } from "./swal-portal-targets.service";
+import { SwalPortalComponent } from "./swal-portal.component";
+import { SwalComponent } from "./swal.component";
+import { SweetAlert2LoaderService } from "./sweetalert2-loader.service";
 
 /**
  * A structural directive that lets you use Angular templates inside of SweetAlerts.
@@ -40,7 +48,8 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  *     <swal>
  */
 @Directive({
-    selector: '[swalPortal]'
+    selector: "[swalPortal]",
+    standalone: false,
 })
 export class SwalPortalDirective implements OnInit, OnDestroy {
     /**
@@ -49,7 +58,7 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
      * See the {@link SwalPortalTargets} service to see the available targets.
      * See the class doc block for more informations.
      */
-    @Input('swalPortal')
+    @Input("swalPortal")
     public target?: SwalPortalTarget;
 
     /**
@@ -66,8 +75,8 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
         private readonly templateRef: TemplateRef<any>,
         private readonly sweetAlert2Loader: SweetAlert2LoaderService,
         private readonly swalTargets: SwalPortalTargets,
-        @Host() private readonly swalComponent: SwalComponent) {
-    }
+        @Host() private readonly swalComponent: SwalComponent,
+    ) {}
 
     /**
      * Subscribes to the the SweetAlert appearance/disappearance events to create/destroy the SwalPortalComponent

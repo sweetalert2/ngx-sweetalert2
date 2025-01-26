@@ -35,6 +35,12 @@
               "browsers": "ChromeHeadlessCI"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/ngx-sweetalert2/**/*.ts", "projects/ngx-sweetalert2/**/*.html"]
+          }
         }
       }
     },
@@ -46,12 +52,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ngx-sweetalert2-demo",
+            "outputPath": {
+              "base": "dist/ngx-sweetalert2-demo"
+            },
             "index": "projects/ngx-sweetalert2-demo/src/index.html",
-            "main": "projects/ngx-sweetalert2-demo/src/main.ts",
-            "polyfills": "projects/ngx-sweetalert2-demo/src/polyfills.ts",
+            "polyfills": [
+              "projects/ngx-sweetalert2-demo/src/polyfills.ts"
+            ],
             "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -64,7 +73,8 @@
             "allowedCommonJsDependencies": [
                 "sweetalert2"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/ngx-sweetalert2-demo/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -79,8 +89,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -99,18 +107,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-sweetalert2-demo:build"
+            "buildTarget": "ngx-sweetalert2-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-sweetalert2-demo:build:production"
+              "buildTarget": "ngx-sweetalert2-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-sweetalert2-demo:build"
+            "buildTarget": "ngx-sweetalert2-demo:build"
           }
         },
         "test": {
@@ -135,6 +143,12 @@
               "progress": false,
               "browsers": "ChromeHeadlessCI"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/ngx-sweetalert2-demo/**/*.ts", "projects/ngx-sweetalert2-demo/**/*.html"]
           }
         }
       }

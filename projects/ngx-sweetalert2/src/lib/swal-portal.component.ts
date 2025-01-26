@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, TemplateRef } from "@angular/core";
 
 /**
  * @internal
@@ -6,9 +6,10 @@ import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular
  * See SwalPortalDirective for info about the covered feature.
  */
 @Component({
-    selector: 'swal-portal',
+    selector: "swal-portal",
     template: '<ng-container *ngTemplateOutlet="template"></ng-container>',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SwalPortalComponent {
     @Input()

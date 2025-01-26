@@ -1,11 +1,20 @@
 import {
-    AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit,
-    Output, SimpleChanges
-} from '@angular/core';
-import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertUpdatableParameters } from 'sweetalert2';
-import { dismissOnDestroyToken, fireOnInitToken } from './di';
-import * as events from './swal-events';
-import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Inject,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+} from "@angular/core";
+import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertUpdatableParameters } from "sweetalert2";
+import { dismissOnDestroyToken, fireOnInitToken } from "./di";
+import * as events from "./swal-events";
+import { SweetAlert2LoaderService } from "./sweetalert2-loader.service";
 
 /**
  * <swal> component. See the README.md for usage.
@@ -28,80 +37,81 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  *     there can't be multiple listeners on them, and we need the values they can/must return.
  */
 @Component({
-    selector: 'swal',
-    template: '',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    selector: "swal",
+    template: "",
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
-    @Input() public title: SweetAlertOptions['title'];
-    @Input() public titleText: SweetAlertOptions['titleText'];
-    @Input() public text: SweetAlertOptions['text'];
-    @Input() public html: SweetAlertOptions['html'];
-    @Input() public footer: SweetAlertOptions['footer'];
-    @Input() public icon: SweetAlertOptions['icon'];
-    @Input() public iconColor: SweetAlertOptions['iconColor'];
-    @Input() public iconHtml: SweetAlertOptions['iconHtml'];
-    @Input() public backdrop: SweetAlertOptions['backdrop'];
-    @Input() public toast: SweetAlertOptions['toast'];
-    @Input() public target: SweetAlertOptions['target'];
-    @Input() public input: SweetAlertOptions['input'];
-    @Input() public width: SweetAlertOptions['width'];
-    @Input() public padding: SweetAlertOptions['padding'];
-    @Input() public background: SweetAlertOptions['background'];
-    @Input() public position: SweetAlertOptions['position'];
-    @Input() public grow: SweetAlertOptions['grow'];
-    @Input() public showClass: SweetAlertOptions['showClass'];
-    @Input() public hideClass: SweetAlertOptions['hideClass'];
-    @Input() public customClass: SweetAlertOptions['customClass'];
-    @Input() public timer: SweetAlertOptions['timer'];
-    @Input() public timerProgressBar: SweetAlertOptions['timerProgressBar'];
-    @Input() public heightAuto: SweetAlertOptions['heightAuto'];
-    @Input() public allowOutsideClick: SweetAlertOptions['allowOutsideClick'];
-    @Input() public allowEscapeKey: SweetAlertOptions['allowEscapeKey'];
-    @Input() public allowEnterKey: SweetAlertOptions['allowEnterKey'];
-    @Input() public stopKeydownPropagation: SweetAlertOptions['stopKeydownPropagation'];
-    @Input() public keydownListenerCapture: SweetAlertOptions['keydownListenerCapture'];
-    @Input() public showConfirmButton: SweetAlertOptions['showConfirmButton'];
-    @Input() public showDenyButton: SweetAlertOptions['showDenyButton'];
-    @Input() public showCancelButton: SweetAlertOptions['showCancelButton'];
-    @Input() public confirmButtonText: SweetAlertOptions['confirmButtonText'];
-    @Input() public denyButtonText: SweetAlertOptions['denyButtonText'];
-    @Input() public cancelButtonText: SweetAlertOptions['cancelButtonText'];
-    @Input() public confirmButtonColor: SweetAlertOptions['confirmButtonColor'];
-    @Input() public denyButtonColor: SweetAlertOptions['denyButtonColor'];
-    @Input() public cancelButtonColor: SweetAlertOptions['cancelButtonColor'];
-    @Input() public confirmButtonAriaLabel: SweetAlertOptions['confirmButtonAriaLabel'];
-    @Input() public denyButtonAriaLabel: SweetAlertOptions['denyButtonAriaLabel'];
-    @Input() public cancelButtonAriaLabel: SweetAlertOptions['cancelButtonAriaLabel'];
-    @Input() public buttonsStyling: SweetAlertOptions['buttonsStyling'];
-    @Input() public reverseButtons: SweetAlertOptions['reverseButtons'];
-    @Input() public focusConfirm: SweetAlertOptions['focusConfirm'];
-    @Input() public focusDeny: SweetAlertOptions['focusDeny'];
-    @Input() public focusCancel: SweetAlertOptions['focusCancel'];
-    @Input() public showCloseButton: SweetAlertOptions['showCloseButton'];
-    @Input() public closeButtonHtml: SweetAlertOptions['closeButtonHtml'];
-    @Input() public closeButtonAriaLabel: SweetAlertOptions['closeButtonAriaLabel'];
-    @Input() public loaderHtml: SweetAlertOptions['loaderHtml'];
-    @Input() public showLoaderOnConfirm: SweetAlertOptions['showLoaderOnConfirm'];
-    @Input() public preConfirm: SweetAlertOptions['preConfirm'];
-    @Input() public preDeny: SweetAlertOptions['preDeny'];
-    @Input() public imageUrl: SweetAlertOptions['imageUrl'];
-    @Input() public imageWidth: SweetAlertOptions['imageWidth'];
-    @Input() public imageHeight: SweetAlertOptions['imageHeight'];
-    @Input() public imageAlt: SweetAlertOptions['imageAlt'];
-    @Input() public inputLabel: SweetAlertOptions['inputLabel'];
-    @Input() public inputPlaceholder: SweetAlertOptions['inputPlaceholder'];
-    @Input() public inputValue: SweetAlertOptions['inputValue'];
-    @Input() public inputOptions: SweetAlertOptions['inputOptions'];
-    @Input() public inputAutoTrim: SweetAlertOptions['inputAutoTrim'];
-    @Input() public inputAttributes: SweetAlertOptions['inputAttributes'];
-    @Input() public inputValidator: SweetAlertOptions['inputValidator'];
-    @Input() public returnInputValueOnDeny: SweetAlertOptions['returnInputValueOnDeny'];
-    @Input() public validationMessage: SweetAlertOptions['validationMessage'];
-    @Input() public progressSteps: SweetAlertOptions['progressSteps'];
-    @Input() public currentProgressStep: SweetAlertOptions['currentProgressStep'];
-    @Input() public progressStepsDistance: SweetAlertOptions['progressStepsDistance'];
-    @Input() public scrollbarPadding: SweetAlertOptions['scrollbarPadding'];
+    @Input() public title: SweetAlertOptions["title"];
+    @Input() public titleText: SweetAlertOptions["titleText"];
+    @Input() public text: SweetAlertOptions["text"];
+    @Input() public html: SweetAlertOptions["html"];
+    @Input() public footer: SweetAlertOptions["footer"];
+    @Input() public icon: SweetAlertOptions["icon"];
+    @Input() public iconColor: SweetAlertOptions["iconColor"];
+    @Input() public iconHtml: SweetAlertOptions["iconHtml"];
+    @Input() public backdrop: SweetAlertOptions["backdrop"];
+    @Input() public toast: SweetAlertOptions["toast"];
+    @Input() public target: SweetAlertOptions["target"];
+    @Input() public input: SweetAlertOptions["input"];
+    @Input() public width: SweetAlertOptions["width"];
+    @Input() public padding: SweetAlertOptions["padding"];
+    @Input() public background: SweetAlertOptions["background"];
+    @Input() public position: SweetAlertOptions["position"];
+    @Input() public grow: SweetAlertOptions["grow"];
+    @Input() public showClass: SweetAlertOptions["showClass"];
+    @Input() public hideClass: SweetAlertOptions["hideClass"];
+    @Input() public customClass: SweetAlertOptions["customClass"];
+    @Input() public timer: SweetAlertOptions["timer"];
+    @Input() public timerProgressBar: SweetAlertOptions["timerProgressBar"];
+    @Input() public heightAuto: SweetAlertOptions["heightAuto"];
+    @Input() public allowOutsideClick: SweetAlertOptions["allowOutsideClick"];
+    @Input() public allowEscapeKey: SweetAlertOptions["allowEscapeKey"];
+    @Input() public allowEnterKey: SweetAlertOptions["allowEnterKey"];
+    @Input() public stopKeydownPropagation: SweetAlertOptions["stopKeydownPropagation"];
+    @Input() public keydownListenerCapture: SweetAlertOptions["keydownListenerCapture"];
+    @Input() public showConfirmButton: SweetAlertOptions["showConfirmButton"];
+    @Input() public showDenyButton: SweetAlertOptions["showDenyButton"];
+    @Input() public showCancelButton: SweetAlertOptions["showCancelButton"];
+    @Input() public confirmButtonText: SweetAlertOptions["confirmButtonText"];
+    @Input() public denyButtonText: SweetAlertOptions["denyButtonText"];
+    @Input() public cancelButtonText: SweetAlertOptions["cancelButtonText"];
+    @Input() public confirmButtonColor: SweetAlertOptions["confirmButtonColor"];
+    @Input() public denyButtonColor: SweetAlertOptions["denyButtonColor"];
+    @Input() public cancelButtonColor: SweetAlertOptions["cancelButtonColor"];
+    @Input() public confirmButtonAriaLabel: SweetAlertOptions["confirmButtonAriaLabel"];
+    @Input() public denyButtonAriaLabel: SweetAlertOptions["denyButtonAriaLabel"];
+    @Input() public cancelButtonAriaLabel: SweetAlertOptions["cancelButtonAriaLabel"];
+    @Input() public buttonsStyling: SweetAlertOptions["buttonsStyling"];
+    @Input() public reverseButtons: SweetAlertOptions["reverseButtons"];
+    @Input() public focusConfirm: SweetAlertOptions["focusConfirm"];
+    @Input() public focusDeny: SweetAlertOptions["focusDeny"];
+    @Input() public focusCancel: SweetAlertOptions["focusCancel"];
+    @Input() public showCloseButton: SweetAlertOptions["showCloseButton"];
+    @Input() public closeButtonHtml: SweetAlertOptions["closeButtonHtml"];
+    @Input() public closeButtonAriaLabel: SweetAlertOptions["closeButtonAriaLabel"];
+    @Input() public loaderHtml: SweetAlertOptions["loaderHtml"];
+    @Input() public showLoaderOnConfirm: SweetAlertOptions["showLoaderOnConfirm"];
+    @Input() public preConfirm: SweetAlertOptions["preConfirm"];
+    @Input() public preDeny: SweetAlertOptions["preDeny"];
+    @Input() public imageUrl: SweetAlertOptions["imageUrl"];
+    @Input() public imageWidth: SweetAlertOptions["imageWidth"];
+    @Input() public imageHeight: SweetAlertOptions["imageHeight"];
+    @Input() public imageAlt: SweetAlertOptions["imageAlt"];
+    @Input() public inputLabel: SweetAlertOptions["inputLabel"];
+    @Input() public inputPlaceholder: SweetAlertOptions["inputPlaceholder"];
+    @Input() public inputValue: SweetAlertOptions["inputValue"];
+    @Input() public inputOptions: SweetAlertOptions["inputOptions"];
+    @Input() public inputAutoTrim: SweetAlertOptions["inputAutoTrim"];
+    @Input() public inputAttributes: SweetAlertOptions["inputAttributes"];
+    @Input() public inputValidator: SweetAlertOptions["inputValidator"];
+    @Input() public returnInputValueOnDeny: SweetAlertOptions["returnInputValueOnDeny"];
+    @Input() public validationMessage: SweetAlertOptions["validationMessage"];
+    @Input() public progressSteps: SweetAlertOptions["progressSteps"];
+    @Input() public currentProgressStep: SweetAlertOptions["currentProgressStep"];
+    @Input() public progressStepsDistance: SweetAlertOptions["progressStepsDistance"];
+    @Input() public scrollbarPadding: SweetAlertOptions["scrollbarPadding"];
 
     /**
      * An object of SweetAlert2 native options, useful if:
@@ -120,7 +130,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         Object.assign(this, options);
 
         //=> Mark changed properties as touched
-        const touchedKeys = Object.keys(options) as Array<keyof SweetAlertOptions>;
+        const touchedKeys = Object.keys(options) as (keyof SweetAlertOptions)[];
         touchedKeys.forEach(this.markTouched);
     }
 
@@ -135,7 +145,8 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         //   avoiding side effects.
         return [...this.touchedProps].reduce<SweetAlertOptions>(
             (obj, key) => ({ ...obj, [key]: this[key as keyof this] }),
-            {});
+            {},
+        );
     }
 
     /**
@@ -157,7 +168,11 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
 
     @Input()
     public set swalVisible(visible: boolean) {
-        visible ? this.fire() : this.close();
+        if (visible) {
+            this.fire();
+        } else {
+            this.close();
+        }
     }
 
     public get swalVisible(): boolean {
@@ -277,8 +292,8 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     public constructor(
         private readonly sweetAlert2Loader: SweetAlert2LoaderService,
         @Inject(fireOnInitToken) private readonly moduleLevelFireOnInit: boolean,
-        @Inject(dismissOnDestroyToken) private readonly moduleLevelDismissOnDestroy: boolean) {
-    }
+        @Inject(dismissOnDestroyToken) private readonly moduleLevelDismissOnDestroy: boolean,
+    ) {}
 
     /**
      * Angular lifecycle hook.
@@ -296,11 +311,11 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * Fires the modal, if the component or module is configured to do so.
      */
     public ngAfterViewInit(): void {
-        const fireOnInit = this.swalFireOnInit === undefined
-            ? this.moduleLevelFireOnInit
-            : this.swalFireOnInit;
+        const fireOnInit = this.swalFireOnInit === undefined ? this.moduleLevelFireOnInit : this.swalFireOnInit;
 
-        fireOnInit && this.fire();
+        if (fireOnInit) {
+            this.fire();
+        }
     }
 
     /**
@@ -312,7 +327,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         //   send it with the next fire() or update() calls.
         Object.keys(changes)
             //=> If the filtering logic becomes more complex here, we can use Swal.isValidParameter
-            .filter((key): key is keyof SweetAlertOptions => !key.startsWith('swal'))
+            .filter((key): key is keyof SweetAlertOptions => !key.startsWith("swal"))
             .forEach(this.markTouched);
 
         //=> Eventually trigger re-render if the modal is open.
@@ -325,11 +340,12 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      */
     public ngOnDestroy(): void {
         //=> Release the modal if the component is destroyed and if that behaviour is not disabled.
-        const dismissOnDestroy = this.swalDismissOnDestroy === undefined
-            ? this.moduleLevelDismissOnDestroy
-            : this.swalDismissOnDestroy;
+        const dismissOnDestroy =
+            this.swalDismissOnDestroy === undefined ? this.moduleLevelDismissOnDestroy : this.swalDismissOnDestroy;
 
-        dismissOnDestroy && this.close();
+        if (dismissOnDestroy) {
+            this.close();
+        }
     }
 
     /**
@@ -368,7 +384,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
             }),
             didDestroy: composeHook(userOptions.didDestroy, () => {
                 this.didDestroy.emit();
-            })
+            }),
         };
 
         //=> Show the Swal! And wait for confirmation or dimissal.
@@ -376,17 +392,23 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
 
         //=> Emit on (confirm), (deny) or (dismiss)
         switch (true) {
-            case result.isConfirmed: this.confirm.emit(result.value); break;
-            case result.isDenied: this.deny.emit(); break;
-            case result.isDismissed: this.dismiss.emit(result.dismiss); break;
+            case result.isConfirmed:
+                this.confirm.emit(result.value);
+                break;
+            case result.isDenied:
+                this.deny.emit();
+                break;
+            case result.isDismissed:
+                this.dismiss.emit(result.dismiss);
+                break;
         }
 
         return result;
 
         function composeHook<T extends (...args: any[]) => void>(
             userHook: T | undefined,
-            libHook: T): (...args: Parameters<T>) => void {
-
+            libHook: T,
+        ): (...args: Parameters<T>) => void {
             return (...args) => (libHook(...args), userHook?.(...args));
         }
     }
@@ -428,7 +450,8 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
             .filter(swal.isUpdatableParameter)
             .reduce<Pick<SweetAlertOptions, SweetAlertUpdatableParameters>>(
                 (obj, key) => ({ ...obj, [key]: allOptions[key] }),
-                {});
+                {},
+            );
 
         swal.update(updatableOptions);
     }
