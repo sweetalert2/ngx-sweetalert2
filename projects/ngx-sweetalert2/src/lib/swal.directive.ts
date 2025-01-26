@@ -1,11 +1,19 @@
 import {
-    ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output,
-    ViewContainerRef
-} from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import Swal, { SweetAlertArrayOptions, SweetAlertOptions } from 'sweetalert2';
-import { SwalComponent } from './swal.component';
+    ComponentFactoryResolver,
+    ComponentRef,
+    Directive,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewContainerRef,
+} from "@angular/core";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import Swal, { SweetAlertArrayOptions, SweetAlertOptions } from "sweetalert2";
+import { SwalComponent } from "./swal.component";
 
 /**
  * [swal] directive. It takes a value that defines the SweetAlert and can be of three types:
@@ -25,8 +33,8 @@ import { SwalComponent } from './swal.component';
  */
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[swal]',
-    standalone: false
+    selector: "[swal]",
+    standalone: false,
 })
 export class SwalDirective implements OnInit, OnDestroy {
     /**
@@ -118,8 +126,8 @@ export class SwalDirective implements OnInit, OnDestroy {
 
     public constructor(
         private readonly viewContainerRef: ViewContainerRef,
-        private readonly resolver: ComponentFactoryResolver) {
-    }
+        private readonly resolver: ComponentFactoryResolver,
+    ) {}
 
     /**
      * OnInit lifecycle handler.
@@ -150,7 +158,7 @@ export class SwalDirective implements OnInit, OnDestroy {
      * The directive listens for onclick events on its host element.
      * When this happens, it shows the <swal> attached to this directive.
      */
-    @HostListener('click', ['$event'])
+    @HostListener("click", ["$event"])
     public onClick(event: MouseEvent): void {
         event.preventDefault();
         event.stopImmediatePropagation();
@@ -164,9 +172,18 @@ export class SwalDirective implements OnInit, OnDestroy {
 
         const swalClosed = new Subject<void>();
 
-        this.swalInstance.confirm.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.confirm.emit(v));
-        this.swalInstance.deny.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.deny.emit(v));
-        this.swalInstance.dismiss.asObservable().pipe(takeUntil(swalClosed)).subscribe(v => this.dismiss.emit(v));
+        this.swalInstance.confirm
+            .asObservable()
+            .pipe(takeUntil(swalClosed))
+            .subscribe((v) => this.confirm.emit(v));
+        this.swalInstance.deny
+            .asObservable()
+            .pipe(takeUntil(swalClosed))
+            .subscribe((v) => this.deny.emit(v));
+        this.swalInstance.dismiss
+            .asObservable()
+            .pipe(takeUntil(swalClosed))
+            .subscribe((v) => this.dismiss.emit(v));
 
         this.swalInstance.fire().then(() => swalClosed.next());
     }
