@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SwalPortalTargets, SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
-    selector: 'demo-app',
+    selector: 'app-demo-app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     imports: [RouterModule, SweetAlert2Module]

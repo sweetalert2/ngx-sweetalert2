@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
-    selector: 'demo-nested',
+    selector: 'app-demo-nested',
     templateUrl: './nested.component.html',
     imports: [SweetAlert2Module]
 })

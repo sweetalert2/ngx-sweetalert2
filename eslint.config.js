@@ -17,22 +17,9 @@ module.exports = tseslint.config(
       semi: ["error", "always"],
       "no-console": ["error", { allow: ["warn", "error"] }],
       "@typescript-eslint/no-explicit-any": "warn",
-      "@angular-eslint/directive-selector": [
-        "error",
-        {
-          type: "attribute",
-          prefix: "app",
-          style: "camelCase",
-        },
-      ],
-      "@angular-eslint/component-selector": [
-        "error",
-        {
-          type: "element",
-          prefix: "app",
-          style: "kebab-case",
-        },
-      ],
+      "@angular-eslint/directive-selector": "error",
+      "@angular-eslint/component-selector": "error",
+      "@angular-eslint/prefer-standalone": "warn",
     },
   },
   {

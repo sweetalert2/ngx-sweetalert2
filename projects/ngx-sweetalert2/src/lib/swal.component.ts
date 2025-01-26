@@ -121,7 +121,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
         Object.assign(this, options);
 
         //=> Mark changed properties as touched
-        const touchedKeys = Object.keys(options) as Array<keyof SweetAlertOptions>;
+        const touchedKeys = Object.keys(options) as (keyof SweetAlertOptions)[];
         touchedKeys.forEach(this.markTouched);
     }
 
@@ -158,7 +158,11 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
 
     @Input()
     public set swalVisible(visible: boolean) {
-        visible ? this.fire() : this.close();
+        if (visible) {
+            this.fire();
+        } else {
+            this.close();
+        }
     }
 
     public get swalVisible(): boolean {
@@ -301,7 +305,9 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
             ? this.moduleLevelFireOnInit
             : this.swalFireOnInit;
 
-        fireOnInit && this.fire();
+        if (fireOnInit) {
+            this.fire();
+        }
     }
 
     /**
@@ -330,7 +336,9 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
             ? this.moduleLevelDismissOnDestroy
             : this.swalDismissOnDestroy;
 
-        dismissOnDestroy && this.close();
+        if (dismissOnDestroy) {
+            this.close();
+        }
     }
 
     /**
