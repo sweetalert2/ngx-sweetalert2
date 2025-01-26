@@ -8,8 +8,7 @@ import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular
 @Component({
     selector: 'swal-portal',
     template: '<ng-container *ngTemplateOutlet="template"></ng-container>',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SwalPortalComponent {
     @Input()

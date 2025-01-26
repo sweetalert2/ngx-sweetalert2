@@ -40,8 +40,7 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
  *     <swal>
  */
 @Directive({
-    selector: '[swalPortal]',
-    standalone: true
+    selector: '[swalPortal]'
 })
 export class SwalPortalDirective implements OnInit, OnDestroy {
     /**

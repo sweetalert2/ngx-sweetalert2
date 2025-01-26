@@ -24,8 +24,7 @@ import { SwalComponent } from './swal.component';
  *    <swal #mySwal title="Title" text="Text"></swal>
  */
 @Directive({
-    selector: '[swal]',
-    standalone: true
+    selector: '[swal]'
 })
 export class SwalDirective implements OnInit, OnDestroy {
     /**
