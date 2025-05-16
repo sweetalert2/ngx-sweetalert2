@@ -54,7 +54,7 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.0.0",
     "ng-packagr": "^19.1.1",
-    "npm-run-all2": "^7.0.2",
+    "npm-run-all2": "^8.0.0",
     "prettier": "^3.4.2",
     "semantic-release": "^24.0.0",
     "ts-node": "~10.9.2",
