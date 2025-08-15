@@ -31,8 +31,8 @@
     "@angular/platform-browser": "~20.1.7",
     "@angular/platform-browser-dynamic": "~20.1.7",
     "@angular/router": "~20.1.7",
-    "rxjs": "~7.5.7",
-    "sweetalert2": "^11.5.2",
+    "rxjs": "~7.8.2",
+    "sweetalert2": "^11.22.4",
     "tslib": "^2.4.0",
     "zone.js": "~0.15.0"
   },
@@ -44,7 +44,7 @@
     "@types/jasmine": "^5.0.0",
     "@types/jasminewd2": "~2.0.10",
     "@types/node": "^22.10.10",
-    "angular-eslint": "19.0.2",
+    "angular-eslint": "20.1.1",
     "eslint": "^9.19.0",
     "jasmine-core": "^5.0.0",
     "jasmine-spec-reporter": "^7.0.0",
@@ -59,7 +59,7 @@
     "semantic-release": "^24.0.0",
     "ts-node": "~10.9.2",
     "typescript": "~5.8.3",
-    "typescript-eslint": "8.18.0",
+    "typescript-eslint": "8.39.1",
     "vite": "^6.0.11"
   }
 }

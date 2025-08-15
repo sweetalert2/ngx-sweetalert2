@@ -1,16 +1,4 @@
-import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Inject,
-    Input,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    Output,
-    SimpleChanges,
-} from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, inject } from "@angular/core";
 import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertUpdatableParameters } from "sweetalert2";
 import { dismissOnDestroyToken, fireOnInitToken } from "./di";
 import * as events from "./swal-events";
@@ -43,6 +31,10 @@ import { SweetAlert2LoaderService } from "./sweetalert2-loader.service";
     standalone: true,
 })
 export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+    private readonly sweetAlert2Loader = inject(SweetAlert2LoaderService);
+    private readonly moduleLevelFireOnInit = inject(fireOnInitToken);
+    private readonly moduleLevelDismissOnDestroy = inject(dismissOnDestroyToken);
+
     @Input() public title: SweetAlertOptions["title"];
     @Input() public titleText: SweetAlertOptions["titleText"];
     @Input() public text: SweetAlertOptions["text"];
@@ -288,12 +280,6 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * Is the SweetAlert2 modal represented by this component currently opened?
      */
     private isCurrentlyShown = false;
-
-    public constructor(
-        private readonly sweetAlert2Loader: SweetAlert2LoaderService,
-        @Inject(fireOnInitToken) private readonly moduleLevelFireOnInit: boolean,
-        @Inject(dismissOnDestroyToken) private readonly moduleLevelDismissOnDestroy: boolean,
-    ) {}
 
     /**
      * Angular lifecycle hook.

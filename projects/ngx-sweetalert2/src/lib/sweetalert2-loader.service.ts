@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import SwalDefault, * as Swal from "sweetalert2";
 import { swalProviderToken } from "./di";
 
@@ -10,14 +10,9 @@ export type SwalModuleLoader = () => Promise<SwalModule>;
 
 @Injectable()
 export class SweetAlert2LoaderService {
-    private readonly swalProvider: SwalProvider;
+    private readonly swalProvider: SwalProvider = inject(swalProviderToken);
 
     private swalPromiseCache?: Promise<typeof SwalDefault>;
-
-    // Using any because Angular metadata generator does not understand a pure TS type here
-    public constructor(@Inject(swalProviderToken) swalProvider: any) {
-        this.swalProvider = swalProvider;
-    }
 
     public get swal(): Promise<typeof SwalDefault> {
         if (!this.swalPromiseCache) {
