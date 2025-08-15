@@ -22,7 +22,7 @@ describe("SwalComponent", () => {
                 { provide: fireOnInitToken, useValue: false },
                 { provide: dismissOnDestroyToken, useValue: true },
             ],
-            declarations: [SwalComponent],
+            imports: [SwalComponent],
         });
 
         TestBed.compileComponents();

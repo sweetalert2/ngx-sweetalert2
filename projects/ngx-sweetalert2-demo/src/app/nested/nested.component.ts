@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
-import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { SwalDirective } from "../../../../../projects/ngx-sweetalert2/src/public-api";
 
 @Component({
     selector: "app-demo-nested",
     templateUrl: "./nested.component.html",
-    imports: [SweetAlert2Module],
+    imports: [SwalDirective],
 })
 export class NestedComponent {}

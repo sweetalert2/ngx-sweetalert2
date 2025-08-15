@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, TemplateRef } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 /**
  * @internal
@@ -9,7 +10,8 @@ import { ChangeDetectionStrategy, Component, Input, TemplateRef } from "@angular
     selector: "swal-portal",
     template: '<ng-container *ngTemplateOutlet="template"></ng-container>',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    standalone: true,
+    imports: [CommonModule],
 })
 export class SwalPortalComponent {
     @Input()

@@ -34,7 +34,7 @@ import { SwalComponent } from "./swal.component";
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: "[swal]",
-    standalone: false,
+    standalone: true,
 })
 export class SwalDirective implements OnInit, OnDestroy {
     /**

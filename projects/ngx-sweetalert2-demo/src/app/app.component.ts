@@ -1,12 +1,12 @@
 import { Component, Inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { SwalPortalTargets, SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { SwalComponent, SwalDirective, SwalPortalDirective, SwalPortalTargets } from "../../../../projects/ngx-sweetalert2/src/public-api";
 
 @Component({
     selector: "app-demo-app",
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.css"],
-    imports: [RouterModule, SweetAlert2Module],
+    imports: [RouterModule, SwalComponent, SwalDirective, SwalPortalDirective],
 })
 export class AppComponent {
     public modalFireCondition = false;
