@@ -58,9 +58,7 @@
               "base": "dist/ngx-sweetalert2-demo"
             },
             "index": "projects/ngx-sweetalert2-demo/src/index.html",
-            "polyfills": [
-              "projects/ngx-sweetalert2-demo/src/polyfills.ts"
-            ],
+            "polyfills": ["projects/ngx-sweetalert2-demo/src/polyfills.ts"],
             "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -125,7 +123,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "projects/ngx-sweetalert2-demo/src/test.ts",
-            "polyfills": "projects/ngx-sweetalert2-demo/src/polyfills.ts",
+            "polyfills": ["projects/ngx-sweetalert2-demo/src/polyfills.ts"],
             "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-sweetalert2-demo/karma.conf.js",
             "assets": [
