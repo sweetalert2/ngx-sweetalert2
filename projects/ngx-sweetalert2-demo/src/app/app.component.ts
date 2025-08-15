@@ -21,11 +21,6 @@ export class AppComponent {
 
     private currentTextChunkOffset = 0;
 
-    /** Inserted by Angular inject() migration for backwards compatibility */
-    constructor(...args: unknown[]);
-
-    public constructor() {}
-
     public get currentTextChunk(): string {
         return this.dynamicTextChunks[this.currentTextChunkOffset % this.dynamicTextChunks.length];
     }
