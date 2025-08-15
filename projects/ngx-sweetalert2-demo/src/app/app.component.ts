@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { SwalComponent, SwalDirective, SwalPortalDirective, SwalPortalTargets } from "../../../../projects/ngx-sweetalert2/src/public-api";
+import { SwalComponent, SwalDirective, SwalPortalDirective, SwalPortalTargets } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
     selector: "app-demo-app",

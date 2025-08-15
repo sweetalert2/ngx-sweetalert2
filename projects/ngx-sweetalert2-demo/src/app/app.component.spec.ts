@@ -1,6 +1,6 @@
 import { TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterModule } from "@angular/router";
-import { provideSweetAlert2 } from "../../../../projects/ngx-sweetalert2/src/public-api";
+import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
 import { AppComponent } from "./app.component";
 
 describe("AppComponent", () => {

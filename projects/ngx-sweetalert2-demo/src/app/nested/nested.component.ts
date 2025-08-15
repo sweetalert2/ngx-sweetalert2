@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { SwalDirective } from "../../../../../projects/ngx-sweetalert2/src/public-api";
+import { SwalDirective } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
     selector: "app-demo-nested",
