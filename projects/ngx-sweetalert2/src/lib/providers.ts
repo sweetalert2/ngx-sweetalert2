@@ -42,9 +42,9 @@ export function provideSweetAlert2(config: SweetAlert2Config = {}): EnvironmentP
     return makeEnvironmentProviders([
         SweetAlert2LoaderService,
         SwalPortalTargets,
-        { provide: swalProviderToken, useValue: config.provideSwal || provideDefaultSwal },
-        { provide: fireOnInitToken, useValue: config.fireOnInit || false },
-        { provide: dismissOnDestroyToken, useValue: config.dismissOnDestroy || true },
+        { provide: swalProviderToken, useValue: config.provideSwal ?? provideDefaultSwal },
+        { provide: fireOnInitToken, useValue: config.fireOnInit ?? false },
+        { provide: dismissOnDestroyToken, useValue: config.dismissOnDestroy ?? true },
     ]);
 }
 
