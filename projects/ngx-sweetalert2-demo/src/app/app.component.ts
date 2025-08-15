@@ -1,14 +1,16 @@
-import { Component, Inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { SwalPortalTargets, SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { SwalComponent, SwalDirective, SwalPortalDirective, SwalPortalTargets } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-    selector: "app-demo-app",
+    selector: "demo-app",
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.css"],
-    imports: [RouterModule, SweetAlert2Module],
+    imports: [RouterModule, SwalComponent, SwalDirective, SwalPortalDirective],
 })
 export class AppComponent {
+    readonly targets = inject<SwalPortalTargets>(SwalPortalTargets);
+
     public modalFireCondition = false;
 
     public isSwalVisible = false;
@@ -18,8 +20,6 @@ export class AppComponent {
     private dynamicTextChunksIntervalHandle?: any;
 
     private currentTextChunkOffset = 0;
-
-    public constructor(@Inject(SwalPortalTargets) public readonly targets: SwalPortalTargets) {}
 
     public get currentTextChunk(): string {
         return this.dynamicTextChunks[this.currentTextChunkOffset % this.dynamicTextChunks.length];

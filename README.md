@@ -42,6 +42,59 @@ This is not a regular API wrapper for SweetAlert (which already works very well 
 
 ## :package: Installation & Usage
 
+### Modern Standalone Approach (Angular 14+, Recommended)
+
+For new applications using standalone components and the modern Angular architecture:
+
+1) Install _ngx-sweetalert2_ and _sweetalert2_ via the npm registry:
+
+```sh
+npm install sweetalert2 @sweetalert2/ngx-sweetalert2
+```
+
+:arrow_double_up: Always upgrade SweetAlert2 when you upgrade ngx-sweetalert2. The latter is statically linked with SweetAlert2's type definitions.
+
+2) Configure your Angular application using providers:
+
+```typescript
+// main.ts or app.config.ts
+import { ApplicationConfig } from '@angular/core';
+import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
+
+export const appConfig: ApplicationConfig = {
+    providers: [
+        // ... other providers
+        provideSweetAlert2({
+            // Optional configuration
+            fireOnInit: false,
+            dismissOnDestroy: true
+        })
+    ]
+};
+```
+
+3) Import individual components/directives as needed:
+
+```typescript
+import { Component } from '@angular/core';
+import { SwalComponent, SwalDirective } from '@sweetalert2/ngx-sweetalert2';
+
+@Component({
+    selector: 'my-component',
+    imports: [SwalComponent, SwalDirective], // Import what you need
+    template: `
+        <button [swal]="['Hello', 'world!']">Click me</button>
+        <swal #mySwal title="Hello world!" text="Click the button to close me"></swal>
+    `
+})
+export class MyComponent {
+}
+```
+
+### Traditional Module Approach (Legacy, for existing applications)
+
+For applications still using NgModules:
+
 1) Install _ngx-sweetalert2_ and _sweetalert2_ via the npm registry:
 
 ```sh
@@ -54,7 +107,8 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 
 | Angular version | Latest compatible version range                                                                                                                          | Required SweetAlert2 version range |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
-| Angular 18+     | @sweetalert2/ngx-sweetalert2@**^13.0.0** (current)                                                                                                       | sweetalert2@**^11.0.0**            |
+| Angular 20      | @sweetalert2/ngx-sweetalert2@**^14.0.0** (current)                                                                                                       | sweetalert2@**^11.22.4**           |
+| Angular 18-19   | [@sweetalert2/ngx-sweetalert2@**^13.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v13.0.0#readme)                                           | sweetalert2@**^11.0.0**            |
 | Angular 14-17   | [@sweetalert2/ngx-sweetalert2@**^12.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v12.0.0#readme)                                           | sweetalert2@**^11.0.0**            |
 | Angular 12, 13  | [@sweetalert2/ngx-sweetalert2@**^11.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v11.0.0#readme)                                           | sweetalert2@**^11.0.0**            |
 | Angular 9 to 11 | [@sweetalert2/ngx-sweetalert2@**~9.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v9.0.0#readme)                                             | sweetalert2@**^10.8.0**            |
@@ -83,6 +137,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 export class AppModule {
 }
 ```
+
+**Note:** The module-based approach is deprecated in favor of the standalone approach above, but is maintained for backward compatibility.
 
 That's it! By default, SweetAlert2 will be lazy-loaded, only when needed, from your local dependency of `sweetalert2`, using the `import()` syntax under the hood.
 

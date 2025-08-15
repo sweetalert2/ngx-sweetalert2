@@ -1,15 +1,4 @@
-import {
-    ComponentFactoryResolver,
-    ComponentRef,
-    Directive,
-    EventEmitter,
-    HostListener,
-    Input,
-    OnDestroy,
-    OnInit,
-    Output,
-    ViewContainerRef,
-} from "@angular/core";
+import { ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewContainerRef, inject } from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import Swal, { SweetAlertArrayOptions, SweetAlertOptions } from "sweetalert2";
@@ -32,11 +21,13 @@ import { SwalComponent } from "./swal.component";
  *    <swal #mySwal title="Title" text="Text"></swal>
  */
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
     selector: "[swal]",
-    standalone: false,
+    standalone: true,
 })
 export class SwalDirective implements OnInit, OnDestroy {
+    private readonly viewContainerRef = inject(ViewContainerRef);
+    private readonly resolver = inject(ComponentFactoryResolver);
+
     /**
      * SweetAlert2 options or a SwalComponent instance.
      * See the class doc block for more informations.
@@ -123,11 +114,6 @@ export class SwalDirective implements OnInit, OnDestroy {
      * Empty when the user passed an existing SwalComponent instance.
      */
     private swalOptions?: SweetAlertOptions;
-
-    public constructor(
-        private readonly viewContainerRef: ViewContainerRef,
-        private readonly resolver: ComponentFactoryResolver,
-    ) {}
 
     /**
      * OnInit lifecycle handler.

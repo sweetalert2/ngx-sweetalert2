@@ -1,15 +1,4 @@
-import {
-    ApplicationRef,
-    ComponentFactoryResolver,
-    ComponentRef,
-    Directive,
-    Host,
-    Injector,
-    Input,
-    OnDestroy,
-    OnInit,
-    TemplateRef,
-} from "@angular/core";
+import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Directive, Injector, Input, OnDestroy, OnInit, TemplateRef, inject } from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { SwalPortalTarget, SwalPortalTargets } from "./swal-portal-targets.service";
@@ -49,9 +38,17 @@ import { SweetAlert2LoaderService } from "./sweetalert2-loader.service";
  */
 @Directive({
     selector: "[swalPortal]",
-    standalone: false,
+    standalone: true,
 })
 export class SwalPortalDirective implements OnInit, OnDestroy {
+    private readonly resolver = inject(ComponentFactoryResolver);
+    private readonly injector = inject(Injector);
+    private readonly app = inject(ApplicationRef);
+    private readonly templateRef = inject<TemplateRef<any>>(TemplateRef);
+    private readonly sweetAlert2Loader = inject(SweetAlert2LoaderService);
+    private readonly swalTargets = inject(SwalPortalTargets);
+    private readonly swalComponent = inject(SwalComponent, { host: true });
+
     /**
      * Takes a portal target or nothing (then it will target the text content zone by default).
      *
@@ -67,16 +64,6 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
     private portalComponentRef?: ComponentRef<SwalPortalComponent>;
 
     private readonly destroyed = new Subject<void>();
-
-    public constructor(
-        private readonly resolver: ComponentFactoryResolver,
-        private readonly injector: Injector,
-        private readonly app: ApplicationRef,
-        private readonly templateRef: TemplateRef<any>,
-        private readonly sweetAlert2Loader: SweetAlert2LoaderService,
-        private readonly swalTargets: SwalPortalTargets,
-        @Host() private readonly swalComponent: SwalComponent,
-    ) {}
 
     /**
      * Subscribes to the the SweetAlert appearance/disappearance events to create/destroy the SwalPortalComponent

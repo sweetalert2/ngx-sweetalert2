@@ -1,12 +1,13 @@
 import { TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterModule } from "@angular/router";
-import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
 import { AppComponent } from "./app.component";
 
 describe("AppComponent", () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [RouterModule.forRoot([]), SweetAlert2Module.forRoot(), AppComponent],
+            imports: [RouterModule.forRoot([]), AppComponent],
+            providers: [provideSweetAlert2()],
         });
 
         TestBed.compileComponents();
