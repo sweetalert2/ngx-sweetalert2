@@ -3,7 +3,7 @@ import { RouterModule } from "@angular/router";
 import { SwalComponent, SwalDirective, SwalPortalDirective, SwalPortalTargets } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-    selector: "app-demo-app",
+    selector: "demo-app",
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.css"],
     imports: [RouterModule, SwalComponent, SwalDirective, SwalPortalDirective],
