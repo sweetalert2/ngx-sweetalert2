@@ -1,5 +1,17 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, inject } from "@angular/core";
-import Swal, { SweetAlertOptions, SweetAlertResult, SweetAlertUpdatableParameters } from "sweetalert2";
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+    inject,
+} from "@angular/core";
+import { SweetAlertOptions, SweetAlertResult, DismissReason, SweetAlertUpdatableParameters } from "sweetalert2";
 import { dismissOnDestroyToken, fireOnInitToken } from "./di";
 import * as events from "./swal-events";
 import { SweetAlert2LoaderService } from "./sweetalert2-loader.service";
@@ -256,13 +268,13 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      * Example:
      *     <swal (dismiss)="handleDismiss($event)"></swal>
      *
-     *     public handleDismiss(reason: DismissReason | undefined): void {
+     *     public handleDismiss(reason: DismissReason | undefined | undefined): void {
      *         // reason can be 'cancel', 'overlay', 'close', 'timer' or undefined.
      *         // ... do something
      *     }
      */
     @Output()
-    public readonly dismiss = new EventEmitter<Swal.DismissReason | undefined>();
+    public readonly dismiss = new EventEmitter<DismissReason | undefined | undefined>();
 
     /**
      * This Set retains the properties that have been changed from @Inputs, so we can know precisely

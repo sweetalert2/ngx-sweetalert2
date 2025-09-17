@@ -1,7 +1,19 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewContainerRef, inject } from "@angular/core";
+import {
+    ComponentFactoryResolver,
+    ComponentRef,
+    Directive,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewContainerRef,
+    inject,
+} from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import Swal, { SweetAlertArrayOptions, SweetAlertOptions } from "sweetalert2";
+import { SweetAlertArrayOptions, DismissReason, SweetAlertOptions } from "sweetalert2";
 import { SwalComponent } from "./swal.component";
 
 /**
@@ -94,7 +106,7 @@ export class SwalDirective implements OnInit, OnDestroy {
      *     }
      */
     @Output()
-    public readonly dismiss = new EventEmitter<Swal.DismissReason | undefined>();
+    public readonly dismiss = new EventEmitter<DismissReason | undefined>();
 
     /**
      * When the user does not provides a SwalComponent instance, we create it on-the-fly and assign the plain-object
