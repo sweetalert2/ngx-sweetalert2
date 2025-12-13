@@ -55,7 +55,7 @@
     "ng-packagr": "^20.1.0",
     "npm-run-all2": "^8.0.0",
     "prettier": "^3.4.2",
-    "semantic-release": "^24.0.0",
+    "semantic-release": "^25.0.0",
     "ts-node": "~10.9.2",
     "typescript": "~5.8.3",
     "typescript-eslint": "8.39.1"
