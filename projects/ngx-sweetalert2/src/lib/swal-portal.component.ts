@@ -15,5 +15,5 @@ import { CommonModule } from "@angular/common";
 })
 export class SwalPortalComponent {
     @Input()
-    public template: TemplateRef<any> | null = null;
+    public template: TemplateRef<unknown> | null = null;
 }

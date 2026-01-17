@@ -55,8 +55,9 @@ export class SwalDirective implements OnInit, OnDestroy {
             this.swalOptions = options;
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Type guard function needs to accept any type to check if it's an array
         function isArrayOptions(value: any): value is SweetAlertArrayOptions {
-            return Array.isArray(options);
+            return Array.isArray(value);
         }
     }
 
@@ -75,6 +76,7 @@ export class SwalDirective implements OnInit, OnDestroy {
      *     }
      */
     @Output()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- EventEmitter can emit various types depending on input/preConfirm configuration
     public readonly confirm = new EventEmitter<any>();
 
     /**

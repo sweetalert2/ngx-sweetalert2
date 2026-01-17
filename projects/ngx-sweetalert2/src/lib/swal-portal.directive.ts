@@ -44,7 +44,7 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
     private readonly resolver = inject(ComponentFactoryResolver);
     private readonly injector = inject(Injector);
     private readonly app = inject(ApplicationRef);
-    private readonly templateRef = inject<TemplateRef<any>>(TemplateRef);
+    private readonly templateRef = inject<TemplateRef<unknown>>(TemplateRef);
     private readonly sweetAlert2Loader = inject(SweetAlert2LoaderService);
     private readonly swalTargets = inject(SwalPortalTargets);
     private readonly swalComponent = inject(SwalComponent, { host: true });

@@ -30,6 +30,7 @@ export class SweetAlert2LoaderService {
         this.swalPromiseCache = libPromise.then((value) => (isDefaultExport(value) ? value : value.default));
 
         function isLoader(value: SwalProvider): value is SwalModuleLoader {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Checking for version property that doesn't exist in the type definition
             return typeof value === "function" && (value as any).version === undefined;
         }
 
