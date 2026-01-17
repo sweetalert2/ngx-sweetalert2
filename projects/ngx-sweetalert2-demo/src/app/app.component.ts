@@ -17,7 +17,7 @@ export class AppComponent {
 
     private readonly dynamicTextChunks = "This dynamic content is controlled by Angular".split(" ");
 
-    private dynamicTextChunksIntervalHandle?: any;
+    private dynamicTextChunksIntervalHandle?: number;
 
     private currentTextChunkOffset = 0;
 

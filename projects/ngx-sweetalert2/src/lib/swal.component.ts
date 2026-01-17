@@ -243,6 +243,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
      *     }
      */
     @Output()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- EventEmitter can emit various types depending on input/preConfirm configuration
     public readonly confirm = new EventEmitter<any>();
 
     /**
@@ -403,6 +404,7 @@ export class SwalComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
 
         return result;
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Generic hook function that accepts any function signature
         function composeHook<T extends (...args: any[]) => void>(
             userHook: T | undefined,
             libHook: T,
