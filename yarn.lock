@@ -7433,7 +7433,7 @@ zod@4.3.5, "zod@^3.25 || ^4.0":
   resolved "https://registry.yarnpkg.com/zod/-/zod-4.3.5.tgz#aeb269a6f9fc259b1212c348c7c5432aaa474d2a"
   integrity sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==
 
-zone.js@~0.15.0:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.15.1.tgz#1e109adb75f80e9e004ee8e0d4a0a52e0a336481"
-  integrity sha512-XE96n56IQpJM7NAoXswY3XRLcWFW83xe0BiAOeMD7K5k5xecOeul3Qcpx6GqEeeHNkW5DWL5zOyTbEfB4eti8w==
+zone.js@~0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.16.0.tgz#955b9e28846d76ca2ef7091c8f9e96f35f79e828"
+  integrity sha512-LqLPpIQANebrlxY6jKcYKdgN5DTXyyHAKnnWWjE5pPfEQ4n7j5zn7mOEEpwNZVKGqx3kKKmvplEmoBrvpgROTA==
