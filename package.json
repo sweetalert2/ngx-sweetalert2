@@ -43,7 +43,7 @@
         "@angular/language-service": "~21.1.0",
         "@types/jasmine": "^6.0.0",
         "@types/node": "^25.0.0",
-        "angular-eslint": "21.1.0",
+        "angular-eslint": "^21.1.0",
         "eslint": "^9.19.0",
         "jasmine-core": "^6.0.0",
         "jasmine-spec-reporter": "^7.0.0",
