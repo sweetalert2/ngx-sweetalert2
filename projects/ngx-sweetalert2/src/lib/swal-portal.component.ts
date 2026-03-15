@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, TemplateRef } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 /**
  * @internal
@@ -7,13 +7,13 @@ import { CommonModule } from "@angular/common";
  * See SwalPortalDirective for info about the covered feature.
  */
 @Component({
-    selector: "swal-portal",
-    template: '<ng-container *ngTemplateOutlet="template"></ng-container>',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [CommonModule],
+  selector: 'swal-portal',
+  template: '<ng-container *ngTemplateOutlet="template"></ng-container>',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule],
 })
 export class SwalPortalComponent {
-    @Input()
-    public template: TemplateRef<unknown> | null = null;
+  @Input()
+  public template: TemplateRef<unknown> | null = null;
 }

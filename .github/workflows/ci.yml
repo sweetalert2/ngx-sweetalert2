@@ -18,37 +18,37 @@ jobs:
       id-token: write # to enable use of OIDC for trusted publishing and npm provenance
 
     steps:
-    - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-    # because npm 10.8.2 (default) doesn't work with trusted publishing, 11.6.2 works
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 'lts/*'
+      # because npm 10.8.2 (default) doesn't work with trusted publishing, 11.6.2 works
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
 
-    - name: Install npm dependencies
-      run: yarn install
+      - name: Install npm dependencies
+        run: yarn install
 
-    - name: Build library package
-      run: yarn build:lib --configuration=production
+      - name: Build library package
+        run: yarn build:lib --configuration=production
 
-    - name: Copy readme and license files
-      run: yarn build:copy-files
+      - name: Copy readme and license files
+        run: yarn build:copy-files
 
-    - name: Run library tests
-      run: yarn test:lib --configuration=ci
+      - name: Run library tests
+        run: yarn test:lib --configuration=ci
 
-    - name: Run demo app tests
-      run: yarn test:demo --configuration=ci
+      - name: Run demo app tests
+        run: yarn test:demo --configuration=ci
 
-    - name: Show package.json
-      run: cat dist/ngx-sweetalert2/package.json
+      - name: Show package.json
+        run: cat dist/ngx-sweetalert2/package.json
 
-    - name: Build library package for publishing
-      run: yarn build:lib --configuration production
+      - name: Build library package for publishing
+        run: yarn build:lib --configuration production
 
-    - name: Run automated release process with semantic-release
-      if: github.event_name == 'push' && contains(github.ref, 'main')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: yarn semantic-release
+      - name: Run automated release process with semantic-release
+        if: github.event_name == 'push' && contains(github.ref, 'main')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn semantic-release

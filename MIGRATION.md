@@ -15,8 +15,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
   imports: [
     SweetAlert2Module.forRoot({
       fireOnInit: false,
-      dismissOnDestroy: true
-    })
+      dismissOnDestroy: true,
+    }),
   ],
   // ... other module configuration
 })
@@ -32,7 +32,7 @@ import { Component } from '@angular/core';
   template: `
     <button [swal]="['Hello', 'World!']">Click me</button>
     <swal #mySwal title="Hello" text="World!"></swal>
-  `
+  `,
 })
 export class MyComponent {}
 ```
@@ -48,10 +48,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideSweetAlert2({
       fireOnInit: false,
-      dismissOnDestroy: true
+      dismissOnDestroy: true,
     }),
     // ... other providers
-  ]
+  ],
 };
 ```
 
@@ -66,7 +66,7 @@ import { SwalComponent, SwalDirective } from '@sweetalert2/ngx-sweetalert2';
   template: `
     <button [swal]="['Hello', 'World!']">Click me</button>
     <swal #mySwal title="Hello" text="World!"></swal>
-  `
+  `,
 })
 export class MyComponent {}
 ```
@@ -99,21 +99,23 @@ Both approaches can coexist in the same application.
 ## Testing Updates
 
 ### Before
+
 ```typescript
 beforeEach(() => {
   TestBed.configureTestingModule({
     imports: [SweetAlert2Module.forRoot()],
-    declarations: [MyComponent]
+    declarations: [MyComponent],
   });
 });
 ```
 
 ### After
+
 ```typescript
 beforeEach(() => {
   TestBed.configureTestingModule({
     imports: [MyComponent], // Import the standalone component
-    providers: [provideSweetAlert2()]
+    providers: [provideSweetAlert2()],
   });
 });
 ```

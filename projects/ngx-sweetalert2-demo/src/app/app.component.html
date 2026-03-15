@@ -9,17 +9,17 @@
 <hr />
 
 <h3>
-    Using the <code>[swal]="{{ "{ title: 'title', ... }" }}"</code> syntax
+  Using the <code>[swal]="{{ "{ title: 'title', ... }" }}"</code> syntax
 </h3>
 
 <button
-    [swal]="{
-        title: 'Hello world!',
-        text: 'How\'s the world going?',
-        icon: 'question',
-    }"
+  [swal]="{
+    title: 'Hello world!',
+    text: 'How\'s the world going?',
+    icon: 'question',
+  }"
 >
-    Show modal
+  Show modal
 </button>
 
 <hr />
@@ -35,19 +35,18 @@
 
 <button (click)="modalFireCondition = true">Fire! by setting modalFireCondition = true</button>
 <p>
-    The modal's presence in the DOM is conditioned by the
-    <code>modalFireCondition</code> variable.<br />
-    As soon as this variable is set to <code>true</code>, the <code>*ngIf</code> on the
-    <code>&lt;swal&gt;</code> element creates the component, and the modal fires immediately since it has
-    <code>[swalFireOnInit]="true"</code>.<br />
-    When the modal is closed, <code>modalFireCondition</code> is reset to <code>false</code>, the modal component is
-    then destroyed by <code>*ngIf</code>, so you can click the button again.
+  The modal's presence in the DOM is conditioned by the
+  <code>modalFireCondition</code> variable.<br />
+  As soon as this variable is set to <code>true</code>, the <code>*ngIf</code> on the <code>&lt;swal&gt;</code> element
+  creates the component, and the modal fires immediately since it has <code>[swalFireOnInit]="true"</code>.<br />
+  When the modal is closed, <code>modalFireCondition</code> is reset to <code>false</code>, the modal component is then
+  destroyed by <code>*ngIf</code>, so you can click the button again.
 </p>
 <swal
-    *ngIf="modalFireCondition"
-    text="modalFireCondition = {{ modalFireCondition }}"
-    [swalFireOnInit]="true"
-    (didClose)="modalFireCondition = false"
+  *ngIf="modalFireCondition"
+  text="modalFireCondition = {{ modalFireCondition }}"
+  [swalFireOnInit]="true"
+  (didClose)="modalFireCondition = false"
 >
 </swal>
 
@@ -58,12 +57,12 @@
 <button (click)="isSwalVisible = true">Fire! by setting isSwalVisible = true</button>
 
 <p>
-    <code>[swalVisible]</code> provides a reactive way to change the modal visibility, if you do not want to use
-    <code>SwalComponent.fire()</code> or <code>SwalComponent.dismiss()</code>.<br />
-    This example uses a simple variable, but another common use case could be using an observable, binding it like this:
-    <code>&lt;swal [swalVisible]="currentError$ | async" [title]="currentError$ | async"&gt;</code>. Don't forget to
-    reset <code>currentError$</code> after though! (maybe <code>[swalFireOnInit]</code> with an <code>*ngIf</code> would
-    be simpler here).
+  <code>[swalVisible]</code> provides a reactive way to change the modal visibility, if you do not want to use
+  <code>SwalComponent.fire()</code> or <code>SwalComponent.dismiss()</code>.<br />
+  This example uses a simple variable, but another common use case could be using an observable, binding it like this:
+  <code>&lt;swal [swalVisible]="currentError$ | async" [title]="currentError$ | async"&gt;</code>. Don't forget to reset
+  <code>currentError$</code> after though! (maybe <code>[swalFireOnInit]</code> with an <code>*ngIf</code> would be
+  simpler here).
 </p>
 
 <swal text="isSwalVisible = {{ isSwalVisible }}" [swalVisible]="isSwalVisible" (didClose)="isSwalVisible = false">
@@ -74,13 +73,13 @@
 <h3><code>*swalPortal</code> demos</h3>
 
 <swal #swalWithPortals (didOpen)="startDynamicTextRotation()" (didClose)="stopDynamicTextRotation()">
-    <ng-container *swalPortal="targets.closeButton">{{ currentTextChunk }}</ng-container>
-    <ng-container *swalPortal="targets.title">{{ currentTextChunk }}</ng-container>
-    <ng-container *swalPortal="targets.content">{{ currentTextChunk }}</ng-container>
-    <ng-container *swalPortal="targets.confirmButton">{{ currentTextChunk }}</ng-container>
-    <ng-container *swalPortal="targets.denyButton">{{ currentTextChunk }}</ng-container>
-    <ng-container *swalPortal="targets.cancelButton">{{ currentTextChunk }}</ng-container>
-    <ng-container *swalPortal="targets.footer">{{ currentTextChunk }}</ng-container>
+  <ng-container *swalPortal="targets.closeButton">{{ currentTextChunk }}</ng-container>
+  <ng-container *swalPortal="targets.title">{{ currentTextChunk }}</ng-container>
+  <ng-container *swalPortal="targets.content">{{ currentTextChunk }}</ng-container>
+  <ng-container *swalPortal="targets.confirmButton">{{ currentTextChunk }}</ng-container>
+  <ng-container *swalPortal="targets.denyButton">{{ currentTextChunk }}</ng-container>
+  <ng-container *swalPortal="targets.cancelButton">{{ currentTextChunk }}</ng-container>
+  <ng-container *swalPortal="targets.footer">{{ currentTextChunk }}</ng-container>
 </swal>
 
 <button [swal]="swalWithPortals">Show swal with lots of portals</button>

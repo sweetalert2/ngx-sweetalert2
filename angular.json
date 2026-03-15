@@ -61,16 +61,9 @@
             "polyfills": ["projects/ngx-sweetalert2-demo/src/polyfills.ts"],
             "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "projects/ngx-sweetalert2-demo/src/favicon.ico",
-              "projects/ngx-sweetalert2-demo/src/assets"
-            ],
-            "styles": [
-              "projects/ngx-sweetalert2-demo/src/styles.css"
-            ],
-            "allowedCommonJsDependencies": [
-                "sweetalert2"
-            ],
+            "assets": ["projects/ngx-sweetalert2-demo/src/favicon.ico", "projects/ngx-sweetalert2-demo/src/assets"],
+            "styles": ["projects/ngx-sweetalert2-demo/src/styles.css"],
+            "allowedCommonJsDependencies": ["sweetalert2"],
             "scripts": [],
             "browser": "projects/ngx-sweetalert2-demo/src/main.ts"
           },
@@ -126,13 +119,8 @@
             "polyfills": ["projects/ngx-sweetalert2-demo/src/polyfills.ts"],
             "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-sweetalert2-demo/karma.conf.js",
-            "assets": [
-              "projects/ngx-sweetalert2-demo/src/favicon.ico",
-              "projects/ngx-sweetalert2-demo/src/assets"
-            ],
-            "styles": [
-              "projects/ngx-sweetalert2-demo/src/styles.css"
-            ],
+            "assets": ["projects/ngx-sweetalert2-demo/src/favicon.ico", "projects/ngx-sweetalert2-demo/src/assets"],
+            "styles": ["projects/ngx-sweetalert2-demo/src/styles.css"],
             "scripts": []
           },
           "configurations": {
