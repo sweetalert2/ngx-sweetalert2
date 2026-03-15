@@ -15,14 +15,11 @@ import { SwalComponent, provideSweetAlert2ForFeature } from '@sweetalert2/ngx-sw
   providers: [
     ...provideSweetAlert2ForFeature({
       dismissOnDestroy: false, // Different from root configuration
-    })
+    }),
   ],
   template: `
-    <swal #featureSwal 
-          title="Feature Modal"
-          text="This modal won't auto-dismiss when component is destroyed">
-    </swal>
-  `
+    <swal #featureSwal title="Feature Modal" text="This modal won't auto-dismiss when component is destroyed"> </swal>
+  `,
 })
 export class FeatureComponent {}
 ```
@@ -40,9 +37,9 @@ export const appConfig: ApplicationConfig = {
     provideSweetAlert2({
       provideSwal: () => import('sweetalert2'), // Lazy load
       fireOnInit: false,
-      dismissOnDestroy: true
-    })
-  ]
+      dismissOnDestroy: true,
+    }),
+  ],
 };
 ```
 
@@ -57,9 +54,9 @@ export const appConfig: ApplicationConfig = {
     provideSweetAlert2({
       provideSwal: () => import('sweetalert2/dist/sweetalert2.all.min.js'),
       fireOnInit: false,
-      dismissOnDestroy: true
-    })
-  ]
+      dismissOnDestroy: true,
+    }),
+  ],
 };
 ```
 
@@ -77,11 +74,12 @@ describe('MyComponent', () => {
       imports: [MyComponent],
       providers: [
         provideSweetAlert2({
-          provideSwal: () => Promise.resolve({
-            fire: jasmine.createSpy('fire')
-          }),
-        })
-      ]
+          provideSwal: () =>
+            Promise.resolve({
+              fire: jasmine.createSpy('fire'),
+            }),
+        }),
+      ],
     }).compileComponents();
   });
 
@@ -104,9 +102,7 @@ import { SwalDirective } from '@sweetalert2/ngx-sweetalert2';
 @Component({
   selector: 'simple-component',
   imports: [SwalDirective], // Only imports the directive
-  template: `
-    <button [swal]="['Hello', 'World!']">Click me</button>
-  `
+  template: ` <button [swal]="['Hello', 'World!']">Click me</button> `,
 })
 export class SimpleComponent {}
 ```
@@ -122,7 +118,7 @@ import { SwalComponent, SwalDirective } from '@sweetalert2/ngx-sweetalert2';
   template: `
     <button [swal]="mySwal">Show Modal</button>
     <swal #mySwal title="Hello" text="World!"></swal>
-  `
+  `,
 })
 export class AdvancedComponent {}
 ```
@@ -140,11 +136,12 @@ import { SwalComponent, SwalPortalDirective } from '@sweetalert2/ngx-sweetalert2
     <swal title="Dynamic Content">
       <div *swalPortal>
         <p>This content is rendered inside the SweetAlert modal!</p>
-        <p>Current time: {{ currentTime | date:'medium' }}</p>
+        <p>Current time: {{ currentTime | date: 'medium' }}</p>
       </div>
     </swal>
-  `
+  `,
 })
 export class PortalExampleComponent {
   currentTime = new Date();
 }
+```

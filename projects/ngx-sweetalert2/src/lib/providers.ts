@@ -1,16 +1,16 @@
-import { EnvironmentProviders, makeEnvironmentProviders, Provider } from "@angular/core";
-import { dismissOnDestroyToken, fireOnInitToken, swalProviderToken } from "./di";
-import { SwalPortalTargets } from "./swal-portal-targets.service";
-import { SwalProvider, SweetAlert2LoaderService } from "./sweetalert2-loader.service";
+import { EnvironmentProviders, makeEnvironmentProviders, Provider } from '@angular/core';
+import { dismissOnDestroyToken, fireOnInitToken, swalProviderToken } from './di';
+import { SwalPortalTargets } from './swal-portal-targets.service';
+import { SwalProvider, SweetAlert2LoaderService } from './sweetalert2-loader.service';
 
 export interface SweetAlert2Config {
-    provideSwal?: SwalProvider;
-    fireOnInit?: boolean;
-    dismissOnDestroy?: boolean;
+  provideSwal?: SwalProvider;
+  fireOnInit?: boolean;
+  dismissOnDestroy?: boolean;
 }
 
 export function provideDefaultSwal() {
-    return import("sweetalert2");
+  return import('sweetalert2');
 }
 
 /**
@@ -39,13 +39,13 @@ export function provideDefaultSwal() {
  * ```
  */
 export function provideSweetAlert2(config: SweetAlert2Config = {}): EnvironmentProviders {
-    return makeEnvironmentProviders([
-        SweetAlert2LoaderService,
-        SwalPortalTargets,
-        { provide: swalProviderToken, useValue: config.provideSwal ?? provideDefaultSwal },
-        { provide: fireOnInitToken, useValue: config.fireOnInit ?? false },
-        { provide: dismissOnDestroyToken, useValue: config.dismissOnDestroy ?? true },
-    ]);
+  return makeEnvironmentProviders([
+    SweetAlert2LoaderService,
+    SwalPortalTargets,
+    { provide: swalProviderToken, useValue: config.provideSwal ?? provideDefaultSwal },
+    { provide: fireOnInitToken, useValue: config.fireOnInit ?? false },
+    { provide: dismissOnDestroyToken, useValue: config.dismissOnDestroy ?? true },
+  ]);
 }
 
 /**
@@ -71,22 +71,19 @@ export function provideSweetAlert2(config: SweetAlert2Config = {}): EnvironmentP
  * ```
  */
 export function provideSweetAlert2ForFeature(config: SweetAlert2Config = {}): Provider[] {
-    const providers: Provider[] = [];
+  const providers: Provider[] = [];
 
-    if (config.provideSwal) {
-        providers.push(
-            SweetAlert2LoaderService,
-            { provide: swalProviderToken, useValue: config.provideSwal }
-        );
-    }
+  if (config.provideSwal) {
+    providers.push(SweetAlert2LoaderService, { provide: swalProviderToken, useValue: config.provideSwal });
+  }
 
-    if (config.fireOnInit !== undefined) {
-        providers.push({ provide: fireOnInitToken, useValue: config.fireOnInit });
-    }
+  if (config.fireOnInit !== undefined) {
+    providers.push({ provide: fireOnInitToken, useValue: config.fireOnInit });
+  }
 
-    if (config.dismissOnDestroy !== undefined) {
-        providers.push({ provide: dismissOnDestroyToken, useValue: config.dismissOnDestroy });
-    }
+  if (config.dismissOnDestroy !== undefined) {
+    providers.push({ provide: dismissOnDestroyToken, useValue: config.dismissOnDestroy });
+  }
 
-    return providers;
+  return providers;
 }

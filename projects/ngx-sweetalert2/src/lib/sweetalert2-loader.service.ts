@@ -1,6 +1,6 @@
-import { Injectable, inject } from "@angular/core";
-import SwalDefault, * as Swal from "sweetalert2";
-import { swalProviderToken } from "./di";
+import { Injectable, inject } from '@angular/core';
+import SwalDefault, * as Swal from 'sweetalert2';
+import { swalProviderToken } from './di';
 
 export type SwalModule = typeof SwalDefault | typeof Swal;
 
@@ -10,32 +10,32 @@ export type SwalModuleLoader = () => Promise<SwalModule>;
 
 @Injectable()
 export class SweetAlert2LoaderService {
-    private readonly swalProvider: SwalProvider = inject(swalProviderToken);
+  private readonly swalProvider: SwalProvider = inject(swalProviderToken);
 
-    private swalPromiseCache?: Promise<typeof SwalDefault>;
+  private swalPromiseCache?: Promise<typeof SwalDefault>;
 
-    public get swal(): Promise<typeof SwalDefault> {
-        if (!this.swalPromiseCache) {
-            this.preloadSweetAlertLibrary();
-        }
-
-        return this.swalPromiseCache!;
+  public get swal(): Promise<typeof SwalDefault> {
+    if (!this.swalPromiseCache) {
+      this.preloadSweetAlertLibrary();
     }
 
-    public preloadSweetAlertLibrary(): void {
-        if (this.swalPromiseCache) return;
+    return this.swalPromiseCache!;
+  }
 
-        const libPromise = isLoader(this.swalProvider) ? this.swalProvider() : Promise.resolve(this.swalProvider);
+  public preloadSweetAlertLibrary(): void {
+    if (this.swalPromiseCache) return;
 
-        this.swalPromiseCache = libPromise.then((value) => (isDefaultExport(value) ? value : value.default));
+    const libPromise = isLoader(this.swalProvider) ? this.swalProvider() : Promise.resolve(this.swalProvider);
 
-        function isLoader(value: SwalProvider): value is SwalModuleLoader {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Checking for version property that doesn't exist in the type definition
-            return typeof value === "function" && (value as any).version === undefined;
-        }
+    this.swalPromiseCache = libPromise.then((value) => (isDefaultExport(value) ? value : value.default));
 
-        function isDefaultExport(value: SwalModule): value is typeof SwalDefault {
-            return typeof value === "function";
-        }
+    function isLoader(value: SwalProvider): value is SwalModuleLoader {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Checking for version property that doesn't exist in the type definition
+      return typeof value === 'function' && (value as any).version === undefined;
     }
+
+    function isDefaultExport(value: SwalModule): value is typeof SwalDefault {
+      return typeof value === 'function';
+    }
+  }
 }
