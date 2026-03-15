@@ -1,184 +1,181 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "ngx-sweetalert2": {
-      "projectType": "library",
-      "root": "projects/ngx-sweetalert2",
-      "sourceRoot": "projects/ngx-sweetalert2/src",
-      "prefix": "swal",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:ng-packagr",
-          "options": {
-            "tsConfig": "projects/ngx-sweetalert2/tsconfig.lib.json",
-            "project": "projects/ngx-sweetalert2/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngx-sweetalert2/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "main": "projects/ngx-sweetalert2/src/test.ts",
-            "tsConfig": "projects/ngx-sweetalert2/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-sweetalert2/karma.conf.js"
-          },
-          "configurations": {
-            "ci": {
-              "watch": false,
-              "progress": false,
-              "browsers": "ChromeHeadlessCI"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["projects/ngx-sweetalert2/**/*.ts", "projects/ngx-sweetalert2/**/*.html"]
-          }
-        }
-      }
-    },
-    "ngx-sweetalert2-demo": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "projects/ngx-sweetalert2-demo",
-      "sourceRoot": "projects/ngx-sweetalert2-demo/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:application",
-          "options": {
-            "outputPath": {
-              "base": "dist/ngx-sweetalert2-demo"
-            },
-            "index": "projects/ngx-sweetalert2-demo/src/index.html",
-            "polyfills": ["projects/ngx-sweetalert2-demo/src/polyfills.ts"],
-            "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "projects/ngx-sweetalert2-demo/src/favicon.ico",
-              "projects/ngx-sweetalert2-demo/src/assets"
-            ],
-            "styles": [
-              "projects/ngx-sweetalert2-demo/src/styles.css"
-            ],
-            "allowedCommonJsDependencies": [
-                "sweetalert2"
-            ],
-            "scripts": [],
-            "browser": "projects/ngx-sweetalert2-demo/src/main.ts"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/ngx-sweetalert2-demo/src/environments/environment.ts",
-                  "with": "projects/ngx-sweetalert2-demo/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "ngx-sweetalert2": {
+            "projectType": "library",
+            "root": "projects/ngx-sweetalert2",
+            "sourceRoot": "projects/ngx-sweetalert2/src",
+            "prefix": "swal",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:ng-packagr",
+                    "options": {
+                        "tsConfig": "projects/ngx-sweetalert2/tsconfig.lib.json",
+                        "project": "projects/ngx-sweetalert2/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/ngx-sweetalert2/tsconfig.lib.prod.json"
+                        }
+                    }
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                "test": {
+                    "builder": "@angular/build:karma",
+                    "options": {
+                        "main": "projects/ngx-sweetalert2/src/test.ts",
+                        "tsConfig": "projects/ngx-sweetalert2/tsconfig.spec.json",
+                        "karmaConfig": "projects/ngx-sweetalert2/karma.conf.js"
+                    },
+                    "configurations": {
+                        "ci": {
+                            "watch": false,
+                            "progress": false,
+                            "browsers": "ChromeHeadlessCI"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": ["projects/ngx-sweetalert2/**/*.ts", "projects/ngx-sweetalert2/**/*.html"]
+                    }
                 }
-              ]
             }
-          }
         },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "options": {
-            "buildTarget": "ngx-sweetalert2-demo:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "ngx-sweetalert2-demo:build:production"
+        "ngx-sweetalert2-demo": {
+            "projectType": "application",
+            "schematics": {},
+            "root": "projects/ngx-sweetalert2-demo",
+            "sourceRoot": "projects/ngx-sweetalert2-demo/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:application",
+                    "options": {
+                        "outputPath": {
+                            "base": "dist/ngx-sweetalert2-demo"
+                        },
+                        "index": "projects/ngx-sweetalert2-demo/src/index.html",
+                        "polyfills": ["projects/ngx-sweetalert2-demo/src/polyfills.ts"],
+                        "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/ngx-sweetalert2-demo/src/favicon.ico",
+                            "projects/ngx-sweetalert2-demo/src/assets"
+                        ],
+                        "styles": ["projects/ngx-sweetalert2-demo/src/styles.css"],
+                        "allowedCommonJsDependencies": ["sweetalert2"],
+                        "scripts": [],
+                        "browser": "projects/ngx-sweetalert2-demo/src/main.ts"
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/ngx-sweetalert2-demo/src/environments/environment.ts",
+                                    "with": "projects/ngx-sweetalert2-demo/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular/build:dev-server",
+                    "options": {
+                        "buildTarget": "ngx-sweetalert2-demo:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "ngx-sweetalert2-demo:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular/build:extract-i18n",
+                    "options": {
+                        "buildTarget": "ngx-sweetalert2-demo:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular/build:karma",
+                    "options": {
+                        "main": "projects/ngx-sweetalert2-demo/src/test.ts",
+                        "polyfills": ["projects/ngx-sweetalert2-demo/src/polyfills.ts"],
+                        "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.spec.json",
+                        "karmaConfig": "projects/ngx-sweetalert2-demo/karma.conf.js",
+                        "assets": [
+                            "projects/ngx-sweetalert2-demo/src/favicon.ico",
+                            "projects/ngx-sweetalert2-demo/src/assets"
+                        ],
+                        "styles": ["projects/ngx-sweetalert2-demo/src/styles.css"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "ci": {
+                            "watch": false,
+                            "progress": false,
+                            "browsers": "ChromeHeadlessCI"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "projects/ngx-sweetalert2-demo/**/*.ts",
+                            "projects/ngx-sweetalert2-demo/**/*.html"
+                        ]
+                    }
+                }
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
-          "options": {
-            "buildTarget": "ngx-sweetalert2-demo:build"
-          }
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "main": "projects/ngx-sweetalert2-demo/src/test.ts",
-            "polyfills": ["projects/ngx-sweetalert2-demo/src/polyfills.ts"],
-            "tsConfig": "projects/ngx-sweetalert2-demo/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-sweetalert2-demo/karma.conf.js",
-            "assets": [
-              "projects/ngx-sweetalert2-demo/src/favicon.ico",
-              "projects/ngx-sweetalert2-demo/src/assets"
-            ],
-            "styles": [
-              "projects/ngx-sweetalert2-demo/src/styles.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "ci": {
-              "watch": false,
-              "progress": false,
-              "browsers": "ChromeHeadlessCI"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["projects/ngx-sweetalert2-demo/**/*.ts", "projects/ngx-sweetalert2-demo/**/*.html"]
-          }
         }
-      }
+    },
+    "cli": {
+        "analytics": false
+    },
+    "schematics": {
+        "@schematics/angular:component": {
+            "type": "component"
+        },
+        "@schematics/angular:directive": {
+            "type": "directive"
+        },
+        "@schematics/angular:service": {
+            "type": "service"
+        },
+        "@schematics/angular:guard": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:interceptor": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:module": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:pipe": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:resolver": {
+            "typeSeparator": "."
+        }
     }
-  },
-  "cli": {
-    "analytics": false
-  },
-  "schematics": {
-    "@schematics/angular:component": {
-      "type": "component"
-    },
-    "@schematics/angular:directive": {
-      "type": "directive"
-    },
-    "@schematics/angular:service": {
-      "type": "service"
-    },
-    "@schematics/angular:guard": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:interceptor": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:module": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:pipe": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:resolver": {
-      "typeSeparator": "."
-    }
-  }
 }

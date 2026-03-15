@@ -1,16 +1,16 @@
 {
-  "name": "@sweetalert2/ngx-sweetalert2",
-  "version": "0.0.0-development",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sweetalert2/ngx-sweetalert2.git"
-  },
-  "dependencies": {
-    "tslib": "^2.0.0"
-  },
-  "peerDependencies": {
-    "@angular/common": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
-    "@angular/core": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
-    "sweetalert2": "^11.22.4"
-  }
+    "name": "@sweetalert2/ngx-sweetalert2",
+    "version": "0.0.0-development",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sweetalert2/ngx-sweetalert2.git"
+    },
+    "dependencies": {
+        "tslib": "^2.0.0"
+    },
+    "peerDependencies": {
+        "@angular/common": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
+        "@angular/core": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
+        "sweetalert2": "^11.22.4"
+    }
 }

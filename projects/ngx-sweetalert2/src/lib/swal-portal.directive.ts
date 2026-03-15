@@ -1,10 +1,21 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Directive, Injector, Input, OnDestroy, OnInit, TemplateRef, inject } from "@angular/core";
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
-import { SwalPortalTarget, SwalPortalTargets } from "./swal-portal-targets.service";
-import { SwalPortalComponent } from "./swal-portal.component";
-import { SwalComponent } from "./swal.component";
-import { SweetAlert2LoaderService } from "./sweetalert2-loader.service";
+import {
+    ApplicationRef,
+    ComponentFactoryResolver,
+    ComponentRef,
+    Directive,
+    Injector,
+    Input,
+    OnDestroy,
+    OnInit,
+    TemplateRef,
+    inject,
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { SwalPortalTarget, SwalPortalTargets } from './swal-portal-targets.service';
+import { SwalPortalComponent } from './swal-portal.component';
+import { SwalComponent } from './swal.component';
+import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
 
 /**
  * A structural directive that lets you use Angular templates inside of SweetAlerts.
@@ -37,7 +48,7 @@ import { SweetAlert2LoaderService } from "./sweetalert2-loader.service";
  *     <swal>
  */
 @Directive({
-    selector: "[swalPortal]",
+    selector: '[swalPortal]',
     standalone: true,
 })
 export class SwalPortalDirective implements OnInit, OnDestroy {
@@ -55,7 +66,7 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
      * See the {@link SwalPortalTargets} service to see the available targets.
      * See the class doc block for more informations.
      */
-    @Input("swalPortal")
+    @Input('swalPortal')
     public target?: SwalPortalTarget;
 
     /**

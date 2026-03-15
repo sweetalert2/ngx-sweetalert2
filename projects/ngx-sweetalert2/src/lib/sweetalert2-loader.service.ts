@@ -1,6 +1,6 @@
-import { Injectable, inject } from "@angular/core";
-import SwalDefault, * as Swal from "sweetalert2";
-import { swalProviderToken } from "./di";
+import { Injectable, inject } from '@angular/core';
+import SwalDefault, * as Swal from 'sweetalert2';
+import { swalProviderToken } from './di';
 
 export type SwalModule = typeof SwalDefault | typeof Swal;
 
@@ -31,11 +31,11 @@ export class SweetAlert2LoaderService {
 
         function isLoader(value: SwalProvider): value is SwalModuleLoader {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Checking for version property that doesn't exist in the type definition
-            return typeof value === "function" && (value as any).version === undefined;
+            return typeof value === 'function' && (value as any).version === undefined;
         }
 
         function isDefaultExport(value: SwalModule): value is typeof SwalDefault {
-            return typeof value === "function";
+            return typeof value === 'function';
         }
     }
 }

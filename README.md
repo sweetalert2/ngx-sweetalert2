@@ -58,34 +58,34 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 
 ```typescript
 // main.ts or app.config.ts
-import { ApplicationConfig } from "@angular/core";
-import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
+import { ApplicationConfig } from '@angular/core';
+import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
 
 export const appConfig: ApplicationConfig = {
-    providers: [
-        // ... other providers
-        provideSweetAlert2({
-            // Optional configuration
-            fireOnInit: false,
-            dismissOnDestroy: true,
-        }),
-    ],
+  providers: [
+    // ... other providers
+    provideSweetAlert2({
+      // Optional configuration
+      fireOnInit: false,
+      dismissOnDestroy: true,
+    }),
+  ],
 };
 ```
 
 3. Import individual components/directives as needed:
 
 ```typescript
-import { Component } from "@angular/core";
-import { SwalComponent, SwalDirective } from "@sweetalert2/ngx-sweetalert2";
+import { Component } from '@angular/core';
+import { SwalComponent, SwalDirective } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
-    selector: "my-component",
-    imports: [SwalComponent, SwalDirective], // Import what you need
-    template: `
-        <button [swal]="['Hello', 'world!']">Click me</button>
-        <swal #mySwal title="Hello world!" text="Click the button to close me"></swal>
-    `,
+  selector: 'my-component',
+  imports: [SwalComponent, SwalDirective], // Import what you need
+  template: `
+    <button [swal]="['Hello', 'world!']">Click me</button>
+    <swal #mySwal title="Hello world!" text="Click the button to close me"></swal>
+  `,
 })
 export class MyComponent {}
 ```
@@ -106,7 +106,7 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 
 | Angular version | Latest compatible version range                                                                                                                          | Required SweetAlert2 version range |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| Angular 20, 21  | [@sweetalert2/ngx-sweetalert2@**^14.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v14.0.0#readme)                                            | sweetalert2@**^11.22.4**           |
+| Angular 20, 21  | [@sweetalert2/ngx-sweetalert2@**^14.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v14.0.0#readme)                                           | sweetalert2@**^11.22.4**           |
 | Angular 18-19   | [@sweetalert2/ngx-sweetalert2@**^13.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v13.0.0#readme)                                           | sweetalert2@**^11.0.0**            |
 | Angular 14-17   | [@sweetalert2/ngx-sweetalert2@**^12.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v12.0.0#readme)                                           | sweetalert2@**^11.0.0**            |
 | Angular 12, 13  | [@sweetalert2/ngx-sweetalert2@**^11.0.0**](https://github.com/sweetalert2/ngx-sweetalert2/tree/v11.0.0#readme)                                           | sweetalert2@**^11.0.0**            |
@@ -121,21 +121,21 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 2. Import the module:
 
 ```typescript
-import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
-    //=> Basic usage (forRoot can also take options, see the wiki)
-    imports: [SweetAlert2Module.forRoot()],
+  //=> Basic usage (forRoot can also take options, see the wiki)
+  imports: [SweetAlert2Module.forRoot()],
 
-    //=> In submodules only:
-    imports: [SweetAlert2Module],
+  //=> In submodules only:
+  imports: [SweetAlert2Module],
 
-    //=> In submodules only, overriding options from your root module:
-    imports: [
-        SweetAlert2Module.forChild({
-            /* options */
-        }),
-    ],
+  //=> In submodules only, overriding options from your root module:
+  imports: [
+    SweetAlert2Module.forChild({
+      /* options */
+    }),
+  ],
 })
 export class AppModule {}
 ```
@@ -163,29 +163,29 @@ More advanced, with text input, confirmation, denial and dismissal handling:
 
 ```html
 <button
-    [swal]="{ title: 'Save file as...', input: 'text', showDenyButton: true, denyButtonText: 'Don\'t save', showCancelButton: true }"
-    (confirm)="saveFile($event)"
-    (deny)="handleDenial()"
-    (dismiss)="handleDismiss($event)"
+  [swal]="{ title: 'Save file as...', input: 'text', showDenyButton: true, denyButtonText: 'Don\'t save', showCancelButton: true }"
+  (confirm)="saveFile($event)"
+  (deny)="handleDenial()"
+  (dismiss)="handleDismiss($event)"
 >
-    Save
+  Save
 </button>
 ```
 
 ```typescript
 export class MyComponent {
-    public saveFile(fileName: string): void {
-        // ... save file
-    }
+  public saveFile(fileName: string): void {
+    // ... save file
+  }
 
-    public handleDenial(): void {
-        // ... don't save file and quit
-    }
+  public handleDenial(): void {
+    // ... don't save file and quit
+  }
 
-    public handleDismiss(dismissMethod: string): void {
-        // dismissMethod can be 'cancel', 'overlay', 'close', and 'timer'
-        // ... do something
-    }
+  public handleDismiss(dismissMethod: string): void {
+    // dismissMethod can be 'cancel', 'overlay', 'close', and 'timer'
+    // ... do something
+  }
 }
 ```
 
@@ -209,13 +209,13 @@ Simple example:
 
 ```html
 <swal
-    #deleteSwal
-    title="Delete {{ file.name }}?"
-    text="This cannot be undone"
-    icon="question"
-    [showCancelButton]="true"
-    [focusCancel]="true"
-    (confirm)="deleteFile(file)"
+  #deleteSwal
+  title="Delete {{ file.name }}?"
+  text="This cannot be undone"
+  icon="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  (confirm)="deleteFile(file)"
 >
 </swal>
 
@@ -230,8 +230,8 @@ You can access the dialog from your TypeScript code-behind like this:
 
 ```ts
 class MyComponent {
-    @ViewChild("deleteSwal")
-    public readonly deleteSwal!: SwalComponent;
+  @ViewChild('deleteSwal')
+  public readonly deleteSwal!: SwalComponent;
 }
 ```
 
@@ -248,22 +248,22 @@ You can catch other modal lifecycle events than (confirm), (deny) or (cancel):
 
 ```html
 <swal
-    (willOpen)="swalWillOpen($event)"
-    (didOpen)="swalDidOpen($event)"
-    (didRender)="swalDidRender($event)"
-    (willClose)="swalWillClose($event)"
-    (didClose)="swalDidClose()"
-    (didDestroy)="swalDidDestroy()"
+  (willOpen)="swalWillOpen($event)"
+  (didOpen)="swalDidOpen($event)"
+  (didRender)="swalDidRender($event)"
+  (willClose)="swalWillClose($event)"
+  (didClose)="swalDidClose()"
+  (didDestroy)="swalDidDestroy()"
 >
 </swal>
 ```
 
 ```typescript
 export class MyComponent {
-    public swalWillOpen(event: WillOpenEvent): void {
-        // Most events (those using $event in the example above) will let you access the modal native DOM node, like this:
-        console.log(event.modalElement);
-    }
+  public swalWillOpen(event: WillOpenEvent): void {
+    // Most events (those using $event in the example above) will let you access the modal native DOM node, like this:
+    console.log(event.modalElement);
+  }
 }
 ```
 
@@ -279,9 +279,9 @@ you want, just like if the SweetAlert was a normal Angular component (it's not a
 
 ```html
 <swal title="SweetAlert2 Timer">
-    <div *swalPortal class="alert alert-info">
-        <strong>{{ elapsedSeconds }}</strong> seconds elapsed since the modal was opened.
-    </div>
+  <div *swalPortal class="alert alert-info">
+    <strong>{{ elapsedSeconds }}</strong> seconds elapsed since the modal was opened.
+  </div>
 </swal>
 ```
 
@@ -297,10 +297,10 @@ You just have to change the _target_ of the portal (_`content`_ is the default t
 First, inject this little service in your component:
 
 ```typescript
-import { SwalPortalTargets } from "@sweetalert2/ngx-sweetalert2";
+import { SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 
 export class MyComponent {
-    public constructor(public readonly swalTargets: SwalPortalTargets) {}
+  public constructor(public readonly swalTargets: SwalPortalTargets) {}
 }
 ```
 
@@ -309,13 +309,13 @@ targeting the modal's content (this is the default), and the other one targeting
 
 ```html
 <swal title="Fill the form, rapidly" (confirm)="sendForm(myForm.value)">
-    <!-- This form will be displayed as the alert main content
+  <!-- This form will be displayed as the alert main content
        Targets the alert's main content zone by default -->
-    <form *swalPortal [formControl]="myForm">...</form>
+  <form *swalPortal [formControl]="myForm">...</form>
 
-    <!-- This targets the confirm button's inner content
+  <!-- This targets the confirm button's inner content
        Notice the usage of ng-container to avoid creating an useless DOM element inside the button -->
-    <ng-container *swalPortal="swalTargets.confirmButton"> Send ({{ secondsLeft }} seconds left) </ng-container>
+  <ng-container *swalPortal="swalTargets.confirmButton"> Send ({{ secondsLeft }} seconds left) </ng-container>
 </swal>
 ```
 
