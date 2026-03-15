@@ -8,8 +8,8 @@ This guide helps you migrate from the traditional NgModule approach to the moder
 
 ```typescript
 // app.module.ts
-import { NgModule } from '@angular/core';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgModule } from "@angular/core";
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 
 @NgModule({
   imports: [
@@ -25,10 +25,10 @@ export class AppModule {}
 
 ```typescript
 // my.component.ts
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'my-component',
+  selector: "my-component",
   template: `
     <button [swal]="['Hello', 'World!']">Click me</button>
     <swal #mySwal title="Hello" text="World!"></swal>
@@ -41,8 +41,8 @@ export class MyComponent {}
 
 ```typescript
 // app.config.ts or main.ts
-import { ApplicationConfig } from '@angular/core';
-import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
+import { ApplicationConfig } from "@angular/core";
+import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -57,11 +57,11 @@ export const appConfig: ApplicationConfig = {
 
 ```typescript
 // my.component.ts
-import { Component } from '@angular/core';
-import { SwalComponent, SwalDirective } from '@sweetalert2/ngx-sweetalert2';
+import { Component } from "@angular/core";
+import { SwalComponent, SwalDirective } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-  selector: 'my-component',
+  selector: "my-component",
   imports: [SwalComponent, SwalDirective], // Import only what you need
   template: `
     <button [swal]="['Hello', 'World!']">Click me</button>

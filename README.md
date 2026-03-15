@@ -58,8 +58,8 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 
 ```typescript
 // main.ts or app.config.ts
-import { ApplicationConfig } from '@angular/core';
-import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
+import { ApplicationConfig } from "@angular/core";
+import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -76,11 +76,11 @@ export const appConfig: ApplicationConfig = {
 3. Import individual components/directives as needed:
 
 ```typescript
-import { Component } from '@angular/core';
-import { SwalComponent, SwalDirective } from '@sweetalert2/ngx-sweetalert2';
+import { Component } from "@angular/core";
+import { SwalComponent, SwalDirective } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-  selector: 'my-component',
+  selector: "my-component",
   imports: [SwalComponent, SwalDirective], // Import what you need
   template: `
     <button [swal]="['Hello', 'world!']">Click me</button>
@@ -121,7 +121,7 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 2. Import the module:
 
 ```typescript
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 
 @NgModule({
   //=> Basic usage (forRoot can also take options, see the wiki)
@@ -230,7 +230,7 @@ You can access the dialog from your TypeScript code-behind like this:
 
 ```ts
 class MyComponent {
-  @ViewChild('deleteSwal')
+  @ViewChild("deleteSwal")
   public readonly deleteSwal!: SwalComponent;
 }
 ```
@@ -297,7 +297,7 @@ You just have to change the _target_ of the portal (_`content`_ is the default t
 First, inject this little service in your component:
 
 ```typescript
-import { SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
+import { SwalPortalTargets } from "@sweetalert2/ngx-sweetalert2";
 
 export class MyComponent {
   public constructor(public readonly swalTargets: SwalPortalTargets) {}

@@ -10,11 +10,11 @@ import {
     Output,
     ViewContainerRef,
     inject,
-} from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { SweetAlertArrayOptions, SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
-import { SwalComponent } from './swal.component';
+} from "@angular/core";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { SweetAlertArrayOptions, SweetAlertOptions, SweetAlertResult } from "sweetalert2";
+import { SwalComponent } from "./swal.component";
 
 /**
  * [swal] directive. It takes a value that defines the SweetAlert and can be of three types:
@@ -33,7 +33,7 @@ import { SwalComponent } from './swal.component';
  *    <swal #mySwal title="Title" text="Text"></swal>
  */
 @Directive({
-    selector: '[swal]',
+    selector: "[swal]",
     standalone: true,
 })
 export class SwalDirective implements OnInit, OnDestroy {
@@ -108,7 +108,7 @@ export class SwalDirective implements OnInit, OnDestroy {
      *     }
      */
     @Output()
-    public readonly dismiss = new EventEmitter<SweetAlertResult['dismiss'] | undefined>();
+    public readonly dismiss = new EventEmitter<SweetAlertResult["dismiss"] | undefined>();
 
     /**
      * When the user does not provides a SwalComponent instance, we create it on-the-fly and assign the plain-object
@@ -158,7 +158,7 @@ export class SwalDirective implements OnInit, OnDestroy {
      * The directive listens for onclick events on its host element.
      * When this happens, it shows the <swal> attached to this directive.
      */
-    @HostListener('click', ['$event'])
+    @HostListener("click", ["$event"])
     public onClick(event: MouseEvent): void {
         event.preventDefault();
         event.stopImmediatePropagation();

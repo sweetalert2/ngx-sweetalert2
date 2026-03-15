@@ -6,11 +6,11 @@ For lazy-loaded modules or components that need different SweetAlert2 configurat
 
 ```typescript
 // feature.component.ts
-import { Component } from '@angular/core';
-import { SwalComponent, provideSweetAlert2ForFeature } from '@sweetalert2/ngx-sweetalert2';
+import { Component } from "@angular/core";
+import { SwalComponent, provideSweetAlert2ForFeature } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-  selector: 'feature-component',
+  selector: "feature-component",
   imports: [SwalComponent],
   providers: [
     ...provideSweetAlert2ForFeature({
@@ -30,12 +30,12 @@ For even better performance, you can provide a custom loader:
 
 ```typescript
 // app.config.ts
-import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
+import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideSweetAlert2({
-      provideSwal: () => import('sweetalert2'), // Lazy load
+      provideSwal: () => import("sweetalert2"), // Lazy load
       fireOnInit: false,
       dismissOnDestroy: true,
     }),
@@ -47,12 +47,12 @@ export const appConfig: ApplicationConfig = {
 
 ```typescript
 // app.config.ts
-import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
+import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideSweetAlert2({
-      provideSwal: () => import('sweetalert2/dist/sweetalert2.all.min.js'),
+      provideSwal: () => import("sweetalert2/dist/sweetalert2.all.min.js"),
       fireOnInit: false,
       dismissOnDestroy: true,
     }),
@@ -64,11 +64,11 @@ export const appConfig: ApplicationConfig = {
 
 ```typescript
 // my.component.spec.ts
-import { TestBed } from '@angular/core/testing';
-import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
-import { MyComponent } from './my.component';
+import { TestBed } from "@angular/core/testing";
+import { provideSweetAlert2 } from "@sweetalert2/ngx-sweetalert2";
+import { MyComponent } from "./my.component";
 
-describe('MyComponent', () => {
+describe("MyComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MyComponent],
@@ -76,14 +76,14 @@ describe('MyComponent', () => {
         provideSweetAlert2({
           provideSwal: () =>
             Promise.resolve({
-              fire: jasmine.createSpy('fire'),
+              fire: jasmine.createSpy("fire"),
             }),
         }),
       ],
     }).compileComponents();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     const fixture = TestBed.createComponent(MyComponent);
     expect(fixture.componentInstance).toBeTruthy();
   });
@@ -96,11 +96,11 @@ Import only what you need for optimal bundle size:
 
 ```typescript
 // Only using the directive
-import { Component } from '@angular/core';
-import { SwalDirective } from '@sweetalert2/ngx-sweetalert2';
+import { Component } from "@angular/core";
+import { SwalDirective } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-  selector: 'simple-component',
+  selector: "simple-component",
   imports: [SwalDirective], // Only imports the directive
   template: ` <button [swal]="['Hello', 'World!']">Click me</button> `,
 })
@@ -109,11 +109,11 @@ export class SimpleComponent {}
 
 ```typescript
 // Using both component and directive
-import { Component } from '@angular/core';
-import { SwalComponent, SwalDirective } from '@sweetalert2/ngx-sweetalert2';
+import { Component } from "@angular/core";
+import { SwalComponent, SwalDirective } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-  selector: 'advanced-component',
+  selector: "advanced-component",
   imports: [SwalComponent, SwalDirective], // Import both
   template: `
     <button [swal]="mySwal">Show Modal</button>
@@ -126,17 +126,17 @@ export class AdvancedComponent {}
 ## Portal Usage with Standalone
 
 ```typescript
-import { Component } from '@angular/core';
-import { SwalComponent, SwalPortalDirective } from '@sweetalert2/ngx-sweetalert2';
+import { Component } from "@angular/core";
+import { SwalComponent, SwalPortalDirective } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-  selector: 'portal-example',
+  selector: "portal-example",
   imports: [SwalComponent, SwalPortalDirective],
   template: `
     <swal title="Dynamic Content">
       <div *swalPortal>
         <p>This content is rendered inside the SweetAlert modal!</p>
-        <p>Current time: {{ currentTime | date: 'medium' }}</p>
+        <p>Current time: {{ currentTime | date: "medium" }}</p>
       </div>
     </swal>
   `,

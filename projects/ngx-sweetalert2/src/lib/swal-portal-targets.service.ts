@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import Swal, { SweetAlertOptions } from 'sweetalert2';
+import { Injectable } from "@angular/core";
+import Swal, { SweetAlertOptions } from "sweetalert2";
 
 export interface SwalPortalTarget {
     options?: SweetAlertOptions;
@@ -11,7 +11,7 @@ export interface SwalPortalTarget {
  * We must use thunks to access the Swal.* functions listed below, because they get created after the first modal is
  * shown, so this object lets us reference those functions safely and in a statically-typed manner.
  */
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class SwalPortalTargets {
     /**
      * Targets the modal close button block contents.
@@ -27,7 +27,7 @@ export class SwalPortalTargets {
     public readonly title: SwalPortalTarget = {
         element: (swal) => swal.getTitle(),
         // Empty text that will never be shown but necessary so SweetAlert2 makes the div visible.
-        options: { title: ' ' },
+        options: { title: " " },
     };
 
     /**
@@ -37,7 +37,7 @@ export class SwalPortalTargets {
     public readonly content: SwalPortalTarget = {
         element: (swal) => swal.getHtmlContainer(),
         // Empty text that will never be shown but necessary so SweetAlert2 makes the div visible.
-        options: { text: ' ' },
+        options: { text: " " },
     };
 
     /**
@@ -83,6 +83,6 @@ export class SwalPortalTargets {
     public readonly footer: SwalPortalTarget = {
         element: (swal) => swal.getFooter(),
         // Empty text that will never be shown but necessary so SweetAlert2 makes the div visible.
-        options: { footer: ' ' },
+        options: { footer: " " },
     };
 }

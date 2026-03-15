@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { SwalComponent, SwalDirective, SwalPortalDirective, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
+import { Component, inject } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { SwalComponent, SwalDirective, SwalPortalDirective, SwalPortalTargets } from "@sweetalert2/ngx-sweetalert2";
 
 @Component({
-    selector: 'demo-app',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    selector: "demo-app",
+    templateUrl: "./app.component.html",
+    styleUrls: ["./app.component.css"],
     imports: [RouterModule, SwalComponent, SwalDirective, SwalPortalDirective],
 })
 export class AppComponent {
@@ -15,7 +15,7 @@ export class AppComponent {
 
     public isSwalVisible = false;
 
-    private readonly dynamicTextChunks = 'This dynamic content is controlled by Angular'.split(' ');
+    private readonly dynamicTextChunks = "This dynamic content is controlled by Angular".split(" ");
 
     private dynamicTextChunksIntervalHandle?: ReturnType<typeof setInterval>;
 

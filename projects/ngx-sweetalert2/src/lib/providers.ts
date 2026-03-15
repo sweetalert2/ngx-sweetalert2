@@ -1,7 +1,7 @@
-import { EnvironmentProviders, makeEnvironmentProviders, Provider } from '@angular/core';
-import { dismissOnDestroyToken, fireOnInitToken, swalProviderToken } from './di';
-import { SwalPortalTargets } from './swal-portal-targets.service';
-import { SwalProvider, SweetAlert2LoaderService } from './sweetalert2-loader.service';
+import { EnvironmentProviders, makeEnvironmentProviders, Provider } from "@angular/core";
+import { dismissOnDestroyToken, fireOnInitToken, swalProviderToken } from "./di";
+import { SwalPortalTargets } from "./swal-portal-targets.service";
+import { SwalProvider, SweetAlert2LoaderService } from "./sweetalert2-loader.service";
 
 export interface SweetAlert2Config {
     provideSwal?: SwalProvider;
@@ -10,7 +10,7 @@ export interface SweetAlert2Config {
 }
 
 export function provideDefaultSwal() {
-    return import('sweetalert2');
+    return import("sweetalert2");
 }
 
 /**
