@@ -35,12 +35,6 @@
               "browsers": "ChromeHeadlessCI"
             }
           }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["projects/ngx-sweetalert2/**/*.ts", "projects/ngx-sweetalert2/**/*.html"]
-          }
         }
       }
     },
@@ -129,12 +123,6 @@
               "progress": false,
               "browsers": "ChromeHeadlessCI"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["projects/ngx-sweetalert2-demo/**/*.ts", "projects/ngx-sweetalert2-demo/**/*.html"]
           }
         }
       }
