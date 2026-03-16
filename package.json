@@ -17,9 +17,7 @@
     "test:lib": "ng test ngx-sweetalert2 --include=projects/ngx-sweetalert2/src/lib/swal.component.spec.ts",
     "test:demo": "ng test ngx-sweetalert2-demo --include=projects/ngx-sweetalert2-demo/src/app/app.component.spec.ts",
     "format": "oxfmt",
-    "lint": "run-s lint:*",
-    "lint:lib": "ng lint ngx-sweetalert2",
-    "lint:demo": "ng lint ngx-sweetalert2-demo",
+    "lint": "oxlint",
     "semantic-release": "semantic-release"
   },
   "private": true,
@@ -41,11 +39,8 @@
     "@angular/build": "^21.1.0",
     "@angular/cli": "~21.2.0",
     "@angular/compiler-cli": "~21.2.0",
-    "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/node": "^25.0.0",
-    "angular-eslint": "^21.1.0",
-    "eslint": "^10.0.0",
     "jasmine-core": "^6.0.0",
     "karma": "^6.4.1",
     "karma-chrome-launcher": "^3.0.0",
@@ -55,8 +50,8 @@
     "ng-packagr": "^21.1.0",
     "npm-run-all2": "^8.0.0",
     "oxfmt": "^0.40.0",
+    "oxlint": "^1.51.0",
     "semantic-release": "^25.0.0",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.39.1"
+    "typescript": "~5.9.3"
   }
 }
