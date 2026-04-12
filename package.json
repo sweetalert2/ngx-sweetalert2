@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "yarn serve",
+    "dev": "bun run serve",
     "serve": "ng serve ngx-sweetalert2-demo",
     "build": "run-s build:*",
     "build:lib": "ng build ngx-sweetalert2",
@@ -49,7 +49,7 @@
     "karma-jasmine-html-reporter": "^2.0.0",
     "ng-packagr": "^21.1.0",
     "npm-run-all2": "^8.0.0",
-    "oxfmt": "^0.42.0",
+    "oxfmt": "^0.43.0",
     "oxlint": "^1.51.0",
     "semantic-release": "^25.0.0",
     "typescript": "~5.9.3"

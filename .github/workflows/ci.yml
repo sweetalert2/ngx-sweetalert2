@@ -26,29 +26,32 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Install npm dependencies
-        run: yarn install
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
 
       - name: Build library package
-        run: yarn build:lib --configuration=production
+        run: bun run build:lib --configuration=production
 
       - name: Copy readme and license files
-        run: yarn build:copy-files
+        run: bun run build:copy-files
 
       - name: Run library tests
-        run: yarn test:lib --configuration=ci
+        run: bun run test:lib --configuration=ci
 
       - name: Run demo app tests
-        run: yarn test:demo --configuration=ci
+        run: bun run test:demo --configuration=ci
 
       - name: Show package.json
         run: cat dist/ngx-sweetalert2/package.json
 
       - name: Build library package for publishing
-        run: yarn build:lib --configuration production
+        run: bun run build:lib --configuration production
 
       - name: Run automated release process with semantic-release
         if: github.event_name == 'push' && contains(github.ref, 'main')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn semantic-release
+        run: bun run semantic-release
