@@ -1,13 +1,14 @@
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
   Directive,
+  EnvironmentInjector,
   Injector,
   Input,
   OnDestroy,
   OnInit,
   TemplateRef,
+  createComponent,
   inject,
 } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -52,7 +53,7 @@ import { SweetAlert2LoaderService } from './sweetalert2-loader.service';
   standalone: true,
 })
 export class SwalPortalDirective implements OnInit, OnDestroy {
-  private readonly resolver = inject(ComponentFactoryResolver);
+  private readonly envInjector = inject(EnvironmentInjector);
   private readonly injector = inject(Injector);
   private readonly app = inject(ApplicationRef);
   private readonly templateRef = inject<TemplateRef<unknown>>(TemplateRef);
@@ -160,13 +161,14 @@ export class SwalPortalDirective implements OnInit, OnDestroy {
    */
   private createPortalComponent(): ComponentRef<SwalPortalComponent> {
     //=> Create the SwalPortalComponent that will hold our content
-    const factory = this.resolver.resolveComponentFactory(SwalPortalComponent);
-
-    // Yes, we do not use the third argument that would directly use the target as the component's view
-    // (unfortunately, because that would give a cleaner DOM and would avoid dirty and direct DOM manipulations)
-    // That's because we want to keep our component safe from SweetAlert2's operations on the DOM, and to be
-    // able to restore it at any moment, ie. after the modal has been re-rendered.
-    const componentRef = factory.create(this.injector, []);
+    // Yes, we do not use the hostElement/projectableNodes approach that would directly use the target as the
+    // component's view (unfortunately, because that would give a cleaner DOM and would avoid dirty and direct
+    // DOM manipulations). That's because we want to keep our component safe from SweetAlert2's operations on
+    // the DOM, and to be able to restore it at any moment, ie. after the modal has been re-rendered.
+    const componentRef = createComponent(SwalPortalComponent, {
+      environmentInjector: this.envInjector,
+      elementInjector: this.injector,
+    });
 
     //=> Apply the consumer's template on the component
     componentRef.instance.template = this.templateRef;

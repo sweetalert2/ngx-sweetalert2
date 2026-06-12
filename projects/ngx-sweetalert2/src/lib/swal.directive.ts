@@ -1,5 +1,4 @@
 import {
-  ComponentFactoryResolver,
   ComponentRef,
   Directive,
   EventEmitter,
@@ -38,7 +37,6 @@ import { SwalComponent } from './swal.component';
 })
 export class SwalDirective implements OnInit, OnDestroy {
   private readonly viewContainerRef = inject(ViewContainerRef);
-  private readonly resolver = inject(ComponentFactoryResolver);
 
   /**
    * SweetAlert2 options or a SwalComponent instance.
@@ -134,9 +132,7 @@ export class SwalDirective implements OnInit, OnDestroy {
    */
   public ngOnInit(): void {
     if (!this.swalInstance) {
-      const factory = this.resolver.resolveComponentFactory(SwalComponent);
-
-      this.swalRef = this.viewContainerRef.createComponent(factory);
+      this.swalRef = this.viewContainerRef.createComponent(SwalComponent);
       this.swalInstance = this.swalRef.instance;
     }
   }
