@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "esModuleInterop": true,
@@ -18,8 +17,8 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "paths": {
-      "@sweetalert2/ngx-sweetalert2": ["dist/ngx-sweetalert2"],
-      "@sweetalert2/ngx-sweetalert2/*": ["dist/ngx-sweetalert2/*"]
+      "@sweetalert2/ngx-sweetalert2": ["./dist/ngx-sweetalert2"],
+      "@sweetalert2/ngx-sweetalert2/*": ["./dist/ngx-sweetalert2/*"]
     }
   },
   "angularCompilerOptions": {
