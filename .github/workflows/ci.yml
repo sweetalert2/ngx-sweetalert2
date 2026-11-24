@@ -20,12 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      # because npm 10.8.2 (default) doesn't work with trusted publishing, 11.6.2 works
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
 
